@@ -126,9 +126,6 @@ def assemble_file(input_file, output_file):
 
     print(f"Output written to {output_file}")
 
-# -----------------------------
-# Usage
-# -----------------------------
 import os
 
 if __name__ == "__main__":
