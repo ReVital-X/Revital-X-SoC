@@ -2,7 +2,7 @@
 
 module alu(
     input [31:0] rs1_value,rs2_value,
-    input [3:0] alu_operation,
+    input [3:0] alu_op,
   
     output wire zero,
     output wire [31:0] rd_value
@@ -10,7 +10,7 @@ module alu(
 reg [31:0] rd_reg;
 always@(*) begin
  
-    case (alu_operation)
+    case (alu_op)
          4'b0000 : rd_reg = rs1_value + rs2_value; // add
          4'b0001 : rd_reg = rs1_value - rs2_value; // sub
          4'b0010 : rd_reg = rs1_value ^ rs2_value; // xor
