@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
-module register_bank(rs1,rs2,rd,regwrite,rd_value,rs1_value,rs2_value,clk,rst);
+module register_bank(rs1,rs2,rd,reg_write,rd_value,rs1_value,rs2_value,clk,rst);
    input clk,rst;
    input [4:0] rs1,rs2,rd;
-   input regwrite;
+   input reg_write;
    input [31:0] rd_value;
    output [31:0] rs1_value,rs2_value;
    reg [31:0] regfile [31:0];
