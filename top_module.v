@@ -1,8 +1,7 @@
 `timescale 1ns / 1ps
 
 module top_module(
-    input clk,
-    input rst
+    input clk,rst
     );
     
     // -------------------- Instruction Fetch -------------------- 
