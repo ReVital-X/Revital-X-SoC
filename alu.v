@@ -20,8 +20,8 @@ always@(*) begin
          4'b0110 : rd_reg = rs1_value >> rs2_value[4:0]; // shift right logical
          4'b0111 : rd_reg = $signed(rs1_value) >>> rs2_value[4:0]; // shift right arithmetic
          4'b1000 : rd_reg = ($signed(rs1_value) < $signed(rs2_value) )? 1 : 0; // set less than
-         4'b1101 : rd_reg = (rs1_value < rs2_value )? 1 : 0; // set less than unsigned
-         default : rd_reg = 32'bx;
+         4'b1001 : rd_reg = (rs1_value < rs2_value )? 1 : 0; // set less than unsigned
+         default : rd_reg = 32'b0;
     endcase
     
 end
