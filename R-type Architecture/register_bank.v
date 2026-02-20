@@ -3,7 +3,7 @@
 module register_bank(
    input clk,rst,
    input [4:0] rs1,rs2,rd,
-   input regwrite,
+   input reg_write,
    input [31:0] rd_value,
    output [31:0] rs1_value,rs2_value
 );
@@ -19,7 +19,7 @@ module register_bank(
             end
         end
         
-        else if (regwrite && rd != 5'b00000) begin //To maintain x0 register as zero always
+        else if (reg_write && rd != 5'b00000) begin //To maintain x0 register as zero always
             regfile[rd] <= rd_value;
         end
         
