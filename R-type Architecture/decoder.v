@@ -1,4 +1,4 @@
-module Decoder_Rtype (
+module decoder(
     input  [31:0] instr,
     output [4:0]  rd,
     output [4:0]  rs1,
