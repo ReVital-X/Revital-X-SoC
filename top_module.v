@@ -1,7 +1,8 @@
 `timescale 1ns / 1ps
 
 module top_module(
-    input clk,rst
+    input clk,rst,
+    output [31:0] alu_out
     );
     
     // -------------------- Instruction Fetch -------------------- 
@@ -50,5 +51,7 @@ module top_module(
             .zero(zero),
             .rd_value(rd_value)
     );
- 
+
+    assign alu_out = rd_value;
+    
 endmodule
