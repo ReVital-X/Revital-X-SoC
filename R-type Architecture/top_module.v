@@ -18,7 +18,7 @@ module top_module(
     wire [4:0] rd, rs1, rs2;
     wire [3:0] alu_op;
     wire reg_write;
-    Decoder_Rtype DEC(
+    decoder DEC(
             .instr(instr),
             .rd(rd),
             .rs1(rs1),
