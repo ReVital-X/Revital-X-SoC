@@ -11,8 +11,7 @@ module top_module(
     instruction_fetch IF(
         .clk(clk),
         .rst(rst),
-        .pc(pc),
-        .instr(instr)
+        .pc(pc)
     );
     
     // -------------------- Decoder unit -------------------- 
