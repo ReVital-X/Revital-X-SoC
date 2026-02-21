@@ -49,7 +49,7 @@ wire [3:0] alu_op;
 wire reg_write;
 
 decoder DEC(
-    .instr(if_id_ir),   // ✔ Using pipeline register
+    .instr(if_id_ir),   // Using pipeline register
     .rd(rd),
     .rs1(rs1),
     .rs2(rs2),
@@ -112,7 +112,7 @@ end
 wire zero;
 
 alu ALU(
-    .rs1_value(id_ex_rs1_value),  // ✔ using pipeline values
+    .rs1_value(id_ex_rs1_value),  // using pipeline values
     .rs2_value(id_ex_rs2_value),
     .alu_op(id_ex_alu_op),
     .zero(zero),
