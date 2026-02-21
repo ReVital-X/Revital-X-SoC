@@ -10,11 +10,6 @@ module register_bank(
 
    reg [31:0] regfile [31:0];
    integer i; //Loop for reset initialization
-
-   initial begin
-    regfile[1] = 32'd10;   // x1 = 10
-    regfile[2] = 32'd20;   // x2 = 20
-   end
    
    always@(posedge clk or posedge rst) begin 
    
