@@ -12,7 +12,7 @@ module top_module(
 // ==========================================================
 
 wire [31:0] pc;
-  // from instruction memory
+
 
 instruction_fetch IF(
     .clk(clk),
