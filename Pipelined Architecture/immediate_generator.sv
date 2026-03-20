@@ -25,8 +25,7 @@ module immediate_generator (
             
             // B-Type (BRANCH)
             7'b1100011: begin
-                imm_out = {{19{instr[31]}}, instr[31], instr[7],
-                           instr[30:25], instr[11:8], 1'b0};
+                imm_out = {{19{instr[31]}}, instr[31], instr[7],instr[30:25], instr[11:8], 1'b0};
             end
 
             // U-Type (LUI, AUIPC)
@@ -37,8 +36,7 @@ module immediate_generator (
 
             // J-Type (JAL)
             7'b1101111: begin
-                imm_out = {{11{instr[31]}}, instr[31], instr[19:12],
-                           instr[20], instr[30:21], 1'b0};
+                imm_out = {{11{instr[31]}}, instr[31], instr[19:12],instr[20], instr[30:21], 1'b0};
             end
 
             default: begin
