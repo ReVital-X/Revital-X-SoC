@@ -9,7 +9,7 @@ module immediate_generator (
     assign opcode = instr[6:0];
 
     always_comb begin
-        case (opcode)
+        unique case (opcode)
 
             // I-Type (ALU, LOAD, JALR)
             7'b0010011,
