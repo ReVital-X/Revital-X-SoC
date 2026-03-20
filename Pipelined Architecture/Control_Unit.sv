@@ -11,7 +11,7 @@ module Control_Unit (
     output logic       MemRead,
     output logic       ALUSrc,
     output logic       Lui,
-    output logic [3:0] ALUControl,
+    output logic [3:0] Control,
     output logic       Jump,
     output logic       Branch,
     output logic       Mul
@@ -24,7 +24,6 @@ module Control_Unit (
     // MAIN DECODER
     // =========================
     always_comb begin
-        // Default values (avoid latches)
         RegWrite   = 0;
         MemWrite   = 0;
         MemRead    = 0;
@@ -172,31 +171,31 @@ module Control_Unit (
     // =========================
     always_comb begin
 
-        ALUControl = 4'b0000;
+        Control = 4'b0000;
         Mul = 0;
         case (ALUOp)
 
             // ADD (lw, sw, JAL, JALR, LUI, AUIPC etc)
             2'b00: begin 
-                ALUControl = 4'b0000;
+                Control = 4'b0000;
                 Mul = 0;
             end  
 
             // Branch use funct3 directly to determine the type of branch
             2'b01: begin
-                ALUControl = {1'b0, funct3};
+                Control = {1'b0, funct3};
                 Mul = 0;
             end
             // R-type / I-type ALU ops / MUL (M extension)
             2'b10: begin
-                ALUControl = {funct7_5, funct3};
-                // Using same ALUControl for M-EXT Multiplier to reduce pipeline registers.
+                Control = {funct7_5, funct3};
+                // Using same Control for M-EXT Multiplier to reduce pipeline registers.
                 Mul = funct7_0;
             end
             // Use funct7 bit 5 to distinguish between ADD/SUB
             // Use funct7 bit 0 to distinguish between MUL and other R-type ops (M extension)
             default: begin 
-                ALUControl = 4'b0000;
+                Control = 4'b0000;
                 Mul = 0;
             end
         endcase
