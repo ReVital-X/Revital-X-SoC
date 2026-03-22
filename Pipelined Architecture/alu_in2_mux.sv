@@ -42,6 +42,7 @@ module alu_in2_mux #(
     // Selects one of the inputs based on {Lui, ALUSrc}
     // ------------------------------------------------------------------------
     always_comb begin
+        alu_in2 = '0;
         case ({Lui, ALUSrc})
 
             // 00 → Select register value (rs2)
@@ -55,9 +56,6 @@ module alu_in2_mux #(
 
             // 11 → Select program counter (pc) (used in AUIPC)
             2'b11: alu_in2 = pc;
-
-            // Default case (safety)
-            default: alu_in2 = '0;
 
         endcase
     end
