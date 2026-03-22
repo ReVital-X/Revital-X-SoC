@@ -6,15 +6,10 @@ module alu_in1_mux #(
     input  logic             Lui,     // control signal
     output logic [WIDTH-1:0] alu_in1  // First input for the ALU
 );
-
-    logic [WIDTH-1:0] imm_shifted;
-
-    assign imm_shifted = imm << 12;    // Shift immediate left by 12
-
     // MUX logic
     always_comb begin
         if (Lui)
-            alu_in1 = imm_shifted;     // if Lui = 1 , then 12 bit shifted input is selected as 1st input for ALU
+            alu_in1 = imm;     // if Lui = 1 , then 12 bit shifted input is selected as 1st input for ALU
         else
             alu_in1 = rs1;             // if Lui = 0 , then source register 1 is selected as 1st input for ALU
     end
