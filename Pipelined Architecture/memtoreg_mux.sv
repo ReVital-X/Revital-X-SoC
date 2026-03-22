@@ -29,7 +29,7 @@ Usage:
     write return address (PC + 4) → MemtoReg = 10
 
 - Default / unused case:
-    output zero → MemtoReg = 11
+    output zero
 ===============================================================================
 */
 
@@ -42,30 +42,19 @@ module memtoreg_mux #(
     input  logic [1:0]       MemtoReg,   // Control signal (2-bit select)
     output logic [WIDTH-1:0] wb_data     // Data written back to register file
 );
-
     // ------------------------------------------------------------------------
     // Combinational MUX Logic
     // Selects which data goes to the register file
     // ------------------------------------------------------------------------
     always_comb begin
+        wb_data = '0;
         case (MemtoReg)
-
             // 00 → ALU result (normal arithmetic/logical instructions)
             2'b00: wb_data = alu_result;
-
             // 01 → Memory data (load instructions like lw)
             2'b01: wb_data = mem_data;
-
             // 10 → PC + 4 (used in jal/jalr for return address)
             2'b10: wb_data = pc_4;
-
-            // 11 → Default safe value (zero)
-            2'b11: wb_data = '0;
-
-            // Safety fallback (should not normally occur)
-            default: wb_data = '0;
-
         endcase
     end
-
 endmodule
