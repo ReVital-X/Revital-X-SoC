@@ -15,12 +15,11 @@ module register_file (
 
 
     // WRITE + RESET LOGIC (Sequential)
- 
+    
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
-            foreach (regfile[i]) begin
+            for (int i = 0; i < 32; i++)
                 regfile[i] <= 32'b0;
-            end
         end
         else if (regwrite && (rd != 5'd0)) begin
             // Write operation (x0 is always zero, so ignore rd = 0)
