@@ -55,6 +55,8 @@ module memtoreg_mux #(
             2'b01: wb_data = mem_data;
             // 10 → PC + 4 (used in jal/jalr for return address)
             2'b10: wb_data = pc_4;
+            // 11 → Default
+            default: wb_data = '0;
         endcase
     end
 endmodule
