@@ -14,19 +14,23 @@ module Stage1(
     output logic [4:0] rs1,
     output logic [4:0] rs2,
     output logic [31:0] imm,
-    output logic [13:0] ctrl,
-    output logic [4:0] rd_out
-);
+    output logic [13:0] ctrl
 
-    logic [31:0] instr;
-    logic [31:0] PC_Addr_to_PC_Mux;
+);
+logic [31:0] instr;
+logic [31:0] PC_Addr_to_PC_Mux;
+logic [31:0] mux_out;
 pc_mux mux1 (
     .pc_plus4(PC_Addr_to_PC_Mux), // Connect to PC + 4 logic
     .branch_addr(BranchAddr),
     .alu_result(ALUResult),
     .pcsrc(PCSrc),
-    .pc_in(PC) // Connect to PC input
+    .pc_in(mux_out) // Connect to PC input
 );
+always_ff @(posedge clk or posedge rst) begin
+    if (rst) PC <= 32'b0;
+    else     PC <= mux_out; // Update PC with the output of the mux
+end
 pc_adder_mux mux2 (
     .pc_stall(pc_stall),
     .pc(PC),
@@ -43,9 +47,9 @@ register_file rf (
     .rs1_value(rs1_value), 
     .rs2_value(rs2_value)
 );
-    logic [3:0] ALUControl;
-    logic [1:0] MemtoReg;
-    logic RegWrite, MemWrite, MemRead, ALUSrc, Lui, Jump, Branch, Mul;
+logic [3:0] ALUControl;
+logic [1:0] MemtoReg;
+logic RegWrite, MemWrite, MemRead, ALUSrc, Lui, Jump, Branch, Mul;
 Control_Unit cu (
     .opcode(instr[6:0]),
     .funct3(instr[14:12]),
@@ -62,7 +66,7 @@ Control_Unit cu (
     .Branch(Branch),
     .Mul(Mul)
 );
-    assign ctrl = {RegWrite, MemtoReg, MemWrite, MemRead, ALUSrc, Lui, ALUControl, Jump, Branch, Mul};
+assign ctrl = {RegWrite, MemtoReg, MemWrite, MemRead, ALUSrc, Lui, ALUControl, Jump, Branch, Mul};
 
 immediate_generator imm_gen (
     .instr(instr),
@@ -73,8 +77,6 @@ instr_rom instr_mem (
     .pc(PC),
     .instr(instr)
 );
-    assign rs1 = instr[19:15];
-    assign rs2 = instr[24:20];
-    assign rd_out = instr[11:7];
-
+assign rs1 = instr[19:15];
+assign rs2 = instr[24:20];
 endmodule
