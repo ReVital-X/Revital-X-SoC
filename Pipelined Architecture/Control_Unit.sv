@@ -131,7 +131,7 @@ module Control_Unit (
                 MemWrite  = 0;
                 MemRead   = 0;
                 ALUSrc    = 0; 
-                Lui       =  1;
+                Lui       = 1;
                 MemtoReg  = 2'b00; // ALU will be configured to pass imm directly to rd
                 Jump      = 0;
                 Branch    = 0;

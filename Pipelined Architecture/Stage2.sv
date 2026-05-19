@@ -1,5 +1,6 @@
 module Stage2(
-    input logic [31:0] pc,
+    input logic clk,
+    input logic [31:0] pc_in_2,
     input logic [31:0] imm,
     input logic [31:0] rs1_value,
     input logic [31:0] rs2_value,
@@ -11,9 +12,11 @@ module Stage2(
     output logic [4:0] rd_out,
     output logic [31:0] rs2_value_out,
     output logic branch_flush,
-    output logic [5:0] ctrl_s2,
+    output logic [4:0] ctrl_s2,
     output logic [31:0] BranchAddr,
-    output logic [31:0] ALUResult
+    output logic [31:0] ALUResult,
+    output logic [31:0] pc_out_s2,
+    output logic stall_pipeline
 );
     logic compare_out;
     logic [31:0] alu_result;
@@ -36,7 +39,7 @@ alu_in1_mux mux1 (
 alu_in2_mux mux2 (
     .rs2(rs2_value),
     .imm(imm),
-    .pc(pc),
+    .pc(pc_in_2),
     .Lui(Lui),
     .ALUSrc(ALUSrc),
     .alu_in2(alu_in2)
@@ -67,10 +70,11 @@ alu_mul_mux mux3 (
 );
 
     assign branch_flush = compare_out & Branch;
-    assign BranchAddr = pc + imm;
-    assign ctrl_s2 = {MemRead,MemWrite,MemtoReg,Jump,RegWrite};
+    assign BranchAddr = pc_in_2 + imm;
+    assign ctrl_s2 = {MemRead,MemWrite,MemtoReg,RegWrite};
     assign rd_out = rd;
     assign ALUResult = alu_result;
     assign rs2_value_out = rs2_value; 
+    assign pc_out_s2 = pc_in_2;
 
 endmodule
