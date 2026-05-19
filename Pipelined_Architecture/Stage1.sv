@@ -14,7 +14,8 @@ module Stage1(
     output logic [4:0] rs1,
     output logic [4:0] rs2,
     output logic [31:0] imm,
-    output logic [13:0] ctrl
+    output logic [13:0] ctrl,
+    output logic [4:0] rd_out
 
 );
 logic [31:0] instr;
@@ -79,4 +80,5 @@ instr_rom instr_mem (
 );
 assign rs1 = instr[19:15];
 assign rs2 = instr[24:20];
+assign rd_out = instr[11:7];
 endmodule
