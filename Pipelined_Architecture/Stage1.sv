@@ -4,6 +4,7 @@ module Stage1(
     input logic pc_stall,
     input logic RegWrite_wb,
     input logic [4:0] rd,
+    output logic [4:0] rd_s12,
     input logic [31:0] wb_data,
     input logic [1:0] PCSrc,
     input logic [31:0] BranchAddr,
@@ -14,8 +15,7 @@ module Stage1(
     output logic [4:0] rs1,
     output logic [4:0] rs2,
     output logic [31:0] imm,
-    output logic [13:0] ctrl,
-    output logic [4:0] rd_out
+    output logic [14:0] ctrl
 
 );
 logic [31:0] instr;
@@ -50,7 +50,7 @@ register_file rf (
 );
 logic [3:0] ALUControl;
 logic [1:0] MemtoReg;
-logic RegWrite, MemWrite, MemRead, ALUSrc, Lui, Jump, Branch, Mul;
+logic RegWrite, MemWrite, MemRead, ALUSrc, Lui, Jump, Branch, Mul, M_ctrl;
 Control_Unit cu (
     .opcode(instr[6:0]),
     .funct3(instr[14:12]),
@@ -65,9 +65,10 @@ Control_Unit cu (
     .ALUControl(ALUControl),
     .Jump(Jump),
     .Branch(Branch),
-    .Mul(Mul)
+    .Mul(Mul),
+    .M_ctrl(M_ctrl)
 );
-assign ctrl = {RegWrite, MemtoReg, MemWrite, MemRead, ALUSrc, Lui, ALUControl, Jump, Branch, Mul};
+assign ctrl = {RegWrite, MemtoReg, MemWrite, MemRead, ALUSrc, Lui, ALUControl, Jump, Branch, Mul, M_ctrl};
 
 immediate_generator imm_gen (
     .instr(instr),
@@ -80,5 +81,5 @@ instr_rom instr_mem (
 );
 assign rs1 = instr[19:15];
 assign rs2 = instr[24:20];
-assign rd_out = instr[11:7];
+assign rd_s12 = instr[11:7];
 endmodule

@@ -11,10 +11,11 @@ module Control_Unit (
     output logic       MemRead,
     output logic       ALUSrc,
     output logic       Lui,
-    output logic [3:0] Control,
+    output logic [3:0] ALUControl,
     output logic       Jump,
     output logic       Branch,
-    output logic       Mul
+    output logic       Mul,
+    output logic       M_ctrl
 );
 
     // Internal signals
@@ -24,6 +25,7 @@ module Control_Unit (
     // MAIN DECODER
     // =========================
     always_comb begin
+        // Default values (avoid latches)
         RegWrite   = 0;
         MemWrite   = 0;
         MemRead    = 0;
@@ -131,7 +133,7 @@ module Control_Unit (
                 MemWrite  = 0;
                 MemRead   = 0;
                 ALUSrc    = 0; 
-                Lui       = 1;
+                Lui       =  1;
                 MemtoReg  = 2'b00; // ALU will be configured to pass imm directly to rd
                 Jump      = 0;
                 Branch    = 0;
@@ -171,32 +173,37 @@ module Control_Unit (
     // =========================
     always_comb begin
 
-        Control = 4'b0000;
+        ALUControl = 4'b0000;
         Mul = 0;
+        M_ctrl = 0;
         case (ALUOp)
 
             // ADD (lw, sw, JAL, JALR, LUI, AUIPC etc)
             2'b00: begin 
-                Control = 4'b0000;
+                ALUControl = 4'b0000;
                 Mul = 0;
+                M_ctrl = 0;
             end  
 
             // Branch use funct3 directly to determine the type of branch
             2'b01: begin
-                Control = {1'b0, funct3};
+                ALUControl = {1'b0, funct3};
                 Mul = 0;
+                M_ctrl = 0;
             end
             // R-type / I-type ALU ops / MUL (M extension)
             2'b10: begin
-                Control = {funct7_5, funct3};
-                // Using same Control for M-EXT Multiplier to reduce pipeline registers.
+                ALUControl = {funct7_5, funct3};
+                // Using same ALUControl for M-EXT Multiplier to reduce pipeline registers.
                 Mul = funct7_0;
+                M_ctrl = funct3[0] | funct3[1];
             end
             // Use funct7 bit 5 to distinguish between ADD/SUB
             // Use funct7 bit 0 to distinguish between MUL and other R-type ops (M extension)
             default: begin 
-                Control = 4'b0000;
+                ALUControl = 4'b0000;
                 Mul = 0;
+                M_ctrl = 0;
             end
         endcase
     end
