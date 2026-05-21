@@ -193,10 +193,17 @@ module Control_Unit (
             end
             // R-type / I-type ALU ops / MUL (M extension)
             2'b10: begin
+                
                 ALUControl = {funct7_5, funct3};
                 // Using same ALUControl for M-EXT Multiplier to reduce pipeline registers.
-                Mul = funct7_0;
-                M_ctrl = funct3[0] | funct3[1];
+                if (opcode == 7'b0010011) begin 
+                    Mul = 0;
+                    M_ctrl = 0;
+                end
+                else if (opcode == 7'b0110011) begin
+                    Mul = funct7_0;
+                    M_ctrl = funct3[0] | funct3[1];
+                end
             end
             // Use funct7 bit 5 to distinguish between ADD/SUB
             // Use funct7 bit 0 to distinguish between MUL and other R-type ops (M extension)
