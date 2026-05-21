@@ -9,10 +9,10 @@ module data_ram (
     logic [31:0] mem [0:1023];
     always_ff @ (posedge clk) begin
         if (MemRead) begin
-            read_data <= mem [address[31:2]] ;
+            read_data <= mem [address[11:2]] ;
         end 
         if (MemWrite) begin
-            mem [address[31:2]] <= write_data;
+            mem [address[11:2]] <= write_data;
         end
     end
 endmodule

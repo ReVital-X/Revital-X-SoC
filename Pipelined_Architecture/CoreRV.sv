@@ -1,3 +1,4 @@
+/* verilator lint_off TIMESCALEMOD */
 module CoreRV(
     input logic clk,
     input logic rst
@@ -34,9 +35,9 @@ always_ff @(posedge clk) begin
 end
 always_comb begin
     if(count == 2'd2)
-        M_over <= 1;
+        M_over = 1;
     else
-        M_over <= 0;
+        M_over = 0;
 end
 
 logic Reg_wb, branch_flush, Jump;

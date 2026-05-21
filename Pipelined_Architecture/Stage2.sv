@@ -27,7 +27,7 @@ module Stage2(
     logic [31:0] alu_in2;
     logic [3:0] ALUControl;
     logic [1:0] MemtoReg;
-    logic RegWrite, MemWrite, MemRead, ALUSrc, Lui, Branch, Mul;
+    logic RegWrite, MemWrite, MemRead, ALUSrc, Lui, Branch, Mul, M_ctrl;
 
     assign {RegWrite,MemtoReg,MemWrite,MemRead,ALUSrc,Lui,ALUControl,Jump,Branch,Mul,M_ctrl} = ctrl_s1;
 /*    if (Mul) begin
