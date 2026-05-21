@@ -458,6 +458,7 @@ module cla4(
 
 wire [3:0] g, p;
 wire c0,c1,c2,c3,c4;
+wire [4:0] c = {c4, c3, c2, c1, c0};
 
 // Generate/Propagate
 genvar i;
@@ -530,6 +531,7 @@ module cla16(
 
 wire [3:0] blockG, blockP;
 wire c0,c1,c2,c3,c4;
+wire [4:0] c = {c4, c3, c2, c1, c0};
 wire cx;
 assign c0 = cin;
 
@@ -601,6 +603,7 @@ module cla64(
 wire cy;
 wire [3:0] blockG, blockP;
 wire c0,c1,c2,c3,c4;
+wire [4:0] c = {c4, c3, c2, c1, c0};
 
 assign c0 = cin;
 
