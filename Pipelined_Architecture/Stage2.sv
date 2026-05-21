@@ -62,7 +62,7 @@ alu alu (
     .compare_out(compare_out)
 );
 
-radix4_wallace_mul32 multi (
+Pipelined_M multi (
     .A(rs1_value),
     .B(rs2_value),
     .clk(clk),
