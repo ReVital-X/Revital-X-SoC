@@ -14,7 +14,7 @@
 // Top Multiplier
 // ============================================================
 
-module radix4_wallace_mul32(
+module Pipelined_M(
     input clk,
     input rst,
     input  signed [31:0] A,
