@@ -20,6 +20,24 @@ typedef struct packed {
     logic [4:0] ctrl_s2;
     logic [31:0] pc_out_s2;
 } s2_buffer;
+logic [1:0] count;
+logic M_over;
+always_ff @(posedge clk) begin
+    if (rst || M_over) begin
+        m_stall <= 0; // No stall on reset
+        count <= 2'b00; // Reset count
+    end
+    else if (s1_buf.ctrl[1]) begin // Check if Mul control signal is active
+        m_stall <= 1; // Stall the pipeline 
+        count <= count + 2'b01;
+    end
+end
+always_comb begin
+    if(count == 2'd2)
+        M_over <= 1;
+    else
+        M_over <= 0;
+end
 
 logic Reg_wb, branch_flush, Jump;
 logic [4:0] rd_out;
@@ -32,6 +50,7 @@ logic [31:0] imm;
 logic [14:0] ctrl;
 logic m_stall;
 logic [4:0] rd_s12;
+
 Stage1 s1(
     .clk(clk),
     .rst(rst),
@@ -102,12 +121,12 @@ Stage2 s2(
     .BranchAddr(BranchAddr),
     .ALUResult(ALUResult),
     .pc_out_s2(pc_out_s2),
-    .stall_pipeline(m_stall),
+    //.stall_pipeline(m_stall),
     .Jump(Jump)
 );
 
 always_ff @(posedge clk) begin
-    if (rst || branch_flush) begin
+    if (rst) begin
         s2_buf.exec_result <= 32'b0;
         s2_buf.rd_out <= 5'b0;
         s2_buf.rs2_value_out <= 32'b0;
