@@ -59,12 +59,13 @@ end
 // Final CLA
 // ============================================================
 reg signed [63:0] P;
+wire cz;
 cla64 Final_Add(
     .a(s6_next),
     .b(c6_next[63:0]),
     .cin(1'b0),
     .sum(P),
-    .cout()
+    .cout(cz)
 );
 assign P_32 = M_ctrl ? P[63:32] : P[31:0];
 
@@ -529,7 +530,7 @@ module cla16(
 
 wire [3:0] blockG, blockP;
 wire c0,c1,c2,c3,c4;
-
+wire cx;
 assign c0 = cin;
 
 // Carry between 4-bit blocks
@@ -562,7 +563,7 @@ generate
             .cin (c[i]),
 
             .sum (sum[i*4 +: 4]),
-            .cout(),
+            .cout(cx),
 
             .G   (blockG[i]),
             .P   (blockP[i])
@@ -597,7 +598,7 @@ module cla64(
     output wire [63:0] sum,
     output wire        cout
 );
-
+wire cy;
 wire [3:0] blockG, blockP;
 wire c0,c1,c2,c3,c4;
 
@@ -633,7 +634,7 @@ generate
             .cin (c[i]),
 
             .sum (sum[i*16 +: 16]),
-            .cout(),
+            .cout(cy),
 
             .G   (blockG[i]),
             .P   (blockP[i])
