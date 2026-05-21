@@ -456,7 +456,7 @@ module cla4(
 );
 
 wire [3:0] g, p;
-wire [4:0] c;
+wire c0,c1,c2,c3,c4;
 
 // Generate/Propagate
 genvar i;
@@ -471,33 +471,33 @@ generate
     end
 endgenerate
 
-assign c[0] = cin;
+assign c0 = cin;
 
 // Carry Lookahead Logic
-assign c[1] = g[0] | (p[0] & c[0]);
+assign c1 = g[0] | (p[0] & c0);
 
-assign c[2] = g[1]
+assign c2 = g[1]
             | (p[1] & g[0])
-            | (p[1] & p[0] & c[0]);
+            | (p[1] & p[0] & c0);
 
-assign c[3] = g[2]
+assign c3 = g[2]
             | (p[2] & g[1])
             | (p[2] & p[1] & g[0])
-            | (p[2] & p[1] & p[0] & c[0]);
+            | (p[2] & p[1] & p[0] & c0);
 
-assign c[4] = g[3]
+assign c4 = g[3]
             | (p[3] & g[2])
             | (p[3] & p[2] & g[1])
             | (p[3] & p[2] & p[1] & g[0])
-            | (p[3] & p[2] & p[1] & p[0] & c[0]);
+            | (p[3] & p[2] & p[1] & p[0] & c0);
 
 // Sum
-assign sum[0] = p[0] ^ c[0];
-assign sum[1] = p[1] ^ c[1];
-assign sum[2] = p[2] ^ c[2];
-assign sum[3] = p[3] ^ c[3];
+assign sum[0] = p[0] ^ c0;
+assign sum[1] = p[1] ^ c1;
+assign sum[2] = p[2] ^ c2;
+assign sum[3] = p[3] ^ c3;
 
-assign cout = c[4];
+assign cout = c4;
 
 // Group Generate / Propagate
 assign P = p[3] & p[2] & p[1] & p[0];
@@ -528,28 +528,28 @@ module cla16(
 );
 
 wire [3:0] blockG, blockP;
-wire [4:0] c;
+wire c0,c1,c2,c3,c4;
 
-assign c[0] = cin;
+assign c0 = cin;
 
 // Carry between 4-bit blocks
-assign c[1] = blockG[0]
-            | (blockP[0] & c[0]);
+assign c1 = blockG[0]
+            | (blockP[0] & c0);
 
-assign c[2] = blockG[1]
+assign c2 = blockG[1]
             | (blockP[1] & blockG[0])
-            | (blockP[1] & blockP[0] & c[0]);
+            | (blockP[1] & blockP[0] & c0);
 
-assign c[3] = blockG[2]
+assign c3 = blockG[2]
             | (blockP[2] & blockG[1])
             | (blockP[2] & blockP[1] & blockG[0])
-            | (blockP[2] & blockP[1] & blockP[0] & c[0]);
+            | (blockP[2] & blockP[1] & blockP[0] & c0);
 
-assign c[4] = blockG[3]
+assign c4 = blockG[3]
             | (blockP[3] & blockG[2])
             | (blockP[3] & blockP[2] & blockG[1])
             | (blockP[3] & blockP[2] & blockP[1] & blockG[0])
-            | (blockP[3] & blockP[2] & blockP[1] & blockP[0] & c[0]);
+            | (blockP[3] & blockP[2] & blockP[1] & blockP[0] & c0);
 
 // 4-bit CLA instances
 genvar i;
@@ -571,7 +571,7 @@ generate
     end
 endgenerate
 
-assign cout = c[4];
+assign cout = c4;
 
 // Group Generate/Propagate
 assign P = blockP[3] & blockP[2] & blockP[1] & blockP[0];
@@ -599,28 +599,28 @@ module cla64(
 );
 
 wire [3:0] blockG, blockP;
-wire [4:0] c;
+wire c0,c1,c2,c3,c4;
 
-assign c[0] = cin;
+assign c0 = cin;
 
 // Carry lookahead between 16-bit blocks
-assign c[1] = blockG[0]
-            | (blockP[0] & c[0]);
+assign c1 = blockG[0]
+            | (blockP[0] & c0);
 
-assign c[2] = blockG[1]
+assign c2 = blockG[1]
             | (blockP[1] & blockG[0])
-            | (blockP[1] & blockP[0] & c[0]);
+            | (blockP[1] & blockP[0] & c0);
 
-assign c[3] = blockG[2]
+assign c3 = blockG[2]
             | (blockP[2] & blockG[1])
             | (blockP[2] & blockP[1] & blockG[0])
-            | (blockP[2] & blockP[1] & blockP[0] & c[0]);
+            | (blockP[2] & blockP[1] & blockP[0] & c0);
 
-assign c[4] = blockG[3]
+assign c4 = blockG[3]
             | (blockP[3] & blockG[2])
             | (blockP[3] & blockP[2] & blockG[1])
             | (blockP[3] & blockP[2] & blockP[1] & blockG[0])
-            | (blockP[3] & blockP[2] & blockP[1] & blockP[0] & c[0]);
+            | (blockP[3] & blockP[2] & blockP[1] & blockP[0] & c0);
 
 // 16-bit CLA blocks
 genvar i;
@@ -642,6 +642,6 @@ generate
     end
 endgenerate
 
-assign cout = c[4];
+assign cout = c4;
 
 endmodule
