@@ -55,7 +55,7 @@ logic [4:0] rd_s12;
 Stage1 s1(
     .clk(clk),
     .rst(rst),
-    .pc_stall(m_stall),
+    .pc_stall(m_stall || lw_stall),
     .RegWrite_wb(Reg_wb),
     .rd(rd_out),
     .rd_s12(rd_s12),
@@ -74,7 +74,7 @@ Stage1 s1(
 s1_buffer s1_buf;
 s2_buffer s2_buf;
 always_ff @(posedge clk) begin
-    if (rst || branch_flush) begin
+    if (rst || branch_flush || lw_stall) begin
         s1_buf.PC <= 32'b0;
         s1_buf.rs1_value <= 32'b0;
         s1_buf.rs2_value <= 32'b0;
@@ -157,4 +157,13 @@ Stage3 s3(
     .wb_mux_out(wb_mux_out),
     .RegWrite_wb(Reg_wb)
 );
+logic lw_stall;
+Lw_Hazard_Unit lw_hazard_unit(
+    .rs1(rs1_S12),
+    .rs2(rs2_S12),
+    .rdE(s1_buf.rd_s12),
+    .MemReadE(s1_buf.ctrl[7]),
+    .lw_stall(lw_stall)
+);
+
 endmodule
