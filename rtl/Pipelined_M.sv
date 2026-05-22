@@ -67,6 +67,8 @@ cla64 Final_Add(
     .sum(P),
     .cout(cz)
 );
+logic _unused;
+assign _unused = cz; // Unused carry-out
 assign P_32 = M_ctrl ? P[63:32] : P[31:0];
 
 endmodule
@@ -574,7 +576,8 @@ generate
 
     end
 endgenerate
-
+logic _unused;
+assign _unused = cx;
 assign cout = c4;
 
 // Group Generate/Propagate
@@ -648,5 +651,6 @@ generate
 endgenerate
 
 assign cout = c4;
-
+logic _unused;
+assign _unused = cy;
 endmodule
