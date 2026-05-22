@@ -4,11 +4,11 @@ module forwarding_unit (
     output logic ForwardAE,ForwardBE
 );
     always_comb begin
-        if((rs1E == rdW)&&(RegWriteW)&&(rdE!=0))
+        if((rs1E == rdW)&&(RegWriteW)&&(rdW!=0))
             ForwardAE = 1'b1;
         else 
             ForwardAE = 1'b0;
-        if((rs2E == rdW)&&(RegWriteW)&&(rdE!=0))
+        if((rs2E == rdW)&&(RegWriteW)&&(rdW!=0))
             ForwardBE = 1'b1;
         else
             ForwardBE = 1'b0;
