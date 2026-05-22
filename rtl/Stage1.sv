@@ -28,7 +28,7 @@ pc_mux mux1 (
     .pcsrc(PCSrc),
     .pc_in(mux_out) // Connect to PC input
 );
-always_ff @(posedge clk or posedge rst) begin
+always_ff @(posedge clk) begin
     if (rst) PC <= 32'b0;
     else     PC <= mux_out; // Update PC with the output of the mux
 end

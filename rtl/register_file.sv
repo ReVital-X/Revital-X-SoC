@@ -16,7 +16,7 @@ module register_file (
 
     // WRITE + RESET LOGIC (Sequential)
     
-    always_ff @(posedge clk or posedge rst) begin
+    always_ff @(posedge clk) begin
         if (rst) begin
             for (int i = 0; i < 32; i++)
                 regfile[i] <= 32'b0;

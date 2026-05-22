@@ -9,6 +9,9 @@ module Stage2(
     input logic [4:0] rs2,
     input logic [4:0] rd,
     input logic [14:0] ctrl_s1,
+    input logic ForwardA,
+    input logic ForwardB,
+    input logic [31:0] Fwd_rd_value,
     output logic [31:0] exec_result,
     output logic [4:0] rd_out,
     output logic [31:0] rs2_value_out,
@@ -37,11 +40,12 @@ module Stage2(
         stall_pipeline = 0; // No stall when not multiplying
     end
 */
+logic [31:0] alu_in1_before, alu_in2_before;
 alu_in1_mux mux1 (
     .rs1(rs1_value),
     .imm(imm),
     .Lui(Lui),
-    .alu_in1(alu_in1)
+    .alu_in1(alu_in1_before)
 );
 
 alu_in2_mux mux2 (
@@ -50,9 +54,10 @@ alu_in2_mux mux2 (
     .pc(pc_in_2),
     .Lui(Lui),
     .ALUSrc(ALUSrc),
-    .alu_in2(alu_in2)
+    .alu_in2(alu_in2_before)
 );
-
+assign alu_in1 = ForwardA ? (Fwd_rd_value):(alu_in1_before);
+assign alu_in2 = ForwardB ? (Fwd_rd_value):(alu_in2_before);
 alu alu (
     .a(alu_in1),
     .b(alu_in2),
