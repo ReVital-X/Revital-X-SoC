@@ -113,6 +113,9 @@ Stage2 s2(
     .rs1(s1_buf.rs1),
     .rs2(s1_buf.rs2),
     .rd(s1_buf.rd_s12),
+    .ForwardA(ForwardA),
+    .ForwardB(ForwardB),
+    .Fwd_rd_value(s2_buf.exec_result),
     .ctrl_s1(s1_buf.ctrl),
     .exec_result(exec_result),
     .rd_out(rd_S23),
@@ -165,5 +168,13 @@ Lw_Hazard_Unit lw_hazard_unit(
     .MemReadE(s1_buf.ctrl[7]),
     .lw_stall(lw_stall)
 );
-
+logic ForwardA,ForwardB;
+forwarding_unit fwd_unit(
+    .rs1E(s1_buf.rs1),
+    .rs2E(s1_buf.rs2),
+    .rdW(s2_buf.rd_out),
+    .RegWriteW(s2_buf.ctrl_s2[0]),
+    .ForwardAE(ForwardA),
+    .ForwardBE(ForwardB)
+);
 endmodule
