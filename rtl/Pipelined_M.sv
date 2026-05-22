@@ -93,14 +93,15 @@ generate
         wire [2:0] booth_bits;
         wire signed [2:0] code;
 
-        if(i == 0)
+        if(i == 0) begin : GEN_I0
             assign booth_bits = {B[1], B[0], 1'b0};
-
-        else if(i == 16)
+        end
+        else if(i == 16) begin : GEN_I16
             assign booth_bits = {B[31], B[31], B[31]};
-        else
+        end
+        else begin : GEN_MID
             assign booth_bits = {B[2*i+1], B[2*i], B[2*i-1]};
-
+        end
         booth_encoder ENC(
             .y(booth_bits),
             .code(code)
