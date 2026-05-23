@@ -7,7 +7,7 @@ module Lw_Hazard_Unit(
 );
 
 always_comb begin
-    if (MemReadE && ((rdE == rs1) || (rdE == rs2))) begin
+    if (MemReadE && ((rdE == rs1) || (rdE == rs2)) && rdE != 0) begin
         lw_stall = 1; // Stall the pipeline
     end else begin
         lw_stall = 0; // No stall

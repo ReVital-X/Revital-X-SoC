@@ -5,8 +5,8 @@ module Stage2(
     input logic [31:0] imm,
     input logic [31:0] rs1_value,
     input logic [31:0] rs2_value,
-    input logic [4:0] rs1,
-    input logic [4:0] rs2,
+    //input logic [4:0] rs1,
+    //input logic [4:0] rs2,
     input logic [4:0] rd,
     input logic [14:0] ctrl_s1,
     input logic ForwardA,
@@ -40,24 +40,24 @@ module Stage2(
         stall_pipeline = 0; // No stall when not multiplying
     end
 */
-logic [31:0] alu_in1_before, alu_in2_before;
+logic [31:0] rs1_val_after, rs2_val_after;
 alu_in1_mux mux1 (
-    .rs1(rs1_value),
+    .rs1(rs1_val_after),
     .imm(imm),
     .Lui(Lui),
-    .alu_in1(alu_in1_before)
+    .alu_in1(alu_in1)
 );
 
 alu_in2_mux mux2 (
-    .rs2(rs2_value),
+    .rs2(rs2_val_after),
     .imm(imm),
     .pc(pc_in_2),
     .Lui(Lui),
     .ALUSrc(ALUSrc),
-    .alu_in2(alu_in2_before)
+    .alu_in2(alu_in2)
 );
-assign alu_in1 = ForwardA ? (Fwd_rd_value):(alu_in1_before);
-assign alu_in2 = ForwardB ? (Fwd_rd_value):(alu_in2_before);
+assign rs1_val_after = ForwardA ? (Fwd_rd_value):(rs1_value);
+assign rs2_val_after = ForwardB ? (Fwd_rd_value):(rs2_value);
 alu alu (
     .a(alu_in1),
     .b(alu_in2),
@@ -68,8 +68,8 @@ alu alu (
 );
 
 Pipelined_M multi (
-    .A(rs1_value),
-    .B(rs2_value),
+    .A(rs1_val_after),
+    .B(rs2_val_after),
     .clk(clk),
     .rst(rst),
     .P_32(mul_result),
@@ -88,7 +88,7 @@ alu_mul_mux mux3 (
     assign ctrl_s2 = {MemRead,MemWrite,MemtoReg,RegWrite};
     assign rd_out = rd;
     assign ALUResult = alu_result;
-    assign rs2_value_out = rs2_value; 
+    assign rs2_value_out = rs2_value_after; 
     assign pc_out_s2 = pc_in_2;
 
 endmodule

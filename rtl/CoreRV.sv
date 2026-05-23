@@ -74,7 +74,7 @@ Stage1 s1(
 s1_buffer s1_buf;
 s2_buffer s2_buf;
 always_ff @(posedge clk) begin
-    if (rst || branch_flush || lw_stall) begin
+    if (rst || branch_flush) begin
         s1_buf.PC <= 32'b0;
         s1_buf.rs1_value <= 32'b0;
         s1_buf.rs2_value <= 32'b0;
@@ -86,6 +86,16 @@ always_ff @(posedge clk) begin
     end
     else if (m_stall) begin
         s1_buf <= s1_buf; // Hold the current values in the buffer
+    end
+    else if(lw_stall) begin
+        s1_buf.ctrl <= 15'b0;
+        s1_buf.PC <= PC_S12;  
+        s1_buf.rs1_value <= rs1_value_S12;
+        s1_buf.rs2_value <= rs2_value_S12;
+        s1_buf.rs1 <= rs1_S12;
+        s1_buf.rs2 <= rs2_S12;
+        s1_buf.imm <= imm;
+        s1_buf.rd_s12 <= rd_s12;
     end
     else begin
         s1_buf.PC <= PC_S12;  
@@ -110,8 +120,8 @@ Stage2 s2(
     .imm(s1_buf.imm),
     .rs1_value(s1_buf.rs1_value),
     .rs2_value(s1_buf.rs2_value),
-    .rs1(s1_buf.rs1),
-    .rs2(s1_buf.rs2),
+    //.rs1(s1_buf.rs1),
+    //.rs2(s1_buf.rs2),
     .rd(s1_buf.rd_s12),
     .ForwardA(ForwardA),
     .ForwardB(ForwardB),
