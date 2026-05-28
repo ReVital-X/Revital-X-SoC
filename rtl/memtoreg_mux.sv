@@ -3,19 +3,24 @@
 Module Name : memtoreg_mux
 ===============================================================================
 
-It selects the data that should be written back to the register file (wb_data)
-based on the control signal `MemtoReg`.
+Description:
+------------
+This module implements the Write-Back (WB) stage multiplexer
+for a RISC-V processor datapath.
+
+It selects the data that should be written back to the register file
+(`wb_data`) based on the control signal `MemtoReg`.
 
 The control signal is 2 bits wide and determines the data source.
 
 Selection Logic:
-    --------------------------------
+----------------
     MemtoReg   wb_data Output
     --------------------------------
       00       alu_result   (ALU operations)
       01       mem_data     (Load instructions - lw)
       10       pc_4         (Jump instructions - jal/jalr)
-      11       0            (Default / safe value)
+      11       0            (Reserved / safe default)
 
 Usage:
 ------
@@ -30,6 +35,7 @@ Usage:
 
 - Default / unused case:
     output zero
+
 ===============================================================================
 */
 
