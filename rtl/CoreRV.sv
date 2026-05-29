@@ -126,7 +126,7 @@ Stage2 s2 (
     .ctrl_s1(s1_buf.ctrl),
     .ForwardA(ForwardA),
     .ForwardB(ForwardB),
-    .Fwd_rd_value(),
+    .Fwd_rd_value(data_wb),
     .exec_result(exec_result),
     .rd_out(rd_S23),
     .rs2_value_out(rs2_value_S23),
@@ -243,6 +243,22 @@ always_comb begin
         adder_result_ex_i = exec_result;
     end
 end
+
+stall_controller stall_ctrl (
+    .clk(clk),
+    .rst(rst),
+    .rs1E(s1_buf.rs1),
+    .rs2E(s1_buf.rs2),
+    .rdW(rd_wb),
+    .RegWriteW(Reg_wb),
+    .ForwardAE(ForwardA),
+    .ForwardBE(ForwardB),
+    .mul_start(s1_buf.ctrl[6]),
+    .M_over(M_over),
+    .lsu_busy(busy_o),
+    .pipe_stall(m_stall)
+);
+
 logic [31:0] lsu_rdata_o;
 logic lsu_rdata_valid_o;
 logic busy_o;
