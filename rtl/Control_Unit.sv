@@ -7,15 +7,17 @@ module Control_Unit (
     // Control Outputs
     output logic       RegWrite,
     output logic [1:0] MemtoReg,
-    output logic       MemWrite,
-    output logic       MemRead,
     output logic       ALUSrc,
     output logic       Lui,
     output logic [3:0] ALUControl,
     output logic       Jump,
     output logic       Branch,
     output logic       Mul,
-    output logic       M_ctrl
+    output logic       M_ctrl,
+    output logic       lsu_req,
+    output logic       lsu_we,
+    output logic [1:0] lsu_type,
+    output logic       lsu_sign_ext
 );
 
     // Internal signals
@@ -27,48 +29,83 @@ module Control_Unit (
     always_comb begin
         // Default values (avoid latches)
         RegWrite   = 0;
-        MemWrite   = 0;
-        MemRead    = 0;
         ALUSrc     = 0;
         Lui        = 0;
         MemtoReg   = 2'b00;
         Jump       = 0;
         Branch     = 0;
         ALUOp      = 2'b00;
-
+        lsu_req    = 0;
+        lsu_we     = 0;
+        lsu_type   = 2'b00;
+        lsu_sign_ext = 0;
         case (opcode)
 
             // LOAD (lw)
             7'b0000011: begin
                 RegWrite  = 1;
-                MemWrite  = 0;
-                MemRead   = 1;
                 ALUSrc    = 1;
                 Lui       = 0;
                 MemtoReg  = 2'b01;
                 Jump      = 0;
                 Branch    = 0;
                 ALUOp     = 2'b00;
+                lsu_req    = 1;
+                lsu_we     = 0;
+                case(funct3)
+                3'b000: begin
+                    lsu_type   = 2'b10;
+                    lsu_sign_ext = 1;
+                end
+                3'b001: begin
+                    lsu_type   = 2'b01;
+                    lsu_sign_ext = 1;
+                end
+                3'b010: begin
+                    lsu_type   = 2'b00;
+                    lsu_sign_ext = 1;
+                end
+                3'b100: begin
+                    lsu_type   = 2'b10;
+                    lsu_sign_ext = 0;
+                end
+                3'b101: begin
+                    lsu_type   = 2'b01;
+                    lsu_sign_ext = 0;
+                end
+                default :begin
+                    lsu_type   = 2'b00;
+                    lsu_sign_ext = 1;
+                end
+                endcase
             end
 
             // STORE (sw)
             7'b0100011: begin
                 RegWrite  = 0;
-                MemWrite  = 1;
-                MemRead   = 0;
                 ALUSrc    = 1;
                 Lui       = 0;
                 MemtoReg  = 2'b11;
                 Jump      = 0;
                 Branch    = 0;
                 ALUOp     = 2'b00;
+                lsu_req    = 1;
+                lsu_we     = 1;
+                case(funct3)
+                3'b000:
+                    lsu_type   = 2'b10;
+                3'b001: 
+                    lsu_type   = 2'b01;
+                3'b010: 
+                    lsu_type   = 2'b00;
+                default:
+                    lsu_type   = 2'b00;
+            endcase
             end
 
             // R-TYPE // MUL (M extension)
             7'b0110011: begin
                 RegWrite  = 1;
-                MemWrite  = 0;
-                MemRead   = 0;
                 ALUSrc    = 0;
                 Lui       = 0;
                 MemtoReg  = 2'b00;
@@ -80,8 +117,6 @@ module Control_Unit (
             // BRANCH 
             7'b1100011: begin
                 RegWrite  = 0;
-                MemWrite  = 0;
-                MemRead   = 0;
                 ALUSrc    = 0;
                 Lui       = 0;
                 MemtoReg  = 2'b11;
@@ -93,8 +128,6 @@ module Control_Unit (
             // I-TYPE ALU
             7'b0010011: begin
                 RegWrite  = 1;
-                MemWrite  = 0;
-                MemRead   = 0;
                 ALUSrc    = 1;
                 Lui       = 0;
                 MemtoReg  = 2'b00;
@@ -106,10 +139,8 @@ module Control_Unit (
             // JAL
             7'b1101111: begin
                 RegWrite  = 1;
-                MemWrite  = 0;
-                MemRead   = 0;
-                ALUSrc    = 0; 
-                Lui       = 0;
+                ALUSrc    = 1; // PC= PC + imm ccurs in ALU and is sent to PC mux when Jump = 1
+                Lui       = 1;
                 MemtoReg  = 2'b10; // rd = PC + 4
                 Jump      = 1;
                 Branch    = 0;
@@ -118,8 +149,6 @@ module Control_Unit (
             // JALR
             7'b1100111: begin
                 RegWrite  = 1;
-                MemWrite  = 0;
-                MemRead   = 0;
                 ALUSrc    = 1; // PC = rs1 + imm occurs in ALU and is sent to PC mux when Jump = 1
                 Lui       = 0;
                 MemtoReg  = 2'b10; // rd = PC + 4
@@ -130,8 +159,6 @@ module Control_Unit (
             // LUI
             7'b0110111: begin
                 RegWrite  = 1;
-                MemWrite  = 0;
-                MemRead   = 0;
                 ALUSrc    = 0; 
                 Lui       =  1;
                 MemtoReg  = 2'b00; // ALU will be configured to pass imm directly to rd
@@ -142,8 +169,6 @@ module Control_Unit (
             // AUIPC
             7'b0010111: begin
                 RegWrite  = 1;
-                MemWrite  = 0;
-                MemRead   = 0;
                 ALUSrc    = 1;
                 Lui       = 1; 
                 MemtoReg  = 2'b00; // ALU will be configured to add imm to PC and pass result to rd
@@ -154,8 +179,6 @@ module Control_Unit (
 
             default: begin
                 RegWrite   = 0;
-                MemWrite   = 0;
-                MemRead    = 0;
                 ALUSrc     = 0;
                 Lui        = 0;
                 MemtoReg   = 2'b11;
@@ -187,7 +210,7 @@ module Control_Unit (
 
             // Branch use funct3 directly to determine the type of branch
             2'b01: begin
-                ALUControl = {1'b0, funct3};
+                ALUControl = {1'b1, funct3};
                 Mul = 0;
                 M_ctrl = 0;
             end

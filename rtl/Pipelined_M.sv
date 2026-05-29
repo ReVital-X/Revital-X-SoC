@@ -17,23 +17,37 @@
 module Pipelined_M(
     input clk,
     input rst,
+    input logic start,
+    output logic M_over,
     input  signed [31:0] A,
     input  signed [31:0] B,
-    output reg signed [31:0] P_32,
+    output signed [31:0] P_32,
     input logic M_ctrl
 );
 wire signed [63:0] pp [0:16];
 reg signed [63:0] pp_next [0:16];
 M1 multi1(.A(A),.B(B),.pp(pp));
 integer i;
-
+logic v1,v2;
+always @(posedge clk) begin
+    if (rst) begin
+        v1 <= 0;
+        v2 <= 0;
+    end else begin
+        v1 <= start;
+        v2 <= v1;
+    end
+end
 always @(posedge clk) begin
     if (rst) begin
         for (i = 0; i < 17; i = i + 1)
             pp_next[i] <= 0;
-    end else begin
+    end else if (start) begin
         for (i = 0; i < 17; i = i + 1)
             pp_next[i] <= pp[i];
+    end else begin
+        for (i = 0; i < 17; i = i + 1)
+            pp_next[i] <= pp_next[i];
     end
 end
 
@@ -48,9 +62,12 @@ always@(posedge clk) begin
     if (rst) begin
         s6_next <= 0;
         c6_next <= 0;
-    end else begin
+    end else if (v1) begin
         s6_next <= s6;
         c6_next <= c6;
+    end else begin
+        s6_next <= s6_next;
+        c6_next <= c6_next;
     end
     
 end
@@ -70,6 +87,7 @@ cla64 Final_Add(
 logic _unused;
 assign _unused = cz; // Unused carry-out
 assign P_32 = M_ctrl ? P[63:32] : P[31:0];
+assign M_over = v2;
 
 endmodule
 

@@ -38,7 +38,7 @@ module memtoreg_mux #(
 )(
     input  logic [WIDTH-1:0] alu_result, // Result from ALU
     input  logic [WIDTH-1:0] mem_data,   // Data read from memory
-    input  logic [WIDTH-1:0] pc_4,       // PC + 4 (return address for jumps)
+    input  logic [WIDTH-1:0] pc,       // PC 
     input  logic [1:0]       MemtoReg,   // Control signal (2-bit select)
     output logic [WIDTH-1:0] wb_data     // Data written back to register file
 );
@@ -54,7 +54,7 @@ module memtoreg_mux #(
             // 01 → Memory data (load instructions like lw)
             2'b01: wb_data = mem_data;
             // 10 → PC + 4 (used in jal/jalr for return address)
-            2'b10: wb_data = pc_4;
+            2'b10: wb_data = pc+4;
             // 11 → Default
             default: wb_data = '0;
         endcase

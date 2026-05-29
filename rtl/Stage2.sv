@@ -5,10 +5,8 @@ module Stage2(
     input logic [31:0] imm,
     input logic [31:0] rs1_value,
     input logic [31:0] rs2_value,
-    //input logic [4:0] rs1,
-    //input logic [4:0] rs2,
     input logic [4:0] rd,
-    input logic [14:0] ctrl_s1,
+    input logic [17:0] ctrl_s1,
     input logic ForwardA,
     input logic ForwardB,
     input logic [31:0] Fwd_rd_value,
@@ -16,11 +14,11 @@ module Stage2(
     output logic [4:0] rd_out,
     output logic [31:0] rs2_value_out,
     output logic branch_flush,
-    output logic [4:0] ctrl_s2,
+    output logic [7:0] ctrl_s2,
     output logic [31:0] BranchAddr,
     output logic [31:0] ALUResult,
     output logic [31:0] pc_out_s2,
-    //output logic stall_pipeline,
+    output logic M_over,
     output logic Jump
 );
     logic compare_out;
@@ -30,16 +28,26 @@ module Stage2(
     logic [31:0] alu_in2;
     logic [3:0] ALUControl;
     logic [1:0] MemtoReg;
-    logic RegWrite, MemWrite, MemRead, ALUSrc, Lui, Branch, Mul, M_ctrl;
+    logic [1:0] lsu_type;
+    logic RegWrite, ALUSrc, Lui, Branch, Mul, M_ctrl, lsu_req, lsu_we, lsu_sign_ext;
 
-    assign {RegWrite,MemtoReg,MemWrite,MemRead,ALUSrc,Lui,ALUControl,Jump,Branch,Mul,M_ctrl} = ctrl_s1;
-/*    if (Mul) begin
-        stall_pipeline = 1; // Stall the pipeline when multiplication is in progress
-    end
-    else begin
-        stall_pipeline = 0; // No stall when not multiplying
-    end
-*/
+    assign {
+    RegWrite,        // 1
+    MemtoReg,        // 2
+    ALUSrc,          // 1
+    Lui,             // 1
+    ALUControl,      // 4
+    Jump,            // 1
+    Branch,          // 1
+    Mul,             // 1
+    M_ctrl,          // 1
+    lsu_req,         // 1
+    lsu_we,          // 1
+    lsu_type,        // 2
+    lsu_sign_ext     // 1
+                     // 18 bits total
+    } = ctrl_s1;
+
 logic [31:0] rs1_val_after, rs2_val_after;
 alu_in1_mux mux1 (
     .rs1(rs1_val_after),
@@ -73,7 +81,9 @@ Pipelined_M multi (
     .clk(clk),
     .rst(rst),
     .P_32(mul_result),
-    .M_ctrl(M_ctrl)
+    .M_ctrl(M_ctrl),
+    .start(Mul),
+    .M_over(M_over)
 );
 
 alu_mul_mux mux3 (
@@ -85,10 +95,18 @@ alu_mul_mux mux3 (
 
     assign branch_flush = compare_out & Branch;
     assign BranchAddr = pc_in_2 + imm;
-    assign ctrl_s2 = {MemRead,MemWrite,MemtoReg,RegWrite};
+    assign ctrl_s2 = {
+        MemtoReg,       // 2 (7:6)
+        RegWrite,       // 1 (5)
+        lsu_req,        // 1 (4)
+        lsu_we,         // 1 (3)
+        lsu_type,       // 2 (2:1)
+        lsu_sign_ext    // 1 (0)
+                        // 8 bits total
+    };
     assign rd_out = rd;
-    assign ALUResult = alu_result;
-    assign rs2_value_out = rs2_value_after; 
+    assign ALUResult = alu_result; // Address Calculation for Load/Store + ALU Result
+    assign rs2_value_out = rs2_val_after; 
     assign pc_out_s2 = pc_in_2;
 
 endmodule

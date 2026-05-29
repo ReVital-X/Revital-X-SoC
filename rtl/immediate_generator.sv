@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module immediate_generator (
     input  logic [31:0] instr,
     output logic [31:0] imm_out
