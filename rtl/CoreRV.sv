@@ -312,6 +312,25 @@ logic [1:0] memtoreg_wb;
 logic [4:0] rd_wb;
 logic       regwrite_wb;
 
+// Mem to WB BUFFER
+logic [31:0] alu_result_buf;
+logic [31:0] mem_data_buf;
+logic [31:0] pc_buf;
+logic [1:0] memtoreg_buf;
+logic [4:0] rd_buf;
+logic       regwrite_buf;
+
+
+always_ff @(posedge clk) begin
+    if (rst) begin
+        rd_buf         <= 5'd0;
+        regwrite_buf   <= 1'b0;
+    end
+    else begin
+        rd_buf         <= rd_S23;
+        regwrite_buf   <= ctrl_s2[5];
+    end
+end
 always_ff @(posedge clk) begin
     if (rst) begin
         alu_result_wb <= 32'd0;
@@ -324,8 +343,8 @@ always_ff @(posedge clk) begin
         alu_result_wb <= ALUResult;
         pc_wb         <= pc_out_s2;
         memtoreg_wb   <= ctrl_s2[7:6];
-        rd_wb         <= rd_S23;
-        regwrite_wb   <= ctrl_s2[5];
+        rd_wb         <= rd_buf;
+        regwrite_wb   <= regwrite_buf;
     end
 end
 logic [31:0] mem_data_wb;
@@ -341,12 +360,25 @@ always_comb begin
     endcase
     end
 end
-
+always_ff @(posedge clk) begin
+    if (rst) begin
+        alu_result_buf <= 32'd0;
+        pc_buf         <= 32'd0;
+        memtoreg_buf   <= 2'b00;
+        mem_data_buf    <= 32'd0;
+    end
+    else begin
+        alu_result_buf <= alu_result_wb;
+        pc_buf         <= pc_wb;
+        memtoreg_buf   <= memtoreg_wb;
+        mem_data_buf    <= mem_data_wb;
+    end
+end
 memtoreg_mux mux_wb (
-    .alu_result (alu_result_wb),
-    .mem_data   (mem_data_wb),
-    .pc         (pc_wb),
-    .MemtoReg   (memtoreg_wb),
+    .alu_result (alu_result_buf),
+    .mem_data   (mem_data_buf),
+    .pc         (pc_buf),
+    .MemtoReg   (memtoreg_buf),
     .wb_data    (data_wb)
 );
 assign rd_out = rd_wb;
