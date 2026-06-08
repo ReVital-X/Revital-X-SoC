@@ -43,7 +43,6 @@ logic [4:0] rd_s12;
 logic [1:0] PCSrc;
 logic M_over;
 assign PCSrc = {Jump,branch_flush};
-assign m_stall = ~M_over & ctrl[6];
 
 logic en_mem;
 logic [7:0] addr_mem;
