@@ -2,8 +2,9 @@ module stall_controller (
     input  logic clk,
     input  logic rst,
     //Forwarding Unit Signals
-    input logic [4:0] rs1E,rs2E,rdW,
+    input logic [4:0] rs1E,rs2E,rdW,rdM,
     input logic RegWriteW,
+    output logic ForwardSelect,
     output logic ForwardAE,ForwardBE,
     // MUL
     input  logic mul_start,
@@ -17,12 +18,28 @@ logic M_busy;
     always_comb begin
         if((rs1E == rdW)&&(RegWriteW)&&(rdW!=0))
             ForwardAE = 1'b1;
+            ForwardSelect = 1'b0;
         else 
             ForwardAE = 1'b0;
+            ForwardSelect = 1'b1;
         if((rs2E == rdW)&&(RegWriteW)&&(rdW!=0))
             ForwardBE = 1'b1;
+            ForwardSelect = 1'b0;
+        else
+            ForwardBE = 1'b0; 
+            ForwardSelect = 1'b1;
+        if((rs1E == rdM)&&(RegWriteW)&&(rdM!=0))
+            ForwardAE = 1'b1;
+            ForwardSelect = 1'b1;
+        else 
+            ForwardAE = 1'b0;
+            ForwardSelect = 1'b1;
+        if((rs2E == rdM)&&(RegWriteW)&&(rdM!=0))
+            ForwardBE = 1'b1;
+            ForwardSelect = 1'b1;
         else
             ForwardBE = 1'b0;
+            ForwardSelect = 1'b1;
     end
 
     always_ff @ (posedge clk) begin

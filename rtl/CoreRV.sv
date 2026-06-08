@@ -113,6 +113,7 @@ logic [31:0] rs2_value_S23;
 logic [7:0] ctrl_s2;
 logic [31:0] pc_out_s2;
 logic ForwardA, ForwardB;
+logic ForwardSelect;
 
 Stage2 s2 (
     .clk(clk),
@@ -125,7 +126,9 @@ Stage2 s2 (
     .ctrl_s1(s1_buf.ctrl),
     .ForwardA(ForwardA),
     .ForwardB(ForwardB),
-    .Fwd_rd_value(data_wb),
+    .ForwardSelect(ForwardSelect),
+    .Fwd_rd_value1(data_wb),
+    .Fwd_rd_value2(alu_result_wb),
     .exec_result(exec_result),
     .rd_out(rd_S23),
     .rs2_value_out(rs2_value_S23),
@@ -255,7 +258,9 @@ stall_controller stall_ctrl (
     .mul_start(s1_buf.ctrl[6]),
     .M_over(M_over),
     .lsu_busy(busy_o),
-    .pipe_stall(m_stall)
+    .pipe_stall(m_stall),
+    .rdM(rd_buf),
+    .ForwardSelect(ForwardSelect)
 );
 
 logic [31:0] lsu_rdata_o;

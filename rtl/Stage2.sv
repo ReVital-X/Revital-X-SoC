@@ -9,7 +9,9 @@ module Stage2(
     input logic [17:0] ctrl_s1,
     input logic ForwardA,
     input logic ForwardB,
-    input logic [31:0] Fwd_rd_value,
+    input logic ForwardSelect,
+    input logic [31:0] Fwd_rd_value1, //data_wb from Write Back stage
+    input logic [31:0] Fwd_rd_value2, //alu_result_wb from Mem stage
     output logic [31:0] exec_result,
     output logic [4:0] rd_out,
     output logic [31:0] rs2_value_out,
@@ -49,6 +51,23 @@ module Stage2(
     } = ctrl_s1;
 
 logic [31:0] rs1_val_after, rs2_val_after;
+logic [1:0] Fwd_mux1, Fwd_mux2;
+assign Fwd_mux1 = {ForwardSelect, ForwardA}; // ctrl signal
+assign Fwd_mux2 = {ForwardSelect, ForwardB};
+always_comb begin
+    case(Fwd_mux1)
+        2'b00, 2'b10: rs1_val_after = rs1_value;
+        2'b01: rs1_val_after = Fwd_rd_value1;
+        2'b11: rs1_val_after = Fwd_rd_value2;
+        default: rs1_val_after = rs1_value;
+    endcase
+    case(Fwd_mux2)
+        2'b00, 2'b10: rs2_val_after = rs2_value;
+        2'b01: rs2_val_after = Fwd_rd_value1;
+        2'b11: rs2_val_after = Fwd_rd_value2;
+        default: rs2_val_after = rs2_value;
+    endcase
+end
 alu_in1_mux mux1 (
     .rs1(rs1_val_after),
     .imm(imm),
@@ -64,8 +83,7 @@ alu_in2_mux mux2 (
     .ALUSrc(ALUSrc),
     .alu_in2(alu_in2)
 );
-assign rs1_val_after = ForwardA ? (Fwd_rd_value):(rs1_value);
-assign rs2_val_after = ForwardB ? (Fwd_rd_value):(rs2_value);
+
 alu alu (
     .a(alu_in1),
     .b(alu_in2),
