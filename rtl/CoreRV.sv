@@ -337,6 +337,10 @@ always_ff @(posedge clk) begin
         rd_buf         <= 5'd0;
         regwrite_buf   <= 1'b0;
     end
+    else if (m_stall) begin
+        rd_buf <= rd_buf; // Hold the current values in the buffer
+        regwrite_buf <= regwrite_buf;
+    end
     else begin
         rd_buf         <= rd_S23;
         regwrite_buf   <= ctrl_s2[5];
@@ -349,6 +353,13 @@ always_ff @(posedge clk) begin
         memtoreg_wb   <= 2'b00;
         rd_wb         <= 5'd0;
         regwrite_wb   <= 1'b0;
+    end
+    else if (m_stall) begin
+        alu_result_wb <= alu_result_wb; // Hold the current values in the buffer
+        pc_wb         <= pc_wb;
+        memtoreg_wb   <= memtoreg_wb;
+        rd_wb         <= rd_wb;
+        regwrite_wb   <= regwrite_wb;
     end
     else begin
         alu_result_wb <= ALUResult;
@@ -378,6 +389,12 @@ always_ff @(posedge clk) begin
         pc_buf         <= 32'd0;
         memtoreg_buf   <= 2'b00;
         mem_data_buf    <= 32'd0;
+    end
+    else if (m_stall) begin
+        alu_result_buf <= alu_result_buf; // Hold the current values in the buffer
+        pc_buf         <= pc_buf;
+        memtoreg_buf   <= memtoreg_buf;
+        mem_data_buf    <= mem_data_buf;
     end
     else begin
         alu_result_buf <= alu_result_wb;
