@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module alu_in1_mux #(
     parameter WIDTH = 32
 )(

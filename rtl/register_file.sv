@@ -1,5 +1,4 @@
 `timescale 1ns/1ps
-
 module register_file (
     input  logic        clk, rst,          // Clock and asynchronous reset
     input  logic [4:0]  rs1, rs2, rd,      // Register addresses (32 registers → 5 bits)

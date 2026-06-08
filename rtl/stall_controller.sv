@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module stall_controller (
     input  logic clk,
     input  logic rst,

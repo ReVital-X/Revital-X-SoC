@@ -8,12 +8,11 @@
 //   Stage 2 : Wallace Compression Tree
 //   Stage 3 : 64-bit Carry Lookahead Adder
 // ============================================================
-`timescale 1ns / 1ps
 
 // ============================================================
 // Top Multiplier
 // ============================================================
-
+`timescale 1ns / 1ps
 module Pipelined_M(
     input clk,
     input rst,

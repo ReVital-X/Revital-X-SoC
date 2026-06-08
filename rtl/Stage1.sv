@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module Stage1 #(
     parameter ADDR_WIDTH = 8
 )(

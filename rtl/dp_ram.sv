@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module dp_ram
   #(
     parameter ADDR_WIDTH = 8

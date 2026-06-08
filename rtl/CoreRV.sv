@@ -1,4 +1,4 @@
-/* verilator lint_off TIMESCALEMOD */
+`timescale 1ns / 1ps
 module CoreRV #(
     parameter BOOT_ADDR = 32'h0000_0000,
     parameter INSTR_ADDR = 32'h0000_8000,

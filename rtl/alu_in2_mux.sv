@@ -25,7 +25,7 @@ Selection Logic:
      1     1      pc        (Used in AUIPC instruction)
 ===============================================================================
 */
-
+`timescale 1ns / 1ps
 module alu_in2_mux #(
     parameter WIDTH = 32   // Width of data bus (default = 32 bits)
 )(

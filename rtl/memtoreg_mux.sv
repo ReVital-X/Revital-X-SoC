@@ -32,7 +32,7 @@ Usage:
     output zero
 ===============================================================================
 */
-
+`timescale 1ns / 1ps
 module memtoreg_mux #(
     parameter WIDTH = 32   // Data width (default = 32-bit RISC-V)
 )(

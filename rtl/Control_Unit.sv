@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 module Control_Unit (
     input  logic [6:0] opcode,        // opcode
     input  logic [2:0] funct3,

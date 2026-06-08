@@ -1,5 +1,5 @@
 // module for selecting the output from alu or the multipler
-
+`timescale 1ns / 1ps
 module alu_mul_mux #(
     parameter WIDTH = 32                 // 32-bit
 )(
