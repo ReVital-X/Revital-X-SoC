@@ -16,30 +16,38 @@ module stall_controller (
 );
 logic M_busy;
     always_comb begin
-        if((rs1E == rdW)&&(RegWriteW)&&(rdW!=0))
+        if((rs1E == rdW)&&(RegWriteW)&&(rdW!=0))begin
             ForwardAE = 1'b1;
             ForwardSelect = 1'b0;
-        else 
+        end
+        else begin
             ForwardAE = 1'b0;
             ForwardSelect = 1'b1;
-        if((rs2E == rdW)&&(RegWriteW)&&(rdW!=0))
+        end
+        if((rs2E == rdW)&&(RegWriteW)&&(rdW!=0))begin
             ForwardBE = 1'b1;
             ForwardSelect = 1'b0;
-        else
+        end 
+        else begin
             ForwardBE = 1'b0; 
             ForwardSelect = 1'b1;
-        if((rs1E == rdM)&&(RegWriteW)&&(rdM!=0))
+        end
+        if((rs1E == rdM)&&(RegWriteW)&&(rdM!=0))begin
             ForwardAE = 1'b1;
             ForwardSelect = 1'b1;
-        else 
+        end 
+        else begin
             ForwardAE = 1'b0;
             ForwardSelect = 1'b1;
-        if((rs2E == rdM)&&(RegWriteW)&&(rdM!=0))
+        end
+        if((rs2E == rdM)&&(RegWriteW)&&(rdM!=0))begin
             ForwardBE = 1'b1;
             ForwardSelect = 1'b1;
-        else
+        end
+        else begin
             ForwardBE = 1'b0;
             ForwardSelect = 1'b1;
+        end
     end
 
     always_ff @ (posedge clk) begin
