@@ -29,6 +29,12 @@ module Stage1 #(
 );
 logic [31:0] instr;
 logic [31:0] mux_out;
+
+//Control signals for Stage 1 
+logic [3:0] ALUControl;
+logic [1:0] MemtoReg;
+logic [1:0] lsu_type;
+logic RegWrite, ALUSrc, Lui, Jump, Branch, Mul, M_ctrl, lsu_req, lsu_we, lsu_sign_ext;
 pc_mux mux1 (
     .branch_addr(BranchAddr),
     .alu_result(ALUResult),
@@ -59,6 +65,7 @@ instr_ram #(
     .we_b_i(we_mem),
     .be_b_i(be_mem)
 );
+
 register_file rf (
     .clk(clk),
     .rst(rst),
@@ -70,10 +77,7 @@ register_file rf (
     .rs1_value(rs1_value), 
     .rs2_value(rs2_value)
 );
-logic [3:0] ALUControl;
-logic [1:0] MemtoReg;
-logic [1:0] lsu_type;
-logic RegWrite, ALUSrc, Lui, Jump, Branch, Mul, M_ctrl, lsu_req, lsu_we, lsu_sign_ext;
+
 Control_Unit cu (
     .opcode(instr[6:0]),
     .funct3(instr[14:12]),

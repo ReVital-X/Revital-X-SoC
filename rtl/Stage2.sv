@@ -33,7 +33,9 @@ module Stage2(
     logic [1:0] MemtoReg;
     logic [1:0] lsu_type;
     logic RegWrite, ALUSrc, Lui, Branch, Mul, M_ctrl, lsu_req, lsu_we, lsu_sign_ext;
-
+    //Forwarding Signals
+    logic [31:0] rs1_val_after, rs2_val_after;
+    logic [1:0] Fwd_mux1, Fwd_mux2;
     assign {
     RegWrite,        // 1
     MemtoReg,        // 2
@@ -51,8 +53,6 @@ module Stage2(
                      // 18 bits total
     } = ctrl_s1;
 
-logic [31:0] rs1_val_after, rs2_val_after;
-logic [1:0] Fwd_mux1, Fwd_mux2;
 assign Fwd_mux1 = {ForwardSelect, ForwardA}; // ctrl signal
 assign Fwd_mux2 = {ForwardSelect, ForwardB};
 always_comb begin
@@ -69,6 +69,7 @@ always_comb begin
         default: rs2_val_after = rs2_value;
     endcase
 end
+
 alu_in1_mux mux1 (
     .rs1(rs1_val_after),
     .imm(imm),

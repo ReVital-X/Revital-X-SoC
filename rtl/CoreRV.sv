@@ -29,6 +29,7 @@ typedef struct packed {
     logic [31:0] rdata_mem;
 } s1_buffer;
 
+//Stage 1 Signals
 logic Reg_wb, branch_flush, Jump;
 logic [4:0] rd_out;
 logic [31:0] data_wb;
@@ -44,12 +45,55 @@ logic [1:0] PCSrc;
 logic M_over;
 assign PCSrc = {Jump,branch_flush};
 
+//Instruction memory Signals
 logic en_mem;
 logic [7:0] addr_mem;
 logic [31:0] wdata_mem;
 logic [31:0] rdata_mem;
 logic we_mem;
 logic [3:0] be_mem;
+
+//Stage 2 Signals
+logic [31:0] exec_result;
+logic [4:0] rd_S23;
+logic [31:0] rs2_value_S23;
+logic [7:0] ctrl_s2;
+logic [31:0] pc_out_s2;
+logic ForwardA, ForwardB;
+logic ForwardSelect;
+
+// Memory Stage Signals
+logic dram_en_i;
+logic [7:0] dram_addr_i;
+logic [31:0] dram_wdata_i;
+logic [31:0] dram_rdata_i;
+logic dram_we_i;
+logic [3:0] dram_be_i;
+logic [1:0] mem_select;
+logic lsu_we_i;
+logic [1:0] lsu_type_i;
+logic [31:0] lsu_wdata_i;
+logic lsu_sign_ext_i;
+logic lsu_req_i;
+logic [31:0] adder_result_ex_i;
+logic [31:0] lsu_rdata_o;
+logic lsu_rdata_valid_o;
+logic busy_o;
+
+// WB signals
+logic [31:0] alu_result_wb;
+logic [31:0] pc_wb;
+logic [1:0] memtoreg_wb;
+logic [4:0] rd_wb;
+logic       regwrite_wb;
+
+// Mem to WB BUFFER
+logic [31:0] alu_result_buf;
+logic [31:0] mem_data_buf;
+logic [31:0] pc_buf;
+logic [1:0] memtoreg_buf;
+logic [4:0] rd_buf;
+logic       regwrite_buf;
 
 Stage1 #(
     .ADDR_WIDTH(8)
@@ -79,6 +123,7 @@ Stage1 #(
     .we_mem(we_mem),
     .be_mem(be_mem)
 );
+// Buffer to hold Stage 1 outputs for use in Stage 2
 s1_buffer s1_buf;
 always_ff @(posedge clk) begin
     if (rst || branch_flush) begin
@@ -107,13 +152,6 @@ always_ff @(posedge clk) begin
         s1_buf.rdata_mem <= rdata_mem;
     end
 end
-logic [31:0] exec_result;
-logic [4:0] rd_S23;
-logic [31:0] rs2_value_S23;
-logic [7:0] ctrl_s2;
-logic [31:0] pc_out_s2;
-logic ForwardA, ForwardB;
-logic ForwardSelect;
 
 Stage2 s2 (
     .clk(clk),
@@ -140,19 +178,7 @@ Stage2 s2 (
     .M_over(M_over),
     .Jump(Jump)
 );
-logic dram_en_i;
-logic [7:0] dram_addr_i;
-logic [31:0] dram_wdata_i;
-logic [31:0] dram_rdata_i;
-logic dram_we_i;
-logic [3:0] dram_be_i;
-logic [1:0] mem_select;
-logic lsu_we_i;
-logic [1:0] lsu_type_i;
-logic [31:0] lsu_wdata_i;
-logic lsu_sign_ext_i;
-logic lsu_req_i;
-logic [31:0] adder_result_ex_i;
+
 always_comb begin
     mem_select = 2'b00;
 
@@ -263,10 +289,6 @@ stall_controller stall_ctrl (
     .ForwardSelect(ForwardSelect)
 );
 
-logic [31:0] lsu_rdata_o;
-logic lsu_rdata_valid_o;
-logic busy_o;
-
 LSU_RVX lsu(
   .clk(clk),
   .rst(rst),
@@ -309,22 +331,7 @@ data_ram #(
     .we_i(dram_we_i),
     .be_i(dram_be_i)
 );
-
-logic [31:0] alu_result_wb;
-logic [31:0] pc_wb;
-logic [1:0] memtoreg_wb;
-logic [4:0] rd_wb;
-logic       regwrite_wb;
-
-// Mem to WB BUFFER
-logic [31:0] alu_result_buf;
-logic [31:0] mem_data_buf;
-logic [31:0] pc_buf;
-logic [1:0] memtoreg_buf;
-logic [4:0] rd_buf;
-logic       regwrite_buf;
-
-
+//EXE-MEM stage buffer
 always_ff @(posedge clk) begin
     if (rst) begin
         rd_buf         <= 5'd0;
@@ -364,6 +371,7 @@ always_comb begin
     endcase
     end
 end
+//MEM-WB stage buffer
 always_ff @(posedge clk) begin
     if (rst) begin
         alu_result_buf <= 32'd0;
@@ -378,6 +386,7 @@ always_ff @(posedge clk) begin
         mem_data_buf    <= mem_data_wb;
     end
 end
+//WB Mux
 memtoreg_mux mux_wb (
     .alu_result (alu_result_buf),
     .mem_data   (mem_data_buf),
