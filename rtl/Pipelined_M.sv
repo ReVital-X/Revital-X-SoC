@@ -27,14 +27,16 @@ wire signed [63:0] pp [0:16];
 reg signed [63:0] pp_next [0:16];
 M1 multi1(.A(A),.B(B),.pp(pp));
 integer i;
-logic v1,v2;
+logic v1,v2,v2_prev;
 always @(posedge clk) begin
     if (rst) begin
         v1 <= 0;
         v2 <= 0;
+        v2_prev <= 0;
     end else begin
         v1 <= start;
         v2 <= v1;
+        v2_prev <= v2;
     end
 end
 always @(posedge clk) begin
@@ -86,7 +88,7 @@ cla64 Final_Add(
 logic _unused;
 assign _unused = cz; // Unused carry-out
 assign P_32 = M_ctrl ? P[63:32] : P[31:0];
-assign M_over = v2;
+assign M_over = ~v2_prev & v2; // Assert M_over for one cycle when multiplication is done
 
 endmodule
 

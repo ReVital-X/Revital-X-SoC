@@ -59,8 +59,8 @@ logic [4:0] rd_S23;
 logic [31:0] rs2_value_S23;
 logic [7:0] ctrl_s2;
 logic [31:0] pc_out_s2;
-logic ForwardA, ForwardB;
-logic ForwardSelect;
+logic [1:0] ForwardA, ForwardB;
+logic mul_start;
 
 // Memory Stage Signals
 logic dram_en_i;
@@ -164,9 +164,9 @@ Stage2 s2 (
     .ctrl_s1(s1_buf.ctrl),
     .ForwardA(ForwardA),
     .ForwardB(ForwardB),
-    .ForwardSelect(ForwardSelect),
     .Fwd_rd_value1(data_wb),
     .Fwd_rd_value2(alu_result_wb),
+    .mul_start(mul_start),
     .exec_result(exec_result),
     .rd_out(rd_S23),
     .rs2_value_out(rs2_value_S23),
@@ -277,16 +277,17 @@ stall_controller stall_ctrl (
     .rst(rst),
     .rs1E(s1_buf.rs1),
     .rs2E(s1_buf.rs2),
-    .rdW(rd_wb),
+    .rdW(rd_out),
     .RegWriteW(Reg_wb),
+    .RegWriteM(regwrite_wb),
     .ForwardAE(ForwardA),
     .ForwardBE(ForwardB),
-    .mul_start(s1_buf.ctrl[6]),
+    .mul_req(s1_buf.ctrl[6]),
+    .mul_start(mul_start),
     .M_over(M_over),
     .lsu_busy(busy_o),
     .pipe_stall(m_stall),
-    .rdM(rd_buf),
-    .ForwardSelect(ForwardSelect)
+    .rdM(rd_wb)
 );
 
 LSU_RVX lsu(
@@ -331,21 +332,7 @@ data_ram #(
     .we_i(dram_we_i),
     .be_i(dram_be_i)
 );
-//EXE-MEM stage buffer
-always_ff @(posedge clk) begin
-    if (rst) begin
-        rd_buf         <= 5'd0;
-        regwrite_buf   <= 1'b0;
-    end
-    else if (m_stall) begin
-        rd_buf <= rd_buf; // Hold the current values in the buffer
-        regwrite_buf <= regwrite_buf;
-    end
-    else begin
-        rd_buf         <= rd_S23;
-        regwrite_buf   <= ctrl_s2[5];
-    end
-end
+// EXE-MEM stage buffer
 always_ff @(posedge clk) begin
     if (rst) begin
         alu_result_wb <= 32'd0;
@@ -362,11 +349,11 @@ always_ff @(posedge clk) begin
         regwrite_wb   <= regwrite_wb;
     end
     else begin
-        alu_result_wb <= ALUResult;
+        alu_result_wb <= exec_result;
         pc_wb         <= pc_out_s2;
         memtoreg_wb   <= ctrl_s2[7:6];
-        rd_wb         <= rd_buf;
-        regwrite_wb   <= regwrite_buf;
+        rd_wb         <= rd_S23;
+        regwrite_wb   <= ctrl_s2[5];
     end
 end
 logic [31:0] mem_data_wb;
@@ -389,18 +376,16 @@ always_ff @(posedge clk) begin
         pc_buf         <= 32'd0;
         memtoreg_buf   <= 2'b00;
         mem_data_buf    <= 32'd0;
-    end
-    else if (m_stall) begin
-        alu_result_buf <= alu_result_buf; // Hold the current values in the buffer
-        pc_buf         <= pc_buf;
-        memtoreg_buf   <= memtoreg_buf;
-        mem_data_buf    <= mem_data_buf;
+        rd_buf          <= 5'd0;
+        regwrite_buf    <= 1'b0;
     end
     else begin
         alu_result_buf <= alu_result_wb;
         pc_buf         <= pc_wb;
         memtoreg_buf   <= memtoreg_wb;
         mem_data_buf    <= mem_data_wb;
+        rd_buf          <= rd_wb;
+        regwrite_buf    <= regwrite_wb;
     end
 end
 //WB Mux
@@ -411,7 +396,7 @@ memtoreg_mux mux_wb (
     .MemtoReg   (memtoreg_buf),
     .wb_data    (data_wb)
 );
-assign rd_out = rd_wb;
-assign Reg_wb = regwrite_wb;
+assign rd_out = rd_buf;
+assign Reg_wb = regwrite_buf;
 
 endmodule

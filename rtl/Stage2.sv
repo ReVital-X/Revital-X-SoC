@@ -8,18 +8,18 @@ module Stage2(
     input logic [31:0] rs2_value,
     input logic [4:0] rd,
     input logic [17:0] ctrl_s1,
-    input logic ForwardA,
-    input logic ForwardB,
-    input logic ForwardSelect,
+    input logic [1:0] ForwardA,
+    input logic [1:0] ForwardB,
     input logic [31:0] Fwd_rd_value1, //data_wb from Write Back stage
     input logic [31:0] Fwd_rd_value2, //alu_result_wb from Mem stage
-    output logic [31:0] exec_result,
+    input logic mul_start,
+    output logic [31:0] exec_result, // Final result after ALU/Mul Mux
     output logic [4:0] rd_out,
     output logic [31:0] rs2_value_out,
     output logic branch_flush,
     output logic [7:0] ctrl_s2,
     output logic [31:0] BranchAddr,
-    output logic [31:0] ALUResult,
+    output logic [31:0] ALUResult, // for jars/jalrs
     output logic [31:0] pc_out_s2,
     output logic M_over,
     output logic Jump
@@ -35,7 +35,6 @@ module Stage2(
     logic RegWrite, ALUSrc, Lui, Branch, Mul, M_ctrl, lsu_req, lsu_we, lsu_sign_ext;
     //Forwarding Signals
     logic [31:0] rs1_val_after, rs2_val_after;
-    logic [1:0] Fwd_mux1, Fwd_mux2;
     assign {
     RegWrite,        // 1
     MemtoReg,        // 2
@@ -53,19 +52,17 @@ module Stage2(
                      // 18 bits total
     } = ctrl_s1;
 
-assign Fwd_mux1 = {ForwardSelect, ForwardA}; // ctrl signal
-assign Fwd_mux2 = {ForwardSelect, ForwardB};
 always_comb begin
-    case(Fwd_mux1)
-        2'b00, 2'b10: rs1_val_after = rs1_value;
+    case(ForwardA)
+        2'b00: rs1_val_after = rs1_value;
         2'b01: rs1_val_after = Fwd_rd_value1;
-        2'b11: rs1_val_after = Fwd_rd_value2;
+        2'b10: rs1_val_after = Fwd_rd_value2;
         default: rs1_val_after = rs1_value;
     endcase
-    case(Fwd_mux2)
-        2'b00, 2'b10: rs2_val_after = rs2_value;
+    case(ForwardB)
+        2'b00: rs2_val_after = rs2_value;
         2'b01: rs2_val_after = Fwd_rd_value1;
-        2'b11: rs2_val_after = Fwd_rd_value2;
+        2'b10: rs2_val_after = Fwd_rd_value2;
         default: rs2_val_after = rs2_value;
     endcase
 end
@@ -102,7 +99,7 @@ Pipelined_M multi (
     .rst(rst),
     .P_32(mul_result),
     .M_ctrl(M_ctrl),
-    .start(Mul),
+    .start(mul_start),
     .M_over(M_over)
 );
 
