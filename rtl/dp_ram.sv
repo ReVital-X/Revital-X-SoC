@@ -38,7 +38,7 @@ module dp_ram
       if (be_a_i[3])
         mem[addr_a_i][3] <= wdata_a_i[31:24];
     end
-
+  if (en_a_i)
     rdata_a_o <= mem[addr_a_i];
 
     if (en_b_i && we_b_i)
@@ -52,7 +52,7 @@ module dp_ram
       if (be_b_i[3])
         mem[addr_b_i][3] <= wdata_b_i[31:24];
     end
-
+  if (en_b_i)
     rdata_b_o <= mem[addr_b_i];
   end
 

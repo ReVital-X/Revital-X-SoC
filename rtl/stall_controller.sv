@@ -35,7 +35,7 @@ module stall_controller (
 
     logic M_busy;
 
-    // A request starts only while idle. On M_over, the pipeline is released
+    // A request starts only while idle.
     // for one cycle so the completed result and its controls advance together.
     assign mul_start = mul_req && !M_busy && !M_over && !rst;
 

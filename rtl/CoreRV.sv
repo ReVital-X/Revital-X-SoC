@@ -277,7 +277,7 @@ stall_controller stall_ctrl (
     .rst(rst),
     .rs1E(s1_buf.rs1),
     .rs2E(s1_buf.rs2),
-    .rdW(rd_out),
+  .rdW(rd_buf),
     .RegWriteW(Reg_wb),
     .RegWriteM(regwrite_wb),
     .ForwardAE(ForwardA),
