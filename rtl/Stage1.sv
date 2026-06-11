@@ -13,6 +13,7 @@ module Stage1 #(
     input logic [31:0] BranchAddr,
     input logic [31:0] ALUResult,
     output logic [31:0] PC,
+    output logic [31:0] instr_PC,
     output logic [31:0] rs1_value,
     output logic [31:0] rs2_value,
     output logic [4:0] rs1,
@@ -44,8 +45,15 @@ pc_mux mux1 (
     .pc_stall(pc_stall)
 );
 always_ff @(posedge clk) begin
-    if (rst) PC <= 32'b0;
-    else     PC <= mux_out; // Update PC with the output of the mux
+    if (rst) begin
+        PC       <= 32'b0;
+        instr_PC <= 32'b0;
+    end
+    else begin
+        PC <= mux_out; // Update PC with the output of the mux
+        if (!pc_stall)
+            instr_PC <= PC;
+    end
 end
 
 instr_ram #(

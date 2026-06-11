@@ -30,12 +30,12 @@ typedef struct packed {
 } s1_buffer;
 
 //Stage 1 Signals
-logic Reg_wb, branch_flush, Jump;
+logic Reg_wb, branch_flush, redirect_flush, redirect_flush_d, Jump;
 logic [4:0] rd_out;
 logic [31:0] data_wb;
 logic [31:0] BranchAddr;
 logic [31:0] ALUResult;
-logic [31:0] PC_S12, rs1_value_S12, rs2_value_S12;
+logic [31:0] PC_S12, instr_PC_S12, rs1_value_S12, rs2_value_S12;
 logic [4:0] rs1_S12, rs2_S12;
 logic [31:0] imm;
 logic [17:0] ctrl;
@@ -44,6 +44,7 @@ logic [4:0] rd_s12;
 logic [1:0] PCSrc;
 logic M_over;
 assign PCSrc = {Jump,branch_flush};
+assign redirect_flush = branch_flush | Jump;
 
 //Instruction memory Signals
 logic en_mem;
@@ -109,6 +110,7 @@ Stage1 #(
     .BranchAddr(BranchAddr),
     .ALUResult(ALUResult),
     .PC(PC_S12),
+    .instr_PC(instr_PC_S12),
     .rs1_value(rs1_value_S12),
     .rs2_value(rs2_value_S12),
     .rs1(rs1_S12),
@@ -125,8 +127,19 @@ Stage1 #(
 );
 // Buffer to hold Stage 1 outputs for use in Stage 2
 s1_buffer s1_buf;
+
+// The instruction RAM has a registered output. After a branch or jump,
+// outstanding wrong-path read arrives one cycle after the redirect, so keep
+// the Stage 1/2 buffer invalid for that additional cycle.
 always_ff @(posedge clk) begin
-    if (rst || branch_flush) begin
+    if (rst)
+        redirect_flush_d <= 1'b0;
+    else
+        redirect_flush_d <= redirect_flush;
+end
+
+always_ff @(posedge clk) begin
+    if (rst || redirect_flush || redirect_flush_d) begin
         s1_buf.PC <= 32'b0;
         s1_buf.rs1_value <= 32'b0;
         s1_buf.rs2_value <= 32'b0;
@@ -141,7 +154,7 @@ always_ff @(posedge clk) begin
         s1_buf <= s1_buf; // Hold the current values in the buffer
     end
     else begin
-        s1_buf.PC <= PC_S12;  
+        s1_buf.PC <= instr_PC_S12;
         s1_buf.rs1_value <= rs1_value_S12;
         s1_buf.rs2_value <= rs2_value_S12;
         s1_buf.rs1 <= rs1_S12;
