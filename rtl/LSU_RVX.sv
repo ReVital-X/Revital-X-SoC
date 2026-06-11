@@ -133,7 +133,7 @@ module LSU_RVX (
   //-----------------------------------
 
   always_ff @(posedge clk) begin
-    if (!rst)
+    if (rst)
       rdata_q <= '0;
     else if (rdata_update)
       rdata_q <= data_rdata_i[31:8];
@@ -144,7 +144,7 @@ module LSU_RVX (
   //-----------------------------------
 
   always_ff @(posedge clk) begin
-    if (!rst) begin
+    if (rst) begin
       rdata_offset_q  <= '0;
       data_type_q     <= '0;
       data_sign_ext_q <= '0;
@@ -280,7 +280,7 @@ module LSU_RVX (
   end
 
   always_ff @(posedge clk) begin
-    if (!rst) begin
+    if (rst) begin
       ls_fsm_cs <= IDLE;
       handle_misaligned_q <= 1'b0;
     end else begin
