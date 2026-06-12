@@ -20,6 +20,8 @@ module Stage1 #(
     output logic [4:0] rs2,
     output logic [31:0] imm,
     output logic [17:0] ctrl,
+    input logic redirect_flush,
+    input logic redirect_flush_d,
     // From LSU Stage 
     input  logic                   en_mem,
     input  logic [ADDR_WIDTH-1:0]  addr_mem,
@@ -30,7 +32,8 @@ module Stage1 #(
 );
 logic [31:0] instr;
 logic [31:0] mux_out;
-
+logic [31:0] instr_reg;
+logic [31:0] instr_PC_reg;
 //Control signals for Stage 1 
 logic [3:0] ALUControl;
 logic [1:0] MemtoReg;
@@ -47,12 +50,12 @@ pc_mux mux1 (
 always_ff @(posedge clk) begin
     if (rst) begin
         PC       <= 32'b0;
-        instr_PC <= 32'b0;
+        instr_PC_reg <= 32'b0;
     end
     else begin
         PC <= mux_out; // Update PC with the output of the mux
         if (!pc_stall)
-            instr_PC <= PC;
+            instr_PC_reg <= PC;
     end
 end
 
@@ -63,7 +66,7 @@ instr_ram #(
     .en_a_i(!pc_stall),
     .addr_a_i(PC[ADDR_WIDTH+1:2]),
     .wdata_a_i(32'b0),
-    .rdata_a_o(instr),
+    .rdata_a_o(instr_reg),
     .we_a_i(1'b0),
     .be_a_i(4'b0),
     .en_b_i(en_mem),
@@ -73,7 +76,16 @@ instr_ram #(
     .we_b_i(we_mem),
     .be_b_i(be_mem)
 );
-
+always_ff @(posedge clk) begin
+    if (rst || redirect_flush || redirect_flush_d) begin
+        instr <= 32'b0;
+        instr_PC <= 32'b0;
+    end
+    else if (!pc_stall) begin
+        instr <= instr_reg; // Update instruction register with the fetched instruction
+        instr_PC <= instr_PC_reg; // Update instruction PC register with the current PC
+    end
+end
 register_file rf (
     .clk(clk),
     .rst(rst),

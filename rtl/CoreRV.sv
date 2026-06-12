@@ -116,6 +116,8 @@ Stage1 #(
     .rs2(rs2_S12),
     .imm(imm),
     .ctrl(ctrl),
+    .redirect_flush(redirect_flush),
+    .redirect_flush_d(redirect_flush_d),
     // From LSU Stage 
     .en_mem(en_mem),
     .addr_mem(addr_mem),
