@@ -35,7 +35,7 @@ logic [4:0] rd_out;
 logic [31:0] data_wb;
 logic [31:0] BranchAddr;
 logic [31:0] ALUResult;
-logic [31:0] PC_S12, instr_PC_S12, rs1_value_S12, rs2_value_S12;
+logic [31:0] instr_PC_S12, rs1_value_S12, rs2_value_S12;
 logic [4:0] rs1_S12, rs2_S12;
 logic [31:0] imm;
 logic [17:0] ctrl;
@@ -109,7 +109,6 @@ Stage1 #(
     .PCSrc(PCSrc),
     .BranchAddr(BranchAddr),
     .ALUResult(ALUResult),
-    .PC(PC_S12),
     .instr_PC(instr_PC_S12),
     .rs1_value(rs1_value_S12),
     .rs2_value(rs2_value_S12),

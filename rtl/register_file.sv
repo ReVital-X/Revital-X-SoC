@@ -35,6 +35,6 @@ module register_file (
 
 assign rs1_value =(rs1 == 5'd0) ? 32'd0 :(regwrite && (rd != 5'd0) && (rs1 == rd)) ? rd_value : regfile[rs1];
 
-assign rs2_value =(rs2 == 5'd0) ? 32'd0 :(regwrite && (rd != 5'd0) && (rs2 == rd)) ? rd_value :regfile[rs2];
+assign rs2_value =(rs2 == 5'd0) ? 32'd0 :(regwrite && (rd != 5'd0) && (rs2 == rd)) ? rd_value : regfile[rs2];
 
 endmodule  
