@@ -1,9 +1,11 @@
 `timescale 1ns / 1ps
 module Stage1 #(
-    parameter ADDR_WIDTH = 8,
+    parameter INSTR_ADDR_WIDTH = 8,
+    parameter BOOT_ADDR_WIDTH  = 8,
+    parameter INSTR_WORDS      = 256,
+    parameter BOOT_WORDS       = 256,
     parameter BOOT_ADDR = 32'h0000_0000,
-    parameter INSTR_ADDR = 32'h0000_8000,
-    parameter DATA_ADDR = 32'h0001_0000
+    parameter INSTR_ADDR = 32'h0000_8000
 )(
     input logic clk,
     input logic rst,
@@ -29,7 +31,7 @@ module Stage1 #(
     input logic redirect_flush_d,
     // From MEM Stage 
     input  logic                   en_mem,
-    input  logic [ADDR_WIDTH-1:0]  addr_mem,
+    input  logic [INSTR_ADDR_WIDTH-1:0]  addr_mem,
     input  logic [31:0]            wdata_mem,
     output logic [31:0]            rdata_mem,
     input  logic                   we_mem,
@@ -66,16 +68,28 @@ always_ff @(posedge clk) begin
             instr_PC_reg <= PC;
     end
 end
+logic [BOOT_ADDR_WIDTH-1:0] boot_fetch_addr;
+logic [INSTR_ADDR_WIDTH-1:0] instr_fetch_addr;
 
+always_comb begin
+    boot_fetch_addr  = '0;
+    instr_fetch_addr = '0;
+
+    if (boot_mode)
+        boot_fetch_addr = (PC - BOOT_ADDR) >> 2;
+    else
+        instr_fetch_addr = (PC - INSTR_ADDR) >> 2;
+end
 instr_ram #(
-    .ADDR_WIDTH(ADDR_WIDTH),
-    .BOOT_ADDR(BOOT_ADDR),
-    .INSTR_ADDR(INSTR_ADDR),
-    .DATA_ADDR(DATA_ADDR)
+    .INSTR_ADDR_WIDTH(INSTR_ADDR_WIDTH),
+    .BOOT_ADDR_WIDTH(BOOT_ADDR_WIDTH),
+    .INSTR_WORDS(INSTR_WORDS),
+    .BOOT_WORDS(BOOT_WORDS)
 )instr_mem(
     .clk(clk),
     .en_a_i(!pc_stall),
-    .addr_a_i(PC[ADDR_WIDTH+1:2]),
+    .addr_boot_a_i(boot_fetch_addr),
+    .addr_instr_a_i(instr_fetch_addr),
     .wdata_a_i(32'b0),
     .rdata_a_o(instr_reg),
     .we_a_i(1'b0),

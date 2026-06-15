@@ -29,6 +29,16 @@ typedef struct packed {
     logic [31:0] rdata_mem;
 } s1_buffer;
 
+
+// Memory Width and Size Parameters
+localparam int DATA_WORDS = (EXTERNAL_ADDR - DATA_ADDR) / 4;
+localparam int DATA_ADDR_WIDTH = $clog2(DATA_WORDS); 
+localparam int INSTR_WORDS = (DATA_ADDR - INSTR_ADDR) / 4;
+localparam int INSTR_ADDR_WIDTH = $clog2(INSTR_WORDS);
+localparam int BOOT_WORDS = (INSTR_ADDR - BOOT_ADDR) / 4;
+localparam int BOOT_ADDR_WIDTH = $clog2(BOOT_WORDS);
+
+
 //Stage 1 Signals
 logic Reg_wb, branch_flush, redirect_flush, redirect_flush_d, Jump;
 logic [4:0] rd_out;
@@ -58,7 +68,7 @@ assign loadE = s1_buf.ctrl[17] && (s1_buf.ctrl[16:15] == 2'b01); // Check if it'
 
 //Instruction memory Signals
 logic en_mem;
-logic [7:0] addr_mem;
+logic [INSTR_ADDR_WIDTH-1:0] addr_mem;
 logic [31:0] wdata_mem;
 logic [31:0] rdata_mem;
 logic we_mem;
@@ -76,7 +86,7 @@ logic mul_start;
 
 // Memory Stage Signals
 logic dram_en_i;
-logic [7:0] dram_addr_i;
+logic [DATA_ADDR_WIDTH-1:0] dram_addr_i;
 logic [31:0] dram_wdata_i;
 logic [31:0] dram_rdata_i;
 logic dram_we_i;
@@ -109,6 +119,7 @@ logic [4:0] rd_buf;
 logic       regwrite_buf;
 logic [31:0] Mem_Ctrl_PC;
 logic boot_mode;
+
 Memory_Ctrl #(
     .INSTR_ADDR(INSTR_ADDR)
 ) mem_ctrl (
@@ -118,10 +129,12 @@ Memory_Ctrl #(
     .boot_mode(boot_mode)
 );
 Stage1 #(
-    .ADDR_WIDTH(8),
+    .INSTR_ADDR_WIDTH(INSTR_ADDR_WIDTH),
+    .BOOT_ADDR_WIDTH(BOOT_ADDR_WIDTH),
+    .INSTR_WORDS(INSTR_WORDS),
+    .BOOT_WORDS(BOOT_WORDS),
     .BOOT_ADDR(BOOT_ADDR),
-    .INSTR_ADDR(INSTR_ADDR),
-    .DATA_ADDR(DATA_ADDR)
+    .INSTR_ADDR(INSTR_ADDR)
 ) s1(
     .clk(clk),
     .rst(rst),
@@ -259,7 +272,7 @@ always_comb begin
         // Handle instruction memory access
         mem_select = 2'b01;
         en_mem = ctrl_s2[4] && boot_mode; // Only enable instruction memory access in boot mode
-        addr_mem = exec_result[9:2];
+        addr_mem = (exec_result - INSTR_ADDR) >> 2;
         unique case (ctrl_s2[2:1])
             2'b00: wdata_mem = rs2_value_S23; //word
             2'b01: begin // half-word
@@ -310,7 +323,7 @@ always_comb begin
     else if(exec_result >= DATA_ADDR && exec_result < EXTERNAL_ADDR) begin
         mem_select = 2'b00;
         dram_en_i = ctrl_s2[4];
-        dram_addr_i = exec_result[9:2];
+        dram_addr_i = (exec_result - DATA_ADDR) >> 2;
         unique case (ctrl_s2[2:1])
             2'b00: dram_wdata_i = rs2_value_S23; //word
             2'b01: begin // half-word
@@ -425,9 +438,9 @@ LSU_RVX lsu(
 );
 
 data_ram #(
-    .ADDR_WIDTH(8),
+    .ADDR_WIDTH(DATA_ADDR_WIDTH),
     .DATA_WIDTH(32),
-    .NUM_WORDS(256)
+    .NUM_WORDS(DATA_WORDS)
 ) dram(
     .clk(clk),
     .en_i(dram_en_i),

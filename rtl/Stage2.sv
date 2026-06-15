@@ -111,7 +111,7 @@ alu_mul_mux mux3 (
 );
 
     assign branch_flush = compare_out & Branch;
-    assign BranchAddr = pc_in_2 + imm;
+    assign BranchAddr = Branch ? (pc_in_2 + imm) : 32'b0;
     assign ctrl_s2 = {
         MemtoReg,       // 2 (7:6)
         RegWrite,       // 1 (5)

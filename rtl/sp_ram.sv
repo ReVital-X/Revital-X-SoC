@@ -16,11 +16,11 @@ module sp_ram
     input  logic [DATA_WIDTH/8-1:0] be_i
   );
 
-  localparam words = NUM_WORDS/(DATA_WIDTH/8);
+  localparam int words = NUM_WORDS;
 
   logic [DATA_WIDTH/8-1:0][7:0] mem[words];
   logic [DATA_WIDTH/8-1:0][7:0] wdata;
-  logic [ADDR_WIDTH-1-$clog2(DATA_WIDTH/8):0] addr;
+  logic [ADDR_WIDTH-1:0] addr;
 
   integer i;
 

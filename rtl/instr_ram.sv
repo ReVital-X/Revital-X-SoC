@@ -1,24 +1,25 @@
 `timescale 1ns / 1ps
 module instr_ram
   #(
-    parameter ADDR_WIDTH = 8,
-    parameter BOOT_ADDR = 32'h0000_0000,
-    parameter INSTR_ADDR = 32'h0000_8000,
-    parameter DATA_ADDR = 32'h0001_0000
+    parameter INSTR_ADDR_WIDTH = 8,
+    parameter BOOT_ADDR_WIDTH  = 8,
+    parameter INSTR_WORDS      = 256,
+    parameter BOOT_WORDS       = 256
   )(
     // Clock and Reset
     input  logic clk,
     input logic boot_mode,
 
     input  logic                   en_a_i,
-    input  logic [ADDR_WIDTH-1:0]  addr_a_i,
+    input  logic [BOOT_ADDR_WIDTH-1:0]  addr_boot_a_i,
+    input  logic [INSTR_ADDR_WIDTH-1:0]  addr_instr_a_i,
     input  logic [31:0]            wdata_a_i,
     output logic [31:0]            rdata_a_o,
     input  logic                   we_a_i,
     input  logic [3:0]             be_a_i,
 
     input  logic                   en_b_i,
-    input  logic [ADDR_WIDTH-1:0]  addr_b_i,
+    input  logic [INSTR_ADDR_WIDTH-1:0]  addr_b_i,
     input  logic [31:0]            wdata_b_i,
     output logic [31:0]            rdata_b_o,
     input  logic                   we_b_i,
@@ -26,12 +27,12 @@ module instr_ram
     input  logic                   sign_ext_b_i
   );
 logic en_1_i, we_1_i;
-logic [ADDR_WIDTH-1:0] addr_1_i;
+logic [BOOT_ADDR_WIDTH-1:0] addr_1_i;
 logic [31:0] wdata_1_i, rdata_1_o;
 logic [3:0] be_1_i;
 
 logic en_2_i, we_2_i;
-logic [ADDR_WIDTH-1:0] addr_2_i;
+logic [INSTR_ADDR_WIDTH-1:0] addr_2_i;
 logic [31:0] wdata_2_i, rdata_2_o;
 logic [3:0] be_2_i;
 logic [3:0] be_b_i_reg;
@@ -59,7 +60,7 @@ always_comb begin
   if (boot_mode) begin
     // Fetch from boot memory
     en_1_i    = en_a_i;
-    addr_1_i  = addr_a_i;
+    addr_1_i  = addr_boot_a_i;
     wdata_1_i = wdata_a_i;
     we_1_i    = we_a_i;
     be_1_i    = be_a_i;
@@ -103,7 +104,7 @@ always_comb begin
   end else begin
     // Fetch from instruction memory
     en_2_i    = en_a_i;
-    addr_2_i  = addr_a_i;
+    addr_2_i  = addr_instr_a_i;
     wdata_2_i = wdata_a_i;
     we_2_i    = we_a_i;
     be_2_i    = be_a_i;
@@ -115,9 +116,9 @@ always_comb begin
 end
   // boot memory
    sp_ram #(
-    .ADDR_WIDTH(ADDR_WIDTH), // later on update to INSTR_ADDR - BOOT_ADDR
+    .ADDR_WIDTH(BOOT_ADDR_WIDTH), // INSTR_ADDR - BOOT_ADDR Space
     .DATA_WIDTH(32),
-    .NUM_WORDS(256)
+    .NUM_WORDS(BOOT_WORDS)
    ) ram1(
     .clk(clk),
     .en_i(en_1_i),
@@ -130,9 +131,9 @@ end
 
    // instruction memory
    sp_ram #(
-    .ADDR_WIDTH(ADDR_WIDTH),  // later on update to DATA_ADDR - INSTR_ADDR
+    .ADDR_WIDTH(INSTR_ADDR_WIDTH),  // DATA_ADDR - INSTR_ADDR Space
     .DATA_WIDTH(32),
-    .NUM_WORDS(256)
+    .NUM_WORDS(INSTR_WORDS)
    ) ram3(
     .clk(clk),
     .en_i(en_2_i),
