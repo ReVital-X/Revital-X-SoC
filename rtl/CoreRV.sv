@@ -46,9 +46,15 @@ logic front_stall;
 logic [4:0] rd_s12;
 logic [1:0] PCSrc;
 logic M_over;
+
+// Buffer to hold Stage 1 outputs for use in Stage 2
+s1_buffer s1_buf;
+
 assign PCSrc = {Jump,branch_flush};
 assign redirect_flush = branch_flush | Jump;
 assign front_stall = m_stall | load_hazard;
+logic loadE;
+assign loadE = s1_buf.ctrl[17] && (s1_buf.ctrl[16:15] == 2'b01); // Check if it's a load instruction in EX stage
 
 //Instruction memory Signals
 logic en_mem;
@@ -149,8 +155,7 @@ Stage1 #(
     .be_mem(be_mem),
     .sign_ext_mem(sign_ext_mem)
 );
-// Buffer to hold Stage 1 outputs for use in Stage 2
-s1_buffer s1_buf;
+
 
 // The instruction RAM has a registered output. After a branch or jump,
 // outstanding wrong-path read arrives one cycle after the redirect, so keep
@@ -380,7 +385,7 @@ stall_controller stall_ctrl (
     .rdE(s1_buf.rd_s12),
     .uses_rs1D(uses_rs1_S12),
     .uses_rs2D(uses_rs2_S12),
-    .loadE(s1_buf.ctrl[17] && (s1_buf.ctrl[16:15] == 2'b01)),
+    .loadE(loadE),
     .load_hazard(load_hazard),
     .mul_req(s1_buf.ctrl[6]),
     .mul_start(mul_start),
