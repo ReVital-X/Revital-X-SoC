@@ -37,14 +37,18 @@ logic [31:0] BranchAddr;
 logic [31:0] ALUResult;
 logic [31:0] instr_PC_S12, rs1_value_S12, rs2_value_S12;
 logic [4:0] rs1_S12, rs2_S12;
+logic uses_rs1_S12, uses_rs2_S12;
 logic [31:0] imm;
 logic [17:0] ctrl;
 logic m_stall;
+logic load_hazard;
+logic front_stall;
 logic [4:0] rd_s12;
 logic [1:0] PCSrc;
 logic M_over;
 assign PCSrc = {Jump,branch_flush};
 assign redirect_flush = branch_flush | Jump;
+assign front_stall = m_stall | load_hazard;
 
 //Instruction memory Signals
 logic en_mem;
@@ -115,7 +119,7 @@ Stage1 #(
 ) s1(
     .clk(clk),
     .rst(rst),
-    .pc_stall(m_stall),
+    .pc_stall(front_stall),
     .RegWrite_wb(Reg_wb),
     .rd(rd_out),
     .rd_s12(rd_s12),
@@ -130,6 +134,8 @@ Stage1 #(
     .rs2_value(rs2_value_S12),
     .rs1(rs1_S12),
     .rs2(rs2_S12),
+    .uses_rs1(uses_rs1_S12),
+    .uses_rs2(uses_rs2_S12),
     .imm(imm),
     .ctrl(ctrl),
     .redirect_flush(redirect_flush),
@@ -170,6 +176,18 @@ always_ff @(posedge clk) begin
     end
     else if (m_stall) begin
         s1_buf <= s1_buf; // Hold the current values in the buffer
+    end
+    else if (load_hazard) begin
+        // Freeze fetch/decode and inject a NOP into EX while the load advances.
+        s1_buf.PC <= 32'b0;
+        s1_buf.rs1_value <= 32'b0;
+        s1_buf.rs2_value <= 32'b0;
+        s1_buf.rs1 <= 5'b0;
+        s1_buf.rs2 <= 5'b0;
+        s1_buf.imm <= 32'b0;
+        s1_buf.ctrl <= 18'b0;
+        s1_buf.rd_s12 <= 5'b0;
+        s1_buf.rdata_mem <= 32'b0;
     end
     else begin
         s1_buf.PC <= instr_PC_S12;
@@ -357,6 +375,13 @@ stall_controller stall_ctrl (
     .RegWriteM(regwrite_wb),
     .ForwardAE(ForwardA),
     .ForwardBE(ForwardB),
+    .rs1D(rs1_S12),
+    .rs2D(rs2_S12),
+    .rdE(s1_buf.rd_s12),
+    .uses_rs1D(uses_rs1_S12),
+    .uses_rs2D(uses_rs2_S12),
+    .loadE(s1_buf.ctrl[17] && (s1_buf.ctrl[16:15] == 2'b01)),
+    .load_hazard(load_hazard),
     .mul_req(s1_buf.ctrl[6]),
     .mul_start(mul_start),
     .M_over(M_over),

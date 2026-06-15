@@ -6,6 +6,10 @@ module stall_controller (
     input logic [4:0] rs1E,rs2E,rdW,rdM,
     input logic RegWriteW,RegWriteM,
     output logic [1:0] ForwardAE,ForwardBE,
+    // Load-use hazard
+    input logic [4:0] rs1D,rs2D,rdE,
+    input logic uses_rs1D,uses_rs2D,loadE,
+    output logic load_hazard,
     // MUL
     input  logic mul_req,
     input  logic M_over,
@@ -32,6 +36,8 @@ module stall_controller (
                 ForwardBE = 2'b01;
         end
     end
+
+    assign load_hazard = loadE && (rdE != 5'd0) &&((uses_rs1D && (rs1D == rdE)) ||(uses_rs2D && (rs2D == rdE)));
 
     logic M_busy;
 

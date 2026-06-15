@@ -21,6 +21,8 @@ module Stage1 #(
     output logic [31:0] rs2_value,
     output logic [4:0] rs1,
     output logic [4:0] rs2,
+    output logic uses_rs1,
+    output logic uses_rs2,
     output logic [31:0] imm,
     output logic [17:0] ctrl,
     input logic redirect_flush,
@@ -154,4 +156,28 @@ immediate_generator imm_gen (
 assign rs1 = instr[19:15];
 assign rs2 = instr[24:20];
 assign rd_s12 = instr[11:7];
+
+always_comb begin
+    uses_rs1 = 1'b0;
+    uses_rs2 = 1'b0;
+
+    unique case (instr[6:0])
+        7'b0000011, // LOAD
+        7'b0010011, // I-type ALU
+        7'b1100111: // JALR
+            uses_rs1 = 1'b1;
+
+        7'b0100011, // STORE
+        7'b0110011, // R-type / M extension
+        7'b1100011: begin // BRANCH
+            uses_rs1 = 1'b1;
+            uses_rs2 = 1'b1;
+        end
+
+        default: begin
+            uses_rs1 = 1'b0;
+            uses_rs2 = 1'b0;
+        end
+    endcase
+end
 endmodule
