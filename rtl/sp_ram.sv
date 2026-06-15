@@ -25,7 +25,7 @@ module sp_ram
   integer i;
 
 
-  assign addr = addr_i[ADDR_WIDTH-1:$clog2(DATA_WIDTH/8)];
+  assign addr = addr_i;
 
 
   always @(posedge clk)
@@ -37,8 +37,8 @@ module sp_ram
           mem[addr][i] <= wdata[i];
       end
     end
-
-    rdata_o <= mem[addr];
+    if(en_i)
+      rdata_o <= mem[addr];
   end
 
   genvar w;

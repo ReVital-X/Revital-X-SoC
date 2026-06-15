@@ -1,10 +1,14 @@
 `timescale 1ns / 1ps
 module instr_ram
   #(
-    parameter ADDR_WIDTH = 8
+    parameter ADDR_WIDTH = 8,
+    parameter BOOT_ADDR = 32'h0000_0000,
+    parameter INSTR_ADDR = 32'h0000_8000,
+    parameter DATA_ADDR = 32'h0001_0000
   )(
     // Clock and Reset
     input  logic clk,
+    input logic boot_mode,
 
     input  logic                   en_a_i,
     input  logic [ADDR_WIDTH-1:0]  addr_a_i,
@@ -18,24 +22,125 @@ module instr_ram
     input  logic [31:0]            wdata_b_i,
     output logic [31:0]            rdata_b_o,
     input  logic                   we_b_i,
-    input  logic [3:0]             be_b_i
+    input  logic [3:0]             be_b_i,
+    input  logic                   sign_ext_b_i
   );
+logic en_1_i, we_1_i;
+logic [ADDR_WIDTH-1:0] addr_1_i;
+logic [31:0] wdata_1_i, rdata_1_o;
+logic [3:0] be_1_i;
 
-   dp_ram ram1(
+logic en_2_i, we_2_i;
+logic [ADDR_WIDTH-1:0] addr_2_i;
+logic [31:0] wdata_2_i, rdata_2_o;
+logic [3:0] be_2_i;
+logic [3:0] be_b_i_reg;
+logic sign_ext_b_i_reg;
+always_ff @(posedge clk) begin
+    be_b_i_reg <= be_b_i;
+    sign_ext_b_i_reg <= sign_ext_b_i;
+end
+always_comb begin
+  en_1_i    = 1'b0;
+  addr_1_i  = '0;
+  wdata_1_i = '0;
+  we_1_i    = 1'b0;
+  be_1_i    = '0;
+
+  en_2_i    = 1'b0;
+  addr_2_i  = '0;
+  wdata_2_i = '0;
+  we_2_i    = 1'b0;
+  be_2_i    = '0;
+
+  rdata_a_o = 32'b0;
+  rdata_b_o = 32'b0;
+
+  if (boot_mode) begin
+    // Fetch from boot memory
+    en_1_i    = en_a_i;
+    addr_1_i  = addr_a_i;
+    wdata_1_i = wdata_a_i;
+    we_1_i    = we_a_i;
+    be_1_i    = be_a_i;
+    rdata_a_o = rdata_1_o;
+
+    // MEM stage can access instruction memory
+    en_2_i    = en_b_i;
+    addr_2_i  = addr_b_i;
+    wdata_2_i = wdata_b_i;
+    we_2_i    = we_b_i;
+    be_2_i    = be_b_i;
+    if(sign_ext_b_i_reg) begin
+      case (be_b_i_reg)
+      // byte loads/stores
+        4'b0001: rdata_b_o = {{24{rdata_2_o[7]}}, rdata_2_o[7:0]};
+        4'b0010: rdata_b_o = {{24{rdata_2_o[15]}}, rdata_2_o[15:8]};
+        4'b0100: rdata_b_o = {{24{rdata_2_o[23]}}, rdata_2_o[23:16]};
+        4'b1000: rdata_b_o = {{24{rdata_2_o[31]}}, rdata_2_o[31:24]};
+      // halfword loads/stores
+        4'b0011: rdata_b_o = {{16{rdata_2_o[15]}}, rdata_2_o[15:0]};
+        4'b0110: rdata_b_o = {{16{rdata_2_o[23]}}, rdata_2_o[23:8]};
+        4'b1100: rdata_b_o = {{16{rdata_2_o[31]}}, rdata_2_o[31:16]};
+        4'b1001: rdata_b_o = {{16{rdata_2_o[31]}}, rdata_2_o[31:24], rdata_2_o[7:0]};
+        default: rdata_b_o = rdata_2_o;
+      endcase
+    end else begin
+      case (be_b_i_reg)
+      // byte loads/stores
+        4'b0001: rdata_b_o = {24'b0, rdata_2_o[7:0]};
+        4'b0010: rdata_b_o = {24'b0, rdata_2_o[15:8]};
+        4'b0100: rdata_b_o = {24'b0, rdata_2_o[23:16]};
+        4'b1000: rdata_b_o = {24'b0, rdata_2_o[31:24]};
+      // halfword loads/stores
+        4'b0011: rdata_b_o = {16'b0, rdata_2_o[15:0]};
+        4'b0110: rdata_b_o = {16'b0, rdata_2_o[23:8]};
+        4'b1100: rdata_b_o = {16'b0, rdata_2_o[31:16]};
+        4'b1001: rdata_b_o = {16'b0, rdata_2_o[31:24], rdata_2_o[7:0]};
+        default: rdata_b_o = rdata_2_o;
+      endcase
+    end
+  end else begin
+    // Fetch from instruction memory
+    en_2_i    = en_a_i;
+    addr_2_i  = addr_a_i;
+    wdata_2_i = wdata_a_i;
+    we_2_i    = we_a_i;
+    be_2_i    = be_a_i;
+    rdata_a_o = rdata_2_o;
+
+    // Boot memory inaccessible, MEM port disabled
+    rdata_b_o = 32'b0;
+  end
+end
+  // boot memory
+   sp_ram #(
+    .ADDR_WIDTH(ADDR_WIDTH), // later on update to INSTR_ADDR - BOOT_ADDR
+    .DATA_WIDTH(32),
+    .NUM_WORDS(256)
+   ) ram1(
     .clk(clk),
-    .en_a_i(en_a_i),
-    .addr_a_i(addr_a_i),
-    .wdata_a_i(wdata_a_i),
-    .rdata_a_o(rdata_a_o),
-    .we_a_i(we_a_i),
-    .be_a_i(be_a_i),
+    .en_i(en_1_i),
+    .addr_i(addr_1_i),
+    .wdata_i(wdata_1_i),
+    .rdata_o(rdata_1_o),
+    .we_i(we_1_i),
+    .be_i(be_1_i)
+   );
 
-    .en_b_i(en_b_i),
-    .addr_b_i(addr_b_i),
-    .wdata_b_i(wdata_b_i),
-    .rdata_b_o(rdata_b_o),
-    .we_b_i(we_b_i),
-    .be_b_i(be_b_i)
+   // instruction memory
+   sp_ram #(
+    .ADDR_WIDTH(ADDR_WIDTH),  // later on update to DATA_ADDR - INSTR_ADDR
+    .DATA_WIDTH(32),
+    .NUM_WORDS(256)
+   ) ram3(
+    .clk(clk),
+    .en_i(en_2_i),
+    .addr_i(addr_2_i),
+    .wdata_i(wdata_2_i),
+    .rdata_o(rdata_2_o),
+    .we_i(we_2_i),
+    .be_i(be_2_i)
    );
 
 endmodule

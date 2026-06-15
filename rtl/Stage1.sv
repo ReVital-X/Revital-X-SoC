@@ -1,6 +1,9 @@
 `timescale 1ns / 1ps
 module Stage1 #(
-    parameter ADDR_WIDTH = 8
+    parameter ADDR_WIDTH = 8,
+    parameter BOOT_ADDR = 32'h0000_0000,
+    parameter INSTR_ADDR = 32'h0000_8000,
+    parameter DATA_ADDR = 32'h0001_0000
 )(
     input logic clk,
     input logic rst,
@@ -22,13 +25,16 @@ module Stage1 #(
     output logic [17:0] ctrl,
     input logic redirect_flush,
     input logic redirect_flush_d,
-    // From LSU Stage 
+    // From MEM Stage 
     input  logic                   en_mem,
     input  logic [ADDR_WIDTH-1:0]  addr_mem,
     input  logic [31:0]            wdata_mem,
     output logic [31:0]            rdata_mem,
     input  logic                   we_mem,
-    input  logic [3:0]             be_mem
+    input  logic [3:0]             be_mem,
+    input  logic                   sign_ext_mem,
+
+    input logic boot_mode
 );
 logic [31:0] instr;
 logic [31:0] mux_out;
@@ -60,7 +66,10 @@ always_ff @(posedge clk) begin
 end
 
 instr_ram #(
-    .ADDR_WIDTH(ADDR_WIDTH)
+    .ADDR_WIDTH(ADDR_WIDTH),
+    .BOOT_ADDR(BOOT_ADDR),
+    .INSTR_ADDR(INSTR_ADDR),
+    .DATA_ADDR(DATA_ADDR)
 )instr_mem(
     .clk(clk),
     .en_a_i(!pc_stall),
@@ -74,7 +83,9 @@ instr_ram #(
     .wdata_b_i(wdata_mem),
     .rdata_b_o(rdata_mem),
     .we_b_i(we_mem),
-    .be_b_i(be_mem)
+    .be_b_i(be_mem),
+    .sign_ext_b_i(sign_ext_mem),
+    .boot_mode(boot_mode)
 );
 always_ff @(posedge clk) begin
     if (rst || redirect_flush || redirect_flush_d) begin
