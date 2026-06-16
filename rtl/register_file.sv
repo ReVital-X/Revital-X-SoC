@@ -27,9 +27,14 @@ module register_file (
     end
 
   
-    // READ LOGIC (Combinational)
+    // This combinational logic implements the read ports with bypassing for the current write.
+    //     addi x5, x0, 10
+    //     addi x6, x0, 20
+    //     addi x7, x0, 30
+    //     ori  x8, x5, 1 (The value of x5 should be 10, not the previous value, even though the write to x5 happens in the same cycle as the read for x5)
 
-assign rs1_value = (rs1 == 0) ? 32'd0 : regfile[rs1];
-assign rs2_value = (rs2 == 0) ? 32'd0 : regfile[rs2];
+assign rs1_value =(rs1 == 5'd0) ? 32'd0 :(regwrite && (rd != 5'd0) && (rs1 == rd)) ? rd_value : regfile[rs1];
 
-endmodule
+assign rs2_value =(rs2 == 5'd0) ? 32'd0 :(regwrite && (rd != 5'd0) && (rs2 == rd)) ? rd_value : regfile[rs2];
+
+endmodule  

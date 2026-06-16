@@ -1,6 +1,11 @@
 `timescale 1ns / 1ps
 module Stage1 #(
-    parameter ADDR_WIDTH = 8
+    parameter INSTR_ADDR_WIDTH = 8,
+    parameter BOOT_ADDR_WIDTH  = 8,
+    parameter INSTR_WORDS      = 256,
+    parameter BOOT_WORDS       = 256,
+    parameter BOOT_ADDR = 32'h0000_0000,
+    parameter INSTR_ADDR = 32'h0000_8000
 )(
     input logic clk,
     input logic rst,
@@ -13,23 +18,32 @@ module Stage1 #(
     input logic [31:0] BranchAddr,
     input logic [31:0] ALUResult,
     output logic [31:0] PC,
+    output logic [31:0] instr_PC,
     output logic [31:0] rs1_value,
     output logic [31:0] rs2_value,
     output logic [4:0] rs1,
     output logic [4:0] rs2,
+    output logic uses_rs1,
+    output logic uses_rs2,
     output logic [31:0] imm,
     output logic [17:0] ctrl,
-    // From LSU Stage 
+    input logic redirect_flush,
+    input logic redirect_flush_d,
+    // From MEM Stage 
     input  logic                   en_mem,
-    input  logic [ADDR_WIDTH-1:0]  addr_mem,
+    input  logic [INSTR_ADDR_WIDTH-1:0]  addr_mem,
     input  logic [31:0]            wdata_mem,
     output logic [31:0]            rdata_mem,
     input  logic                   we_mem,
-    input  logic [3:0]             be_mem
+    input  logic [3:0]             be_mem,
+    input  logic                   sign_ext_mem,
+
+    input logic boot_mode
 );
 logic [31:0] instr;
 logic [31:0] mux_out;
-
+logic [31:0] instr_reg;
+logic [31:0] instr_PC_reg;
 //Control signals for Stage 1 
 logic [3:0] ALUControl;
 logic [1:0] MemtoReg;
@@ -44,18 +58,40 @@ pc_mux mux1 (
     .pc_stall(pc_stall)
 );
 always_ff @(posedge clk) begin
-    if (rst) PC <= 32'b0;
-    else     PC <= mux_out; // Update PC with the output of the mux
+    if (rst) begin
+        PC       <= 32'b0;
+        instr_PC_reg <= 32'b0;
+    end
+    else begin
+        PC <= mux_out; // Update PC with the output of the mux
+        if (!pc_stall)
+            instr_PC_reg <= PC;
+    end
 end
+logic [BOOT_ADDR_WIDTH-1:0] boot_fetch_addr;
+logic [INSTR_ADDR_WIDTH-1:0] instr_fetch_addr;
 
+always_comb begin
+    boot_fetch_addr  = '0;
+    instr_fetch_addr = '0;
+
+    if (boot_mode)
+        boot_fetch_addr = (PC - BOOT_ADDR) >> 2;
+    else
+        instr_fetch_addr = (PC - INSTR_ADDR) >> 2;
+end
 instr_ram #(
-    .ADDR_WIDTH(ADDR_WIDTH)
+    .INSTR_ADDR_WIDTH(INSTR_ADDR_WIDTH),
+    .BOOT_ADDR_WIDTH(BOOT_ADDR_WIDTH),
+    .INSTR_WORDS(INSTR_WORDS),
+    .BOOT_WORDS(BOOT_WORDS)
 )instr_mem(
     .clk(clk),
     .en_a_i(!pc_stall),
-    .addr_a_i(PC[ADDR_WIDTH+1:2]),
+    .addr_boot_a_i(boot_fetch_addr),
+    .addr_instr_a_i(instr_fetch_addr),
     .wdata_a_i(32'b0),
-    .rdata_a_o(instr),
+    .rdata_a_o(instr_reg),
     .we_a_i(1'b0),
     .be_a_i(4'b0),
     .en_b_i(en_mem),
@@ -63,9 +99,20 @@ instr_ram #(
     .wdata_b_i(wdata_mem),
     .rdata_b_o(rdata_mem),
     .we_b_i(we_mem),
-    .be_b_i(be_mem)
+    .be_b_i(be_mem),
+    .sign_ext_b_i(sign_ext_mem),
+    .boot_mode(boot_mode)
 );
-
+always_ff @(posedge clk) begin
+    if (rst || redirect_flush || redirect_flush_d) begin
+        instr <= 32'b0;
+        instr_PC <= 32'b0;
+    end
+    else if (!pc_stall) begin
+        instr <= instr_reg; // Update instruction register with the fetched instruction
+        instr_PC <= instr_PC_reg; // Update instruction PC register with the current PC
+    end
+end
 register_file rf (
     .clk(clk),
     .rst(rst),
@@ -123,4 +170,28 @@ immediate_generator imm_gen (
 assign rs1 = instr[19:15];
 assign rs2 = instr[24:20];
 assign rd_s12 = instr[11:7];
+
+always_comb begin
+    uses_rs1 = 1'b0;
+    uses_rs2 = 1'b0;
+
+    unique case (instr[6:0])
+        7'b0000011, // LOAD
+        7'b0010011, // I-type ALU
+        7'b1100111: // JALR
+            uses_rs1 = 1'b1;
+
+        7'b0100011, // STORE
+        7'b0110011, // R-type / M extension
+        7'b1100011: begin // BRANCH
+            uses_rs1 = 1'b1;
+            uses_rs2 = 1'b1;
+        end
+
+        default: begin
+            uses_rs1 = 1'b0;
+            uses_rs2 = 1'b0;
+        end
+    endcase
+end
 endmodule
