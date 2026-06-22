@@ -1,0 +1,4242 @@
+irun(64): 15.20-s051: (c) Copyright 1995-2018 Cadence Design Systems, Inc.
+TOOL:	irun(64)	15.20-s051: Started on Jun 16, 2026 at 16:55:02 IST
+irun
+	-sv
+	-access +rwc
+	-linedebug
+	-coverage all
+	-covoverwrite
+	-covtest seed_3333
+	alu_in2_mux.sv
+	Memory_Ctrl.sv
+	sp_ram.sv
+	instr_ram.sv
+	data_ram.sv
+	register_file.sv
+	dp_ram.sv
+	Stage1.sv
+	alu_mul_mux.sv
+	LSU_RVX.sv
+	pc_mux.sv
+	immediate_generator.sv
+	memtoreg_mux.sv
+	Control_Unit.sv
+	CoreRV.sv
+	stall_controller.sv
+	Stage2.sv
+	alu.sv
+	alu_in1_mux.sv
+	Pipelined_M.sv
+	/home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl/ju_type_rand_tb.sv
+	-svseed 3333
+irun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+ncsim: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+ncsim: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+Loading snapshot worklib.dp_ram:sv .................... Done
+SVSEED set from command line: 3333
+ncsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+ncsim> source /home/install/INCISIVE152/tools/inca/files/ncsimrc
+ncsim> run
+=======================================
+ STARTING J/U-TYPE PIPELINE VERIFICATION
+=======================================
+Running 500 Constrained-Random Tests...
+
+=======================================================
+ASM : LUI x27, 0x9f0b5 | PC: 00000470
+EXPECTED -> RD: 9f0b5000 | NEXT_PC: 00000474
+DUT      -> RD: 9f0b5000 | NEXT_PC: 00000474
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x30, 0x67a95 | PC: 00000454
+EXPECTED -> RD: 67a95454 | NEXT_PC: 00000458
+DUT      -> RD: 67a95454 | NEXT_PC: 00000458
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x16, 92 | PC: 00000434
+EXPECTED -> RD: 00000438 | NEXT_PC: 00000490
+DUT      -> RD: 00000438 | NEXT_PC: 00000490
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x23, x26, 116 | PC: 000004d8
+      (rs1_val = 00000480)
+EXPECTED -> RD: 000004dc | NEXT_PC: 000004f4
+DUT      -> RD: 000004dc | NEXT_PC: 000004f4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x6, 0xea807 | PC: 0000046c
+EXPECTED -> RD: ea807000 | NEXT_PC: 00000470
+DUT      -> RD: ea807000 | NEXT_PC: 00000470
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x27, 0x2148c | PC: 00000498
+EXPECTED -> RD: 2148c498 | NEXT_PC: 0000049c
+DUT      -> RD: 2148c498 | NEXT_PC: 0000049c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x4, 140 | PC: 00000438
+EXPECTED -> RD: 0000043c | NEXT_PC: 000004c4
+DUT      -> RD: 0000043c | NEXT_PC: 000004c4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x23, x27, 212 | PC: 00000490
+      (rs1_val = 00000418)
+EXPECTED -> RD: 00000494 | NEXT_PC: 000004ec
+DUT      -> RD: 00000494 | NEXT_PC: 000004ec
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x5, 0xc4187 | PC: 000004bc
+EXPECTED -> RD: c4187000 | NEXT_PC: 000004c0
+DUT      -> RD: c4187000 | NEXT_PC: 000004c0
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x17, 0x2395f | PC: 00000474
+EXPECTED -> RD: 2395f474 | NEXT_PC: 00000478
+DUT      -> RD: 2395f474 | NEXT_PC: 00000478
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x28, 124 | PC: 00000468
+EXPECTED -> RD: 0000046c | NEXT_PC: 000004e4
+DUT      -> RD: 0000046c | NEXT_PC: 000004e4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x28, x10, 44 | PC: 000004cc
+      (rs1_val = 00000458)
+EXPECTED -> RD: 000004d0 | NEXT_PC: 00000484
+DUT      -> RD: 000004d0 | NEXT_PC: 00000484
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x5, 0x3d3e8 | PC: 000004d0
+EXPECTED -> RD: 3d3e8000 | NEXT_PC: 000004d4
+DUT      -> RD: 3d3e8000 | NEXT_PC: 000004d4
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x30, 0x38108 | PC: 00000468
+EXPECTED -> RD: 38108468 | NEXT_PC: 0000046c
+DUT      -> RD: 38108468 | NEXT_PC: 0000046c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x12, 88 | PC: 0000044c
+EXPECTED -> RD: 00000450 | NEXT_PC: 000004a4
+DUT      -> RD: 00000450 | NEXT_PC: 000004a4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x15, x16, 36 | PC: 00000438
+      (rs1_val = 00000468)
+EXPECTED -> RD: 0000043c | NEXT_PC: 0000048c
+DUT      -> RD: 0000043c | NEXT_PC: 0000048c
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x3, 0x3752c | PC: 00000464
+EXPECTED -> RD: 3752c000 | NEXT_PC: 00000468
+DUT      -> RD: 3752c000 | NEXT_PC: 00000468
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x30, 0xda91 | PC: 00000474
+EXPECTED -> RD: 0da91474 | NEXT_PC: 00000478
+DUT      -> RD: 0da91474 | NEXT_PC: 00000478
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x14, 12 | PC: 00000464
+EXPECTED -> RD: 00000468 | NEXT_PC: 00000470
+DUT      -> RD: 00000468 | NEXT_PC: 00000470
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x22, x16, 20 | PC: 000004b8
+      (rs1_val = 00000490)
+EXPECTED -> RD: 000004bc | NEXT_PC: 000004a4
+DUT      -> RD: 000004bc | NEXT_PC: 000004a4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x8, 0x8391c | PC: 00000454
+EXPECTED -> RD: 8391c000 | NEXT_PC: 00000458
+DUT      -> RD: 8391c000 | NEXT_PC: 00000458
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x10, 0xcb1b9 | PC: 00000474
+EXPECTED -> RD: cb1b9474 | NEXT_PC: 00000478
+DUT      -> RD: cb1b9474 | NEXT_PC: 00000478
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x31, 8 | PC: 000004bc
+EXPECTED -> RD: 000004c0 | NEXT_PC: 000004c4
+DUT      -> RD: 000004c0 | NEXT_PC: 000004c4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x20, x2, 20 | PC: 00000464
+      (rs1_val = 000004d8)
+EXPECTED -> RD: 00000468 | NEXT_PC: 000004ec
+DUT      -> RD: 00000468 | NEXT_PC: 000004ec
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x9, 0x5a2a | PC: 00000470
+EXPECTED -> RD: 05a2a000 | NEXT_PC: 00000474
+DUT      -> RD: 05a2a000 | NEXT_PC: 00000474
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x8, 0xa26cd | PC: 00000450
+EXPECTED -> RD: a26cd450 | NEXT_PC: 00000454
+DUT      -> RD: a26cd450 | NEXT_PC: 00000454
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x31, 210 | PC: 00000400
+EXPECTED -> RD: 00000404 | NEXT_PC: 000004d2
+DUT      -> RD: 00000404 | NEXT_PC: 000004d2
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x2, x23, 44 | PC: 00000498
+      (rs1_val = 00000474)
+EXPECTED -> RD: 0000049c | NEXT_PC: 000004a0
+DUT      -> RD: 0000049c | NEXT_PC: 000004a0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x31, 0x2cf09 | PC: 0000040c
+EXPECTED -> RD: 2cf09000 | NEXT_PC: 00000410
+DUT      -> RD: 2cf09000 | NEXT_PC: 00000410
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x31, 0xfbe78 | PC: 00000474
+EXPECTED -> RD: fbe78474 | NEXT_PC: 00000478
+DUT      -> RD: fbe78474 | NEXT_PC: 00000478
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x17, 20 | PC: 000004bc
+EXPECTED -> RD: 000004c0 | NEXT_PC: 000004d0
+DUT      -> RD: 000004c0 | NEXT_PC: 000004d0
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x7, x21, 248 | PC: 000004e0
+      (rs1_val = 00000400)
+EXPECTED -> RD: 000004e4 | NEXT_PC: 000004f8
+DUT      -> RD: 000004e4 | NEXT_PC: 000004f8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x20, 0x47b08 | PC: 0000044c
+EXPECTED -> RD: 47b08000 | NEXT_PC: 00000450
+DUT      -> RD: 47b08000 | NEXT_PC: 00000450
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x24, 0xee08 | PC: 00000404
+EXPECTED -> RD: 0ee08404 | NEXT_PC: 00000408
+DUT      -> RD: 0ee08404 | NEXT_PC: 00000408
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x3, 20 | PC: 000004d8
+EXPECTED -> RD: 000004dc | NEXT_PC: 000004ec
+DUT      -> RD: 000004dc | NEXT_PC: 000004ec
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x21, x31, 36 | PC: 0000042c
+      (rs1_val = 00000490)
+EXPECTED -> RD: 00000430 | NEXT_PC: 000004b4
+DUT      -> RD: 00000430 | NEXT_PC: 000004b4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x12, 0x8ce4b | PC: 00000410
+EXPECTED -> RD: 8ce4b000 | NEXT_PC: 00000414
+DUT      -> RD: 8ce4b000 | NEXT_PC: 00000414
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x12, 0x8658d | PC: 000004d0
+EXPECTED -> RD: 8658d4d0 | NEXT_PC: 000004d4
+DUT      -> RD: 8658d4d0 | NEXT_PC: 000004d4
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x4, 62 | PC: 0000040c
+EXPECTED -> RD: 00000410 | NEXT_PC: 0000044a
+DUT      -> RD: 00000410 | NEXT_PC: 0000044a
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x10, x14, 32 | PC: 000004b0
+      (rs1_val = 000004ac)
+EXPECTED -> RD: 000004b4 | NEXT_PC: 000004cc
+DUT      -> RD: 000004b4 | NEXT_PC: 000004cc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x13, 0xc2108 | PC: 000004b0
+EXPECTED -> RD: c2108000 | NEXT_PC: 000004b4
+DUT      -> RD: c2108000 | NEXT_PC: 000004b4
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x19, 0x29efb | PC: 0000041c
+EXPECTED -> RD: 29efb41c | NEXT_PC: 00000420
+DUT      -> RD: 29efb41c | NEXT_PC: 00000420
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x9, 100 | PC: 00000430
+EXPECTED -> RD: 00000434 | NEXT_PC: 00000494
+DUT      -> RD: 00000434 | NEXT_PC: 00000494
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x30, x10, 20 | PC: 000004a8
+      (rs1_val = 00000458)
+EXPECTED -> RD: 000004ac | NEXT_PC: 0000046c
+DUT      -> RD: 000004ac | NEXT_PC: 0000046c
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x10, 0x77f07 | PC: 000004e0
+EXPECTED -> RD: 77f07000 | NEXT_PC: 000004e4
+DUT      -> RD: 77f07000 | NEXT_PC: 000004e4
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x10, 0xe26e3 | PC: 000004bc
+EXPECTED -> RD: e26e34bc | NEXT_PC: 000004c0
+DUT      -> RD: e26e34bc | NEXT_PC: 000004c0
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x11, 150 | PC: 00000460
+EXPECTED -> RD: 00000464 | NEXT_PC: 000004f6
+DUT      -> RD: 00000464 | NEXT_PC: 000004f6
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x2, x17, 0 | PC: 00000490
+      (rs1_val = 000004fc)
+EXPECTED -> RD: 00000494 | NEXT_PC: 000004fc
+DUT      -> RD: 00000494 | NEXT_PC: 000004fc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x8, 0xfa3cd | PC: 00000444
+EXPECTED -> RD: fa3cd000 | NEXT_PC: 00000448
+DUT      -> RD: fa3cd000 | NEXT_PC: 00000448
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x12, 0x36ee9 | PC: 00000478
+EXPECTED -> RD: 36ee9478 | NEXT_PC: 0000047c
+DUT      -> RD: 36ee9478 | NEXT_PC: 0000047c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x11, 26 | PC: 00000438
+EXPECTED -> RD: 0000043c | NEXT_PC: 00000452
+DUT      -> RD: 0000043c | NEXT_PC: 00000452
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x1, x27, 52 | PC: 00000498
+      (rs1_val = 000004bc)
+EXPECTED -> RD: 0000049c | NEXT_PC: 000004f0
+DUT      -> RD: 0000049c | NEXT_PC: 000004f0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x12, 0x3a91e | PC: 00000424
+EXPECTED -> RD: 3a91e000 | NEXT_PC: 00000428
+DUT      -> RD: 3a91e000 | NEXT_PC: 00000428
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x20, 0xd746 | PC: 000004a0
+EXPECTED -> RD: 0d7464a0 | NEXT_PC: 000004a4
+DUT      -> RD: 0d7464a0 | NEXT_PC: 000004a4
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x30, 44 | PC: 00000400
+EXPECTED -> RD: 00000404 | NEXT_PC: 0000042c
+DUT      -> RD: 00000404 | NEXT_PC: 0000042c
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x18, x4, 4 | PC: 00000450
+      (rs1_val = 000004e0)
+EXPECTED -> RD: 00000454 | NEXT_PC: 000004e4
+DUT      -> RD: 00000454 | NEXT_PC: 000004e4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x18, 0x41689 | PC: 00000454
+EXPECTED -> RD: 41689000 | NEXT_PC: 00000458
+DUT      -> RD: 41689000 | NEXT_PC: 00000458
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x8, 0x35310 | PC: 00000484
+EXPECTED -> RD: 35310484 | NEXT_PC: 00000488
+DUT      -> RD: 35310484 | NEXT_PC: 00000488
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x16, 92 | PC: 000004a0
+EXPECTED -> RD: 000004a4 | NEXT_PC: 000004fc
+DUT      -> RD: 000004a4 | NEXT_PC: 000004fc
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x21, x2, 228 | PC: 00000464
+      (rs1_val = 00000408)
+EXPECTED -> RD: 00000468 | NEXT_PC: 000004ec
+DUT      -> RD: 00000468 | NEXT_PC: 000004ec
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x3, 0x614d | PC: 00000404
+EXPECTED -> RD: 0614d000 | NEXT_PC: 00000408
+DUT      -> RD: 0614d000 | NEXT_PC: 00000408
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x6, 0xc083 | PC: 00000450
+EXPECTED -> RD: 0c083450 | NEXT_PC: 00000454
+DUT      -> RD: 0c083450 | NEXT_PC: 00000454
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x11, 36 | PC: 00000474
+EXPECTED -> RD: 00000478 | NEXT_PC: 00000498
+DUT      -> RD: 00000478 | NEXT_PC: 00000498
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x27, x10, 144 | PC: 00000490
+      (rs1_val = 00000464)
+EXPECTED -> RD: 00000494 | NEXT_PC: 000004f4
+DUT      -> RD: 00000494 | NEXT_PC: 000004f4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x6, 0x21199 | PC: 000004d8
+EXPECTED -> RD: 21199000 | NEXT_PC: 000004dc
+DUT      -> RD: 21199000 | NEXT_PC: 000004dc
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x11, 0x91a4d | PC: 0000047c
+EXPECTED -> RD: 91a4d47c | NEXT_PC: 00000480
+DUT      -> RD: 91a4d47c | NEXT_PC: 00000480
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x31, 6 | PC: 00000454
+EXPECTED -> RD: 00000458 | NEXT_PC: 0000045a
+DUT      -> RD: 00000458 | NEXT_PC: 0000045a
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x18, x5, 12 | PC: 0000041c
+      (rs1_val = 000004ac)
+EXPECTED -> RD: 00000420 | NEXT_PC: 000004b8
+DUT      -> RD: 00000420 | NEXT_PC: 000004b8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x29, 0x53bc9 | PC: 0000048c
+EXPECTED -> RD: 53bc9000 | NEXT_PC: 00000490
+DUT      -> RD: 53bc9000 | NEXT_PC: 00000490
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x8, 0x6c47e | PC: 00000444
+EXPECTED -> RD: 6c47e444 | NEXT_PC: 00000448
+DUT      -> RD: 6c47e444 | NEXT_PC: 00000448
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x4, 128 | PC: 00000478
+EXPECTED -> RD: 0000047c | NEXT_PC: 000004f8
+DUT      -> RD: 0000047c | NEXT_PC: 000004f8
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x26, x23, 60 | PC: 000004dc
+      (rs1_val = 00000444)
+EXPECTED -> RD: 000004e0 | NEXT_PC: 00000480
+DUT      -> RD: 000004e0 | NEXT_PC: 00000480
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x24, 0xf40db | PC: 00000440
+EXPECTED -> RD: f40db000 | NEXT_PC: 00000444
+DUT      -> RD: f40db000 | NEXT_PC: 00000444
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x15, 0xfe263 | PC: 000004a4
+EXPECTED -> RD: fe2634a4 | NEXT_PC: 000004a8
+DUT      -> RD: fe2634a4 | NEXT_PC: 000004a8
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x11, 72 | PC: 00000460
+EXPECTED -> RD: 00000464 | NEXT_PC: 000004a8
+DUT      -> RD: 00000464 | NEXT_PC: 000004a8
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x30, x4, 20 | PC: 00000430
+      (rs1_val = 000004cc)
+EXPECTED -> RD: 00000434 | NEXT_PC: 000004e0
+DUT      -> RD: 00000434 | NEXT_PC: 000004e0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x26, 0xb93d3 | PC: 000004a4
+EXPECTED -> RD: b93d3000 | NEXT_PC: 000004a8
+DUT      -> RD: b93d3000 | NEXT_PC: 000004a8
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x14, 0xc7ee3 | PC: 00000468
+EXPECTED -> RD: c7ee3468 | NEXT_PC: 0000046c
+DUT      -> RD: c7ee3468 | NEXT_PC: 0000046c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x20, 196 | PC: 00000418
+EXPECTED -> RD: 0000041c | NEXT_PC: 000004dc
+DUT      -> RD: 0000041c | NEXT_PC: 000004dc
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x3, x20, 36 | PC: 00000494
+      (rs1_val = 00000460)
+EXPECTED -> RD: 00000498 | NEXT_PC: 00000484
+DUT      -> RD: 00000498 | NEXT_PC: 00000484
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x29, 0x5be45 | PC: 000004e0
+EXPECTED -> RD: 5be45000 | NEXT_PC: 000004e4
+DUT      -> RD: 5be45000 | NEXT_PC: 000004e4
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x26, 0x79bd0 | PC: 00000448
+EXPECTED -> RD: 79bd0448 | NEXT_PC: 0000044c
+DUT      -> RD: 79bd0448 | NEXT_PC: 0000044c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x15, 76 | PC: 0000044c
+EXPECTED -> RD: 00000450 | NEXT_PC: 00000498
+DUT      -> RD: 00000450 | NEXT_PC: 00000498
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x3, x13, 212 | PC: 000004dc
+      (rs1_val = 0000041c)
+EXPECTED -> RD: 000004e0 | NEXT_PC: 000004f0
+DUT      -> RD: 000004e0 | NEXT_PC: 000004f0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x26, 0xfaafa | PC: 0000040c
+EXPECTED -> RD: faafa000 | NEXT_PC: 00000410
+DUT      -> RD: faafa000 | NEXT_PC: 00000410
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x26, 0x76e0f | PC: 000004d0
+EXPECTED -> RD: 76e0f4d0 | NEXT_PC: 000004d4
+DUT      -> RD: 76e0f4d0 | NEXT_PC: 000004d4
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x1, 164 | PC: 00000454
+EXPECTED -> RD: 00000458 | NEXT_PC: 000004f8
+DUT      -> RD: 00000458 | NEXT_PC: 000004f8
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x20, x23, 204 | PC: 00000498
+      (rs1_val = 00000408)
+EXPECTED -> RD: 0000049c | NEXT_PC: 000004d4
+DUT      -> RD: 0000049c | NEXT_PC: 000004d4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x5, 0x576a1 | PC: 00000488
+EXPECTED -> RD: 576a1000 | NEXT_PC: 0000048c
+DUT      -> RD: 576a1000 | NEXT_PC: 0000048c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x1, 0xbdafe | PC: 00000400
+EXPECTED -> RD: bdafe400 | NEXT_PC: 00000404
+DUT      -> RD: bdafe400 | NEXT_PC: 00000404
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x15, 60 | PC: 00000458
+EXPECTED -> RD: 0000045c | NEXT_PC: 00000494
+DUT      -> RD: 0000045c | NEXT_PC: 00000494
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x24, x20, 96 | PC: 00000418
+      (rs1_val = 00000440)
+EXPECTED -> RD: 0000041c | NEXT_PC: 000004a0
+DUT      -> RD: 0000041c | NEXT_PC: 000004a0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x26, 0xeb680 | PC: 00000498
+EXPECTED -> RD: eb680000 | NEXT_PC: 0000049c
+DUT      -> RD: eb680000 | NEXT_PC: 0000049c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x29, 0x53ba5 | PC: 00000464
+EXPECTED -> RD: 53ba5464 | NEXT_PC: 00000468
+DUT      -> RD: 53ba5464 | NEXT_PC: 00000468
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x20, 90 | PC: 00000418
+EXPECTED -> RD: 0000041c | NEXT_PC: 00000472
+DUT      -> RD: 0000041c | NEXT_PC: 00000472
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x21, x11, 96 | PC: 000004b8
+      (rs1_val = 00000440)
+EXPECTED -> RD: 000004bc | NEXT_PC: 000004a0
+DUT      -> RD: 000004bc | NEXT_PC: 000004a0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x6, 0x2064b | PC: 00000470
+EXPECTED -> RD: 2064b000 | NEXT_PC: 00000474
+DUT      -> RD: 2064b000 | NEXT_PC: 00000474
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x18, 0xa1008 | PC: 00000410
+EXPECTED -> RD: a1008410 | NEXT_PC: 00000414
+DUT      -> RD: a1008410 | NEXT_PC: 00000414
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x8, 90 | PC: 00000470
+EXPECTED -> RD: 00000474 | NEXT_PC: 000004ca
+DUT      -> RD: 00000474 | NEXT_PC: 000004ca
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x14, x29, 40 | PC: 000004b0
+      (rs1_val = 000004a0)
+EXPECTED -> RD: 000004b4 | NEXT_PC: 000004c8
+DUT      -> RD: 000004b4 | NEXT_PC: 000004c8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x17, 0x11f49 | PC: 00000468
+EXPECTED -> RD: 11f49000 | NEXT_PC: 0000046c
+DUT      -> RD: 11f49000 | NEXT_PC: 0000046c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x9, 0xc9aeb | PC: 00000430
+EXPECTED -> RD: c9aeb430 | NEXT_PC: 00000434
+DUT      -> RD: c9aeb430 | NEXT_PC: 00000434
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x31, 42 | PC: 00000408
+EXPECTED -> RD: 0000040c | NEXT_PC: 00000432
+DUT      -> RD: 0000040c | NEXT_PC: 00000432
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x24, x10, 0 | PC: 0000044c
+      (rs1_val = 00000478)
+EXPECTED -> RD: 00000450 | NEXT_PC: 00000478
+DUT      -> RD: 00000450 | NEXT_PC: 00000478
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x7, 0xfbca2 | PC: 000004d4
+EXPECTED -> RD: fbca2000 | NEXT_PC: 000004d8
+DUT      -> RD: fbca2000 | NEXT_PC: 000004d8
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x28, 0xfaf35 | PC: 00000494
+EXPECTED -> RD: faf35494 | NEXT_PC: 00000498
+DUT      -> RD: faf35494 | NEXT_PC: 00000498
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x24, 76 | PC: 00000488
+EXPECTED -> RD: 0000048c | NEXT_PC: 000004d4
+DUT      -> RD: 0000048c | NEXT_PC: 000004d4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x21, x8, 96 | PC: 00000444
+      (rs1_val = 00000468)
+EXPECTED -> RD: 00000448 | NEXT_PC: 000004c8
+DUT      -> RD: 00000448 | NEXT_PC: 000004c8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x28, 0xd18e | PC: 000004ac
+EXPECTED -> RD: 0d18e000 | NEXT_PC: 000004b0
+DUT      -> RD: 0d18e000 | NEXT_PC: 000004b0
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x21, 0xee243 | PC: 000004b0
+EXPECTED -> RD: ee2434b0 | NEXT_PC: 000004b4
+DUT      -> RD: ee2434b0 | NEXT_PC: 000004b4
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x30, 22 | PC: 00000418
+EXPECTED -> RD: 0000041c | NEXT_PC: 0000042e
+DUT      -> RD: 0000041c | NEXT_PC: 0000042e
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x25, x8, 104 | PC: 00000484
+      (rs1_val = 00000480)
+EXPECTED -> RD: 00000488 | NEXT_PC: 000004e8
+DUT      -> RD: 00000488 | NEXT_PC: 000004e8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x29, 0x690b4 | PC: 00000444
+EXPECTED -> RD: 690b4000 | NEXT_PC: 00000448
+DUT      -> RD: 690b4000 | NEXT_PC: 00000448
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x28, 0xfa3f3 | PC: 00000408
+EXPECTED -> RD: fa3f3408 | NEXT_PC: 0000040c
+DUT      -> RD: fa3f3408 | NEXT_PC: 0000040c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x9, 132 | PC: 00000450
+EXPECTED -> RD: 00000454 | NEXT_PC: 000004d4
+DUT      -> RD: 00000454 | NEXT_PC: 000004d4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x26, x31, 176 | PC: 000004a8
+      (rs1_val = 00000428)
+EXPECTED -> RD: 000004ac | NEXT_PC: 000004d8
+DUT      -> RD: 000004ac | NEXT_PC: 000004d8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x30, 0xd5383 | PC: 000004d4
+EXPECTED -> RD: d5383000 | NEXT_PC: 000004d8
+DUT      -> RD: d5383000 | NEXT_PC: 000004d8
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x28, 0xba647 | PC: 000004bc
+EXPECTED -> RD: ba6474bc | NEXT_PC: 000004c0
+DUT      -> RD: ba6474bc | NEXT_PC: 000004c0
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x8, 26 | PC: 00000498
+EXPECTED -> RD: 0000049c | NEXT_PC: 000004b2
+DUT      -> RD: 0000049c | NEXT_PC: 000004b2
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x22, x2, 100 | PC: 0000045c
+      (rs1_val = 00000464)
+EXPECTED -> RD: 00000460 | NEXT_PC: 000004c8
+DUT      -> RD: 00000460 | NEXT_PC: 000004c8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x9, 0xf36c0 | PC: 0000043c
+EXPECTED -> RD: f36c0000 | NEXT_PC: 00000440
+DUT      -> RD: f36c0000 | NEXT_PC: 00000440
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x24, 0x64df8 | PC: 000004bc
+EXPECTED -> RD: 64df84bc | NEXT_PC: 000004c0
+DUT      -> RD: 64df84bc | NEXT_PC: 000004c0
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x14, 88 | PC: 0000043c
+EXPECTED -> RD: 00000440 | NEXT_PC: 00000494
+DUT      -> RD: 00000440 | NEXT_PC: 00000494
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x30, x1, 108 | PC: 0000045c
+      (rs1_val = 0000048c)
+EXPECTED -> RD: 00000460 | NEXT_PC: 000004f8
+DUT      -> RD: 00000460 | NEXT_PC: 000004f8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x19, 0x711d4 | PC: 000004a8
+EXPECTED -> RD: 711d4000 | NEXT_PC: 000004ac
+DUT      -> RD: 711d4000 | NEXT_PC: 000004ac
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x24, 0x859e2 | PC: 00000438
+EXPECTED -> RD: 859e2438 | NEXT_PC: 0000043c
+DUT      -> RD: 859e2438 | NEXT_PC: 0000043c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x8, 82 | PC: 00000468
+EXPECTED -> RD: 0000046c | NEXT_PC: 000004ba
+DUT      -> RD: 0000046c | NEXT_PC: 000004ba
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x11, x4, 192 | PC: 00000494
+      (rs1_val = 0000040c)
+EXPECTED -> RD: 00000498 | NEXT_PC: 000004cc
+DUT      -> RD: 00000498 | NEXT_PC: 000004cc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x28, 0xe9416 | PC: 00000420
+EXPECTED -> RD: e9416000 | NEXT_PC: 00000424
+DUT      -> RD: e9416000 | NEXT_PC: 00000424
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x31, 0x32995 | PC: 000004a0
+EXPECTED -> RD: 329954a0 | NEXT_PC: 000004a4
+DUT      -> RD: 329954a0 | NEXT_PC: 000004a4
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x25, 22 | PC: 00000478
+EXPECTED -> RD: 0000047c | NEXT_PC: 0000048e
+DUT      -> RD: 0000047c | NEXT_PC: 0000048e
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x14, x3, 32 | PC: 00000434
+      (rs1_val = 000004d8)
+EXPECTED -> RD: 00000438 | NEXT_PC: 000004f8
+DUT      -> RD: 00000438 | NEXT_PC: 000004f8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x5, 0x19f9b | PC: 000004d8
+EXPECTED -> RD: 19f9b000 | NEXT_PC: 000004dc
+DUT      -> RD: 19f9b000 | NEXT_PC: 000004dc
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x28, 0x8a8a9 | PC: 000004c0
+EXPECTED -> RD: 8a8a94c0 | NEXT_PC: 000004c4
+DUT      -> RD: 8a8a94c0 | NEXT_PC: 000004c4
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x26, 148 | PC: 00000468
+EXPECTED -> RD: 0000046c | NEXT_PC: 000004fc
+DUT      -> RD: 0000046c | NEXT_PC: 000004fc
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x7, x24, 220 | PC: 000004d4
+      (rs1_val = 00000410)
+EXPECTED -> RD: 000004d8 | NEXT_PC: 000004ec
+DUT      -> RD: 000004d8 | NEXT_PC: 000004ec
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x18, 0xa10e6 | PC: 00000410
+EXPECTED -> RD: a10e6000 | NEXT_PC: 00000414
+DUT      -> RD: a10e6000 | NEXT_PC: 00000414
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x13, 0x79fef | PC: 0000040c
+EXPECTED -> RD: 79fef40c | NEXT_PC: 00000410
+DUT      -> RD: 79fef40c | NEXT_PC: 00000410
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x25, 122 | PC: 00000400
+EXPECTED -> RD: 00000404 | NEXT_PC: 0000047a
+DUT      -> RD: 00000404 | NEXT_PC: 0000047a
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x6, x27, 8 | PC: 00000450
+      (rs1_val = 00000444)
+EXPECTED -> RD: 00000454 | NEXT_PC: 0000044c
+DUT      -> RD: 00000454 | NEXT_PC: 0000044c
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x18, 0x9bf1 | PC: 000004c0
+EXPECTED -> RD: 09bf1000 | NEXT_PC: 000004c4
+DUT      -> RD: 09bf1000 | NEXT_PC: 000004c4
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x12, 0xfd8da | PC: 00000424
+EXPECTED -> RD: fd8da424 | NEXT_PC: 00000428
+DUT      -> RD: fd8da424 | NEXT_PC: 00000428
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x5, 112 | PC: 00000480
+EXPECTED -> RD: 00000484 | NEXT_PC: 000004f0
+DUT      -> RD: 00000484 | NEXT_PC: 000004f0
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x13, x25, 156 | PC: 00000494
+      (rs1_val = 00000428)
+EXPECTED -> RD: 00000498 | NEXT_PC: 000004c4
+DUT      -> RD: 00000498 | NEXT_PC: 000004c4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x22, 0xecdf0 | PC: 00000438
+EXPECTED -> RD: ecdf0000 | NEXT_PC: 0000043c
+DUT      -> RD: ecdf0000 | NEXT_PC: 0000043c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x6, 0x5fd94 | PC: 00000474
+EXPECTED -> RD: 5fd94474 | NEXT_PC: 00000478
+DUT      -> RD: 5fd94474 | NEXT_PC: 00000478
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x26, 22 | PC: 00000434
+EXPECTED -> RD: 00000438 | NEXT_PC: 0000044a
+DUT      -> RD: 00000438 | NEXT_PC: 0000044a
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x5, x18, 48 | PC: 000004ac
+      (rs1_val = 000004ac)
+EXPECTED -> RD: 000004b0 | NEXT_PC: 000004dc
+DUT      -> RD: 000004b0 | NEXT_PC: 000004dc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x4, 0x738be | PC: 00000404
+EXPECTED -> RD: 738be000 | NEXT_PC: 00000408
+DUT      -> RD: 738be000 | NEXT_PC: 00000408
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x22, 0x889bb | PC: 0000044c
+EXPECTED -> RD: 889bb44c | NEXT_PC: 00000450
+DUT      -> RD: 889bb44c | NEXT_PC: 00000450
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x22, 182 | PC: 00000400
+EXPECTED -> RD: 00000404 | NEXT_PC: 000004b6
+DUT      -> RD: 00000404 | NEXT_PC: 000004b6
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x8, x6, 168 | PC: 000004a4
+      (rs1_val = 0000044c)
+EXPECTED -> RD: 000004a8 | NEXT_PC: 000004f4
+DUT      -> RD: 000004a8 | NEXT_PC: 000004f4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x19, 0xf1948 | PC: 00000438
+EXPECTED -> RD: f1948000 | NEXT_PC: 0000043c
+DUT      -> RD: f1948000 | NEXT_PC: 0000043c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x9, 0x398b2 | PC: 00000488
+EXPECTED -> RD: 398b2488 | NEXT_PC: 0000048c
+DUT      -> RD: 398b2488 | NEXT_PC: 0000048c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x11, 192 | PC: 00000420
+EXPECTED -> RD: 00000424 | NEXT_PC: 000004e0
+DUT      -> RD: 00000424 | NEXT_PC: 000004e0
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x17, x29, 216 | PC: 00000474
+      (rs1_val = 00000424)
+EXPECTED -> RD: 00000478 | NEXT_PC: 000004fc
+DUT      -> RD: 00000478 | NEXT_PC: 000004fc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x25, 0x60c08 | PC: 0000041c
+EXPECTED -> RD: 60c08000 | NEXT_PC: 00000420
+DUT      -> RD: 60c08000 | NEXT_PC: 00000420
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x30, 0xe040 | PC: 00000408
+EXPECTED -> RD: 0e040408 | NEXT_PC: 0000040c
+DUT      -> RD: 0e040408 | NEXT_PC: 0000040c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x18, 162 | PC: 00000404
+EXPECTED -> RD: 00000408 | NEXT_PC: 000004a6
+DUT      -> RD: 00000408 | NEXT_PC: 000004a6
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x16, x29, 68 | PC: 0000046c
+      (rs1_val = 0000043c)
+EXPECTED -> RD: 00000470 | NEXT_PC: 00000480
+DUT      -> RD: 00000470 | NEXT_PC: 00000480
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x6, 0x7f80a | PC: 0000048c
+EXPECTED -> RD: 7f80a000 | NEXT_PC: 00000490
+DUT      -> RD: 7f80a000 | NEXT_PC: 00000490
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x20, 0x413dc | PC: 000004a0
+EXPECTED -> RD: 413dc4a0 | NEXT_PC: 000004a4
+DUT      -> RD: 413dc4a0 | NEXT_PC: 000004a4
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x22, 106 | PC: 00000418
+EXPECTED -> RD: 0000041c | NEXT_PC: 00000482
+DUT      -> RD: 0000041c | NEXT_PC: 00000482
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x22, x16, 220 | PC: 000004b8
+      (rs1_val = 00000420)
+EXPECTED -> RD: 000004bc | NEXT_PC: 000004fc
+DUT      -> RD: 000004bc | NEXT_PC: 000004fc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x2, 0x16282 | PC: 0000044c
+EXPECTED -> RD: 16282000 | NEXT_PC: 00000450
+DUT      -> RD: 16282000 | NEXT_PC: 00000450
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x28, 0xcb155 | PC: 00000404
+EXPECTED -> RD: cb155404 | NEXT_PC: 00000408
+DUT      -> RD: cb155404 | NEXT_PC: 00000408
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x2, 208 | PC: 00000414
+EXPECTED -> RD: 00000418 | NEXT_PC: 000004e4
+DUT      -> RD: 00000418 | NEXT_PC: 000004e4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x23, x22, 36 | PC: 00000460
+      (rs1_val = 000004c0)
+EXPECTED -> RD: 00000464 | NEXT_PC: 000004e4
+DUT      -> RD: 00000464 | NEXT_PC: 000004e4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x4, 0x17ea1 | PC: 00000410
+EXPECTED -> RD: 17ea1000 | NEXT_PC: 00000414
+DUT      -> RD: 17ea1000 | NEXT_PC: 00000414
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x6, 0x7e186 | PC: 0000045c
+EXPECTED -> RD: 7e18645c | NEXT_PC: 00000460
+DUT      -> RD: 7e18645c | NEXT_PC: 00000460
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x3, 234 | PC: 00000408
+EXPECTED -> RD: 0000040c | NEXT_PC: 000004f2
+DUT      -> RD: 0000040c | NEXT_PC: 000004f2
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x18, x19, 80 | PC: 00000440
+      (rs1_val = 000004a4)
+EXPECTED -> RD: 00000444 | NEXT_PC: 000004f4
+DUT      -> RD: 00000444 | NEXT_PC: 000004f4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x26, 0xcbd0a | PC: 00000414
+EXPECTED -> RD: cbd0a000 | NEXT_PC: 00000418
+DUT      -> RD: cbd0a000 | NEXT_PC: 00000418
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x31, 0x47fd | PC: 00000418
+EXPECTED -> RD: 047fd418 | NEXT_PC: 0000041c
+DUT      -> RD: 047fd418 | NEXT_PC: 0000041c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x26, 150 | PC: 00000428
+EXPECTED -> RD: 0000042c | NEXT_PC: 000004be
+DUT      -> RD: 0000042c | NEXT_PC: 000004be
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x21, x3, 140 | PC: 00000460
+      (rs1_val = 00000454)
+EXPECTED -> RD: 00000464 | NEXT_PC: 000004e0
+DUT      -> RD: 00000464 | NEXT_PC: 000004e0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x13, 0xada12 | PC: 000004bc
+EXPECTED -> RD: ada12000 | NEXT_PC: 000004c0
+DUT      -> RD: ada12000 | NEXT_PC: 000004c0
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x13, 0xcc70c | PC: 000004ac
+EXPECTED -> RD: cc70c4ac | NEXT_PC: 000004b0
+DUT      -> RD: cc70c4ac | NEXT_PC: 000004b0
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x4, 156 | PC: 00000444
+EXPECTED -> RD: 00000448 | NEXT_PC: 000004e0
+DUT      -> RD: 00000448 | NEXT_PC: 000004e0
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x7, x2, 104 | PC: 00000450
+      (rs1_val = 00000488)
+EXPECTED -> RD: 00000454 | NEXT_PC: 000004f0
+DUT      -> RD: 00000454 | NEXT_PC: 000004f0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x8, 0x5460a | PC: 00000400
+EXPECTED -> RD: 5460a000 | NEXT_PC: 00000404
+DUT      -> RD: 5460a000 | NEXT_PC: 00000404
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x11, 0x4d195 | PC: 00000468
+EXPECTED -> RD: 4d195468 | NEXT_PC: 0000046c
+DUT      -> RD: 4d195468 | NEXT_PC: 0000046c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x13, 26 | PC: 0000040c
+EXPECTED -> RD: 00000410 | NEXT_PC: 00000426
+DUT      -> RD: 00000410 | NEXT_PC: 00000426
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x23, x18, 80 | PC: 00000484
+      (rs1_val = 00000498)
+EXPECTED -> RD: 00000488 | NEXT_PC: 000004e8
+DUT      -> RD: 00000488 | NEXT_PC: 000004e8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x6, 0xf64d | PC: 00000434
+EXPECTED -> RD: 0f64d000 | NEXT_PC: 00000438
+DUT      -> RD: 0f64d000 | NEXT_PC: 00000438
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x17, 0xdf1f2 | PC: 000004d4
+EXPECTED -> RD: df1f24d4 | NEXT_PC: 000004d8
+DUT      -> RD: df1f24d4 | NEXT_PC: 000004d8
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x25, 66 | PC: 00000498
+EXPECTED -> RD: 0000049c | NEXT_PC: 000004da
+DUT      -> RD: 0000049c | NEXT_PC: 000004da
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x27, x10, 24 | PC: 00000480
+      (rs1_val = 000004d8)
+EXPECTED -> RD: 00000484 | NEXT_PC: 000004f0
+DUT      -> RD: 00000484 | NEXT_PC: 000004f0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x18, 0x19990 | PC: 000004d0
+EXPECTED -> RD: 19990000 | NEXT_PC: 000004d4
+DUT      -> RD: 19990000 | NEXT_PC: 000004d4
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x24, 0x72e25 | PC: 0000049c
+EXPECTED -> RD: 72e2549c | NEXT_PC: 000004a0
+DUT      -> RD: 72e2549c | NEXT_PC: 000004a0
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x20, 188 | PC: 00000410
+EXPECTED -> RD: 00000414 | NEXT_PC: 000004cc
+DUT      -> RD: 00000414 | NEXT_PC: 000004cc
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x11, x22, 64 | PC: 00000444
+      (rs1_val = 000004b4)
+EXPECTED -> RD: 00000448 | NEXT_PC: 000004f4
+DUT      -> RD: 00000448 | NEXT_PC: 000004f4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x15, 0xb45b5 | PC: 00000434
+EXPECTED -> RD: b45b5000 | NEXT_PC: 00000438
+DUT      -> RD: b45b5000 | NEXT_PC: 00000438
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x11, 0x694ab | PC: 00000414
+EXPECTED -> RD: 694ab414 | NEXT_PC: 00000418
+DUT      -> RD: 694ab414 | NEXT_PC: 00000418
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x25, 160 | PC: 00000408
+EXPECTED -> RD: 0000040c | NEXT_PC: 000004a8
+DUT      -> RD: 0000040c | NEXT_PC: 000004a8
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x6, x6, 144 | PC: 000004c8
+      (rs1_val = 00000460)
+EXPECTED -> RD: 000004cc | NEXT_PC: 000004f0
+DUT      -> RD: 000004cc | NEXT_PC: 000004f0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x21, 0x9997 | PC: 00000414
+EXPECTED -> RD: 09997000 | NEXT_PC: 00000418
+DUT      -> RD: 09997000 | NEXT_PC: 00000418
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x11, 0xaafe4 | PC: 00000440
+EXPECTED -> RD: aafe4440 | NEXT_PC: 00000444
+DUT      -> RD: aafe4440 | NEXT_PC: 00000444
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x30, 138 | PC: 00000440
+EXPECTED -> RD: 00000444 | NEXT_PC: 000004ca
+DUT      -> RD: 00000444 | NEXT_PC: 000004ca
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x24, x14, 92 | PC: 00000480
+      (rs1_val = 000004a0)
+EXPECTED -> RD: 00000484 | NEXT_PC: 000004fc
+DUT      -> RD: 00000484 | NEXT_PC: 000004fc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x3, 0xf06d7 | PC: 0000048c
+EXPECTED -> RD: f06d7000 | NEXT_PC: 00000490
+DUT      -> RD: f06d7000 | NEXT_PC: 00000490
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x28, 0x89514 | PC: 00000468
+EXPECTED -> RD: 89514468 | NEXT_PC: 0000046c
+DUT      -> RD: 89514468 | NEXT_PC: 0000046c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x21, 68 | PC: 000004ac
+EXPECTED -> RD: 000004b0 | NEXT_PC: 000004f0
+DUT      -> RD: 000004b0 | NEXT_PC: 000004f0
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x7, x31, 112 | PC: 00000414
+      (rs1_val = 00000460)
+EXPECTED -> RD: 00000418 | NEXT_PC: 000004d0
+DUT      -> RD: 00000418 | NEXT_PC: 000004d0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x17, 0xcd346 | PC: 00000464
+EXPECTED -> RD: cd346000 | NEXT_PC: 00000468
+DUT      -> RD: cd346000 | NEXT_PC: 00000468
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x20, 0xc92d3 | PC: 000004a0
+EXPECTED -> RD: c92d34a0 | NEXT_PC: 000004a4
+DUT      -> RD: c92d34a0 | NEXT_PC: 000004a4
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x4, 168 | PC: 0000042c
+EXPECTED -> RD: 00000430 | NEXT_PC: 000004d4
+DUT      -> RD: 00000430 | NEXT_PC: 000004d4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x8, x16, 76 | PC: 000004e0
+      (rs1_val = 000004a4)
+EXPECTED -> RD: 000004e4 | NEXT_PC: 000004f0
+DUT      -> RD: 000004e4 | NEXT_PC: 000004f0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x10, 0x619df | PC: 000004a8
+EXPECTED -> RD: 619df000 | NEXT_PC: 000004ac
+DUT      -> RD: 619df000 | NEXT_PC: 000004ac
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x11, 0x42815 | PC: 000004b0
+EXPECTED -> RD: 428154b0 | NEXT_PC: 000004b4
+DUT      -> RD: 428154b0 | NEXT_PC: 000004b4
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x21, 118 | PC: 00000454
+EXPECTED -> RD: 00000458 | NEXT_PC: 000004ca
+DUT      -> RD: 00000458 | NEXT_PC: 000004ca
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x26, x21, 20 | PC: 00000460
+      (rs1_val = 00000428)
+EXPECTED -> RD: 00000464 | NEXT_PC: 0000043c
+DUT      -> RD: 00000464 | NEXT_PC: 0000043c
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x16, 0x301d7 | PC: 00000448
+EXPECTED -> RD: 301d7000 | NEXT_PC: 0000044c
+DUT      -> RD: 301d7000 | NEXT_PC: 0000044c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x6, 0x38b18 | PC: 00000448
+EXPECTED -> RD: 38b18448 | NEXT_PC: 0000044c
+DUT      -> RD: 38b18448 | NEXT_PC: 0000044c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x13, 4 | PC: 000004b0
+EXPECTED -> RD: 000004b4 | NEXT_PC: 000004b4
+DUT      -> RD: 000004b4 | NEXT_PC: 000004b4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x24, x18, 4 | PC: 000004d4
+      (rs1_val = 000004a4)
+EXPECTED -> RD: 000004d8 | NEXT_PC: 000004a8
+DUT      -> RD: 000004d8 | NEXT_PC: 000004a8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x18, 0x5c131 | PC: 00000438
+EXPECTED -> RD: 5c131000 | NEXT_PC: 0000043c
+DUT      -> RD: 5c131000 | NEXT_PC: 0000043c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x27, 0xc5d6a | PC: 000004b8
+EXPECTED -> RD: c5d6a4b8 | NEXT_PC: 000004bc
+DUT      -> RD: c5d6a4b8 | NEXT_PC: 000004bc
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x7, 56 | PC: 0000045c
+EXPECTED -> RD: 00000460 | NEXT_PC: 00000494
+DUT      -> RD: 00000460 | NEXT_PC: 00000494
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x18, x19, 152 | PC: 000004b8
+      (rs1_val = 0000042c)
+EXPECTED -> RD: 000004bc | NEXT_PC: 000004c4
+DUT      -> RD: 000004bc | NEXT_PC: 000004c4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x31, 0x54f95 | PC: 000004b4
+EXPECTED -> RD: 54f95000 | NEXT_PC: 000004b8
+DUT      -> RD: 54f95000 | NEXT_PC: 000004b8
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x28, 0x1578 | PC: 00000404
+EXPECTED -> RD: 01578404 | NEXT_PC: 00000408
+DUT      -> RD: 01578404 | NEXT_PC: 00000408
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x29, 48 | PC: 000004ac
+EXPECTED -> RD: 000004b0 | NEXT_PC: 000004dc
+DUT      -> RD: 000004b0 | NEXT_PC: 000004dc
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x24, x14, 20 | PC: 000004e0
+      (rs1_val = 0000041c)
+EXPECTED -> RD: 000004e4 | NEXT_PC: 00000430
+DUT      -> RD: 000004e4 | NEXT_PC: 00000430
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x16, 0x8176a | PC: 000004d0
+EXPECTED -> RD: 8176a000 | NEXT_PC: 000004d4
+DUT      -> RD: 8176a000 | NEXT_PC: 000004d4
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x10, 0x1d412 | PC: 00000448
+EXPECTED -> RD: 1d412448 | NEXT_PC: 0000044c
+DUT      -> RD: 1d412448 | NEXT_PC: 0000044c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x3, 8 | PC: 0000047c
+EXPECTED -> RD: 00000480 | NEXT_PC: 00000484
+DUT      -> RD: 00000480 | NEXT_PC: 00000484
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x26, x9, 96 | PC: 00000414
+      (rs1_val = 00000460)
+EXPECTED -> RD: 00000418 | NEXT_PC: 000004c0
+DUT      -> RD: 00000418 | NEXT_PC: 000004c0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x29, 0x13cf7 | PC: 00000410
+EXPECTED -> RD: 13cf7000 | NEXT_PC: 00000414
+DUT      -> RD: 13cf7000 | NEXT_PC: 00000414
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x9, 0x99988 | PC: 0000042c
+EXPECTED -> RD: 9998842c | NEXT_PC: 00000430
+DUT      -> RD: 9998842c | NEXT_PC: 00000430
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x30, 154 | PC: 00000438
+EXPECTED -> RD: 0000043c | NEXT_PC: 000004d2
+DUT      -> RD: 0000043c | NEXT_PC: 000004d2
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x22, x5, 140 | PC: 0000043c
+      (rs1_val = 00000458)
+EXPECTED -> RD: 00000440 | NEXT_PC: 000004e4
+DUT      -> RD: 00000440 | NEXT_PC: 000004e4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x11, 0x9d913 | PC: 000004d4
+EXPECTED -> RD: 9d913000 | NEXT_PC: 000004d8
+DUT      -> RD: 9d913000 | NEXT_PC: 000004d8
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x12, 0xc8c35 | PC: 000004bc
+EXPECTED -> RD: c8c354bc | NEXT_PC: 000004c0
+DUT      -> RD: c8c354bc | NEXT_PC: 000004c0
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x22, 158 | PC: 0000044c
+EXPECTED -> RD: 00000450 | NEXT_PC: 000004ea
+DUT      -> RD: 00000450 | NEXT_PC: 000004ea
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x22, x20, 220 | PC: 00000470
+      (rs1_val = 00000400)
+EXPECTED -> RD: 00000474 | NEXT_PC: 000004dc
+DUT      -> RD: 00000474 | NEXT_PC: 000004dc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x26, 0x3bcbf | PC: 000004cc
+EXPECTED -> RD: 3bcbf000 | NEXT_PC: 000004d0
+DUT      -> RD: 3bcbf000 | NEXT_PC: 000004d0
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x27, 0xb3ae7 | PC: 0000047c
+EXPECTED -> RD: b3ae747c | NEXT_PC: 00000480
+DUT      -> RD: b3ae747c | NEXT_PC: 00000480
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x6, 174 | PC: 0000044c
+EXPECTED -> RD: 00000450 | NEXT_PC: 000004fa
+DUT      -> RD: 00000450 | NEXT_PC: 000004fa
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x30, x25, 0 | PC: 00000418
+      (rs1_val = 000004e8)
+EXPECTED -> RD: 0000041c | NEXT_PC: 000004e8
+DUT      -> RD: 0000041c | NEXT_PC: 000004e8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x19, 0xc35d6 | PC: 00000420
+EXPECTED -> RD: c35d6000 | NEXT_PC: 00000424
+DUT      -> RD: c35d6000 | NEXT_PC: 00000424
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x4, 0x9387a | PC: 00000414
+EXPECTED -> RD: 9387a414 | NEXT_PC: 00000418
+DUT      -> RD: 9387a414 | NEXT_PC: 00000418
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x1, 8 | PC: 0000045c
+EXPECTED -> RD: 00000460 | NEXT_PC: 00000464
+DUT      -> RD: 00000460 | NEXT_PC: 00000464
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x15, x31, 104 | PC: 0000045c
+      (rs1_val = 00000494)
+EXPECTED -> RD: 00000460 | NEXT_PC: 000004fc
+DUT      -> RD: 00000460 | NEXT_PC: 000004fc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x23, 0xfe1fa | PC: 000004d0
+EXPECTED -> RD: fe1fa000 | NEXT_PC: 000004d4
+DUT      -> RD: fe1fa000 | NEXT_PC: 000004d4
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x28, 0x2399d | PC: 000004dc
+EXPECTED -> RD: 2399d4dc | NEXT_PC: 000004e0
+DUT      -> RD: 2399d4dc | NEXT_PC: 000004e0
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x1, 24 | PC: 00000474
+EXPECTED -> RD: 00000478 | NEXT_PC: 0000048c
+DUT      -> RD: 00000478 | NEXT_PC: 0000048c
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x8, x16, 44 | PC: 000004c4
+      (rs1_val = 000004cc)
+EXPECTED -> RD: 000004c8 | NEXT_PC: 000004f8
+DUT      -> RD: 000004c8 | NEXT_PC: 000004f8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x19, 0x63ac7 | PC: 000004c0
+EXPECTED -> RD: 63ac7000 | NEXT_PC: 000004c4
+DUT      -> RD: 63ac7000 | NEXT_PC: 000004c4
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x22, 0xc47e0 | PC: 000004a8
+EXPECTED -> RD: c47e04a8 | NEXT_PC: 000004ac
+DUT      -> RD: c47e04a8 | NEXT_PC: 000004ac
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x8, 30 | PC: 00000460
+EXPECTED -> RD: 00000464 | NEXT_PC: 0000047e
+DUT      -> RD: 00000464 | NEXT_PC: 0000047e
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x16, x24, 116 | PC: 000004c8
+      (rs1_val = 00000484)
+EXPECTED -> RD: 000004cc | NEXT_PC: 000004f8
+DUT      -> RD: 000004cc | NEXT_PC: 000004f8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x8, 0x722ba | PC: 00000434
+EXPECTED -> RD: 722ba000 | NEXT_PC: 00000438
+DUT      -> RD: 722ba000 | NEXT_PC: 00000438
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x2, 0x3859c | PC: 000004d8
+EXPECTED -> RD: 3859c4d8 | NEXT_PC: 000004dc
+DUT      -> RD: 3859c4d8 | NEXT_PC: 000004dc
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x4, 0 | PC: 000004e0
+EXPECTED -> RD: 000004e4 | NEXT_PC: 000004e0
+DUT      -> RD: 000004e4 | NEXT_PC: 000004e0
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x18, x22, 88 | PC: 000004b4
+      (rs1_val = 000004a4)
+EXPECTED -> RD: 000004b8 | NEXT_PC: 000004fc
+DUT      -> RD: 000004b8 | NEXT_PC: 000004fc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x21, 0x440a1 | PC: 00000460
+EXPECTED -> RD: 440a1000 | NEXT_PC: 00000464
+DUT      -> RD: 440a1000 | NEXT_PC: 00000464
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x16, 0x5f7f8 | PC: 000004dc
+EXPECTED -> RD: 5f7f84dc | NEXT_PC: 000004e0
+DUT      -> RD: 5f7f84dc | NEXT_PC: 000004e0
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x26, 26 | PC: 000004bc
+EXPECTED -> RD: 000004c0 | NEXT_PC: 000004d6
+DUT      -> RD: 000004c0 | NEXT_PC: 000004d6
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x28, x31, 24 | PC: 0000044c
+      (rs1_val = 000004c4)
+EXPECTED -> RD: 00000450 | NEXT_PC: 000004dc
+DUT      -> RD: 00000450 | NEXT_PC: 000004dc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x23, 0x775a | PC: 0000044c
+EXPECTED -> RD: 0775a000 | NEXT_PC: 00000450
+DUT      -> RD: 0775a000 | NEXT_PC: 00000450
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x22, 0xeaed1 | PC: 0000046c
+EXPECTED -> RD: eaed146c | NEXT_PC: 00000470
+DUT      -> RD: eaed146c | NEXT_PC: 00000470
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x7, 130 | PC: 00000478
+EXPECTED -> RD: 0000047c | NEXT_PC: 000004fa
+DUT      -> RD: 0000047c | NEXT_PC: 000004fa
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x1, x16, 16 | PC: 00000464
+      (rs1_val = 00000420)
+EXPECTED -> RD: 00000468 | NEXT_PC: 00000430
+DUT      -> RD: 00000468 | NEXT_PC: 00000430
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x18, 0x475d | PC: 00000498
+EXPECTED -> RD: 0475d000 | NEXT_PC: 0000049c
+DUT      -> RD: 0475d000 | NEXT_PC: 0000049c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x13, 0x919f7 | PC: 00000474
+EXPECTED -> RD: 919f7474 | NEXT_PC: 00000478
+DUT      -> RD: 919f7474 | NEXT_PC: 00000478
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x14, 180 | PC: 0000043c
+EXPECTED -> RD: 00000440 | NEXT_PC: 000004f0
+DUT      -> RD: 00000440 | NEXT_PC: 000004f0
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x25, x24, 80 | PC: 000004b4
+      (rs1_val = 0000045c)
+EXPECTED -> RD: 000004b8 | NEXT_PC: 000004ac
+DUT      -> RD: 000004b8 | NEXT_PC: 000004ac
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x14, 0xa62d1 | PC: 000004dc
+EXPECTED -> RD: a62d1000 | NEXT_PC: 000004e0
+DUT      -> RD: a62d1000 | NEXT_PC: 000004e0
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x7, 0x29f39 | PC: 00000474
+EXPECTED -> RD: 29f39474 | NEXT_PC: 00000478
+DUT      -> RD: 29f39474 | NEXT_PC: 00000478
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x9, 80 | PC: 00000490
+EXPECTED -> RD: 00000494 | NEXT_PC: 000004e0
+DUT      -> RD: 00000494 | NEXT_PC: 000004e0
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x13, x27, 44 | PC: 0000048c
+      (rs1_val = 0000049c)
+EXPECTED -> RD: 00000490 | NEXT_PC: 000004c8
+DUT      -> RD: 00000490 | NEXT_PC: 000004c8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x20, 0x6569b | PC: 000004b8
+EXPECTED -> RD: 6569b000 | NEXT_PC: 000004bc
+DUT      -> RD: 6569b000 | NEXT_PC: 000004bc
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x3, 0xc874d | PC: 000004c8
+EXPECTED -> RD: c874d4c8 | NEXT_PC: 000004cc
+DUT      -> RD: c874d4c8 | NEXT_PC: 000004cc
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x20, 226 | PC: 00000404
+EXPECTED -> RD: 00000408 | NEXT_PC: 000004e6
+DUT      -> RD: 00000408 | NEXT_PC: 000004e6
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x27, x18, 64 | PC: 00000450
+      (rs1_val = 000004bc)
+EXPECTED -> RD: 00000454 | NEXT_PC: 000004fc
+DUT      -> RD: 00000454 | NEXT_PC: 000004fc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x16, 0x607bf | PC: 00000424
+EXPECTED -> RD: 607bf000 | NEXT_PC: 00000428
+DUT      -> RD: 607bf000 | NEXT_PC: 00000428
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x7, 0x56b26 | PC: 0000045c
+EXPECTED -> RD: 56b2645c | NEXT_PC: 00000460
+DUT      -> RD: 56b2645c | NEXT_PC: 00000460
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x18, 80 | PC: 0000049c
+EXPECTED -> RD: 000004a0 | NEXT_PC: 000004ec
+DUT      -> RD: 000004a0 | NEXT_PC: 000004ec
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x10, x5, 80 | PC: 00000448
+      (rs1_val = 0000044c)
+EXPECTED -> RD: 0000044c | NEXT_PC: 0000049c
+DUT      -> RD: 0000044c | NEXT_PC: 0000049c
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x31, 0x835f1 | PC: 00000498
+EXPECTED -> RD: 835f1000 | NEXT_PC: 0000049c
+DUT      -> RD: 835f1000 | NEXT_PC: 0000049c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x14, 0x3a5c4 | PC: 0000044c
+EXPECTED -> RD: 3a5c444c | NEXT_PC: 00000450
+DUT      -> RD: 3a5c444c | NEXT_PC: 00000450
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x31, 58 | PC: 000004b8
+EXPECTED -> RD: 000004bc | NEXT_PC: 000004f2
+DUT      -> RD: 000004bc | NEXT_PC: 000004f2
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x2, x29, 124 | PC: 00000498
+      (rs1_val = 00000444)
+EXPECTED -> RD: 0000049c | NEXT_PC: 000004c0
+DUT      -> RD: 0000049c | NEXT_PC: 000004c0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x25, 0x49373 | PC: 00000490
+EXPECTED -> RD: 49373000 | NEXT_PC: 00000494
+DUT      -> RD: 49373000 | NEXT_PC: 00000494
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x22, 0x536d0 | PC: 0000041c
+EXPECTED -> RD: 536d041c | NEXT_PC: 00000420
+DUT      -> RD: 536d041c | NEXT_PC: 00000420
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x4, 126 | PC: 00000460
+EXPECTED -> RD: 00000464 | NEXT_PC: 000004de
+DUT      -> RD: 00000464 | NEXT_PC: 000004de
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x10, x13, 20 | PC: 0000046c
+      (rs1_val = 00000478)
+EXPECTED -> RD: 00000470 | NEXT_PC: 0000048c
+DUT      -> RD: 00000470 | NEXT_PC: 0000048c
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x13, 0x1363a | PC: 0000048c
+EXPECTED -> RD: 1363a000 | NEXT_PC: 00000490
+DUT      -> RD: 1363a000 | NEXT_PC: 00000490
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x3, 0xf511 | PC: 0000045c
+EXPECTED -> RD: 0f51145c | NEXT_PC: 00000460
+DUT      -> RD: 0f51145c | NEXT_PC: 00000460
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x26, 138 | PC: 00000470
+EXPECTED -> RD: 00000474 | NEXT_PC: 000004fa
+DUT      -> RD: 00000474 | NEXT_PC: 000004fa
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x5, x28, 216 | PC: 000004d0
+      (rs1_val = 00000424)
+EXPECTED -> RD: 000004d4 | NEXT_PC: 000004fc
+DUT      -> RD: 000004d4 | NEXT_PC: 000004fc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x1, 0xee6ef | PC: 000004a0
+EXPECTED -> RD: ee6ef000 | NEXT_PC: 000004a4
+DUT      -> RD: ee6ef000 | NEXT_PC: 000004a4
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x10, 0xa6b85 | PC: 00000480
+EXPECTED -> RD: a6b85480 | NEXT_PC: 00000484
+DUT      -> RD: a6b85480 | NEXT_PC: 00000484
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x16, 64 | PC: 0000042c
+EXPECTED -> RD: 00000430 | NEXT_PC: 0000046c
+DUT      -> RD: 00000430 | NEXT_PC: 0000046c
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x6, x2, 72 | PC: 000004c8
+      (rs1_val = 000004b4)
+EXPECTED -> RD: 000004cc | NEXT_PC: 000004fc
+DUT      -> RD: 000004cc | NEXT_PC: 000004fc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x30, 0x8478c | PC: 00000438
+EXPECTED -> RD: 8478c000 | NEXT_PC: 0000043c
+DUT      -> RD: 8478c000 | NEXT_PC: 0000043c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x15, 0x245c6 | PC: 000004bc
+EXPECTED -> RD: 245c64bc | NEXT_PC: 000004c0
+DUT      -> RD: 245c64bc | NEXT_PC: 000004c0
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x12, 126 | PC: 00000430
+EXPECTED -> RD: 00000434 | NEXT_PC: 000004ae
+DUT      -> RD: 00000434 | NEXT_PC: 000004ae
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x10, x18, 12 | PC: 00000490
+      (rs1_val = 000004f0)
+EXPECTED -> RD: 00000494 | NEXT_PC: 000004fc
+DUT      -> RD: 00000494 | NEXT_PC: 000004fc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x31, 0x4ad74 | PC: 00000478
+EXPECTED -> RD: 4ad74000 | NEXT_PC: 0000047c
+DUT      -> RD: 4ad74000 | NEXT_PC: 0000047c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x1, 0xb8757 | PC: 000004a4
+EXPECTED -> RD: b87574a4 | NEXT_PC: 000004a8
+DUT      -> RD: b87574a4 | NEXT_PC: 000004a8
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x24, 48 | PC: 00000450
+EXPECTED -> RD: 00000454 | NEXT_PC: 00000480
+DUT      -> RD: 00000454 | NEXT_PC: 00000480
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x8, x4, 0 | PC: 000004d0
+      (rs1_val = 00000400)
+EXPECTED -> RD: 000004d4 | NEXT_PC: 00000400
+DUT      -> RD: 000004d4 | NEXT_PC: 00000400
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x29, 0xd4d5a | PC: 00000404
+EXPECTED -> RD: d4d5a000 | NEXT_PC: 00000408
+DUT      -> RD: d4d5a000 | NEXT_PC: 00000408
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x23, 0x3ba03 | PC: 000004ac
+EXPECTED -> RD: 3ba034ac | NEXT_PC: 000004b0
+DUT      -> RD: 3ba034ac | NEXT_PC: 000004b0
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x16, 82 | PC: 00000490
+EXPECTED -> RD: 00000494 | NEXT_PC: 000004e2
+DUT      -> RD: 00000494 | NEXT_PC: 000004e2
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x10, x24, 116 | PC: 0000048c
+      (rs1_val = 00000424)
+EXPECTED -> RD: 00000490 | NEXT_PC: 00000498
+DUT      -> RD: 00000490 | NEXT_PC: 00000498
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x22, 0x2eeb | PC: 000004a4
+EXPECTED -> RD: 02eeb000 | NEXT_PC: 000004a8
+DUT      -> RD: 02eeb000 | NEXT_PC: 000004a8
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x28, 0x2d24b | PC: 00000444
+EXPECTED -> RD: 2d24b444 | NEXT_PC: 00000448
+DUT      -> RD: 2d24b444 | NEXT_PC: 00000448
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x21, 64 | PC: 00000450
+EXPECTED -> RD: 00000454 | NEXT_PC: 00000490
+DUT      -> RD: 00000454 | NEXT_PC: 00000490
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x13, x2, 44 | PC: 000004dc
+      (rs1_val = 0000049c)
+EXPECTED -> RD: 000004e0 | NEXT_PC: 000004c8
+DUT      -> RD: 000004e0 | NEXT_PC: 000004c8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x18, 0x8c088 | PC: 000004a4
+EXPECTED -> RD: 8c088000 | NEXT_PC: 000004a8
+DUT      -> RD: 8c088000 | NEXT_PC: 000004a8
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x10, 0xb767f | PC: 00000448
+EXPECTED -> RD: b767f448 | NEXT_PC: 0000044c
+DUT      -> RD: b767f448 | NEXT_PC: 0000044c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x22, 62 | PC: 000004bc
+EXPECTED -> RD: 000004c0 | NEXT_PC: 000004fa
+DUT      -> RD: 000004c0 | NEXT_PC: 000004fa
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x18, x1, 108 | PC: 000004dc
+      (rs1_val = 00000460)
+EXPECTED -> RD: 000004e0 | NEXT_PC: 000004cc
+DUT      -> RD: 000004e0 | NEXT_PC: 000004cc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x19, 0x993f2 | PC: 00000418
+EXPECTED -> RD: 993f2000 | NEXT_PC: 0000041c
+DUT      -> RD: 993f2000 | NEXT_PC: 0000041c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x23, 0x45aa0 | PC: 00000404
+EXPECTED -> RD: 45aa0404 | NEXT_PC: 00000408
+DUT      -> RD: 45aa0404 | NEXT_PC: 00000408
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x28, 50 | PC: 000004b0
+EXPECTED -> RD: 000004b4 | NEXT_PC: 000004e2
+DUT      -> RD: 000004b4 | NEXT_PC: 000004e2
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x20, x18, 36 | PC: 00000424
+      (rs1_val = 000004b0)
+EXPECTED -> RD: 00000428 | NEXT_PC: 000004d4
+DUT      -> RD: 00000428 | NEXT_PC: 000004d4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x10, 0xdb07 | PC: 000004c4
+EXPECTED -> RD: 0db07000 | NEXT_PC: 000004c8
+DUT      -> RD: 0db07000 | NEXT_PC: 000004c8
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x21, 0xb122c | PC: 00000440
+EXPECTED -> RD: b122c440 | NEXT_PC: 00000444
+DUT      -> RD: b122c440 | NEXT_PC: 00000444
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x28, 156 | PC: 00000460
+EXPECTED -> RD: 00000464 | NEXT_PC: 000004fc
+DUT      -> RD: 00000464 | NEXT_PC: 000004fc
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x1, x2, 16 | PC: 000004dc
+      (rs1_val = 0000049c)
+EXPECTED -> RD: 000004e0 | NEXT_PC: 000004ac
+DUT      -> RD: 000004e0 | NEXT_PC: 000004ac
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x15, 0x4c8bd | PC: 00000470
+EXPECTED -> RD: 4c8bd000 | NEXT_PC: 00000474
+DUT      -> RD: 4c8bd000 | NEXT_PC: 00000474
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x26, 0xa3de6 | PC: 00000444
+EXPECTED -> RD: a3de6444 | NEXT_PC: 00000448
+DUT      -> RD: a3de6444 | NEXT_PC: 00000448
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x29, 62 | PC: 000004b0
+EXPECTED -> RD: 000004b4 | NEXT_PC: 000004ee
+DUT      -> RD: 000004b4 | NEXT_PC: 000004ee
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x31, x11, 52 | PC: 00000404
+      (rs1_val = 000004ac)
+EXPECTED -> RD: 00000408 | NEXT_PC: 000004e0
+DUT      -> RD: 00000408 | NEXT_PC: 000004e0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x29, 0x2ac82 | PC: 0000042c
+EXPECTED -> RD: 2ac82000 | NEXT_PC: 00000430
+DUT      -> RD: 2ac82000 | NEXT_PC: 00000430
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x3, 0x7f4ee | PC: 00000408
+EXPECTED -> RD: 7f4ee408 | NEXT_PC: 0000040c
+DUT      -> RD: 7f4ee408 | NEXT_PC: 0000040c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x7, 26 | PC: 00000484
+EXPECTED -> RD: 00000488 | NEXT_PC: 0000049e
+DUT      -> RD: 00000488 | NEXT_PC: 0000049e
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x21, x17, 28 | PC: 00000428
+      (rs1_val = 0000047c)
+EXPECTED -> RD: 0000042c | NEXT_PC: 00000498
+DUT      -> RD: 0000042c | NEXT_PC: 00000498
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x19, 0x52b02 | PC: 00000434
+EXPECTED -> RD: 52b02000 | NEXT_PC: 00000438
+DUT      -> RD: 52b02000 | NEXT_PC: 00000438
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x19, 0x49008 | PC: 0000045c
+EXPECTED -> RD: 4900845c | NEXT_PC: 00000460
+DUT      -> RD: 4900845c | NEXT_PC: 00000460
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x3, 8 | PC: 00000448
+EXPECTED -> RD: 0000044c | NEXT_PC: 00000450
+DUT      -> RD: 0000044c | NEXT_PC: 00000450
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x4, x2, 140 | PC: 0000043c
+      (rs1_val = 00000410)
+EXPECTED -> RD: 00000440 | NEXT_PC: 0000049c
+DUT      -> RD: 00000440 | NEXT_PC: 0000049c
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x26, 0x34492 | PC: 0000041c
+EXPECTED -> RD: 34492000 | NEXT_PC: 00000420
+DUT      -> RD: 34492000 | NEXT_PC: 00000420
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x12, 0xd61a0 | PC: 00000400
+EXPECTED -> RD: d61a0400 | NEXT_PC: 00000404
+DUT      -> RD: d61a0400 | NEXT_PC: 00000404
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x4, 116 | PC: 00000400
+EXPECTED -> RD: 00000404 | NEXT_PC: 00000474
+DUT      -> RD: 00000404 | NEXT_PC: 00000474
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x6, x16, 12 | PC: 000004b0
+      (rs1_val = 000004b8)
+EXPECTED -> RD: 000004b4 | NEXT_PC: 000004c4
+DUT      -> RD: 000004b4 | NEXT_PC: 000004c4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x2, 0x698ff | PC: 0000041c
+EXPECTED -> RD: 698ff000 | NEXT_PC: 00000420
+DUT      -> RD: 698ff000 | NEXT_PC: 00000420
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x5, 0x445c0 | PC: 000004b8
+EXPECTED -> RD: 445c04b8 | NEXT_PC: 000004bc
+DUT      -> RD: 445c04b8 | NEXT_PC: 000004bc
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x27, 224 | PC: 00000410
+EXPECTED -> RD: 00000414 | NEXT_PC: 000004f0
+DUT      -> RD: 00000414 | NEXT_PC: 000004f0
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x30, x26, 0 | PC: 00000448
+      (rs1_val = 000004bc)
+EXPECTED -> RD: 0000044c | NEXT_PC: 000004bc
+DUT      -> RD: 0000044c | NEXT_PC: 000004bc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x13, 0x94cbc | PC: 00000474
+EXPECTED -> RD: 94cbc000 | NEXT_PC: 00000478
+DUT      -> RD: 94cbc000 | NEXT_PC: 00000478
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x8, 0xff848 | PC: 00000418
+EXPECTED -> RD: ff848418 | NEXT_PC: 0000041c
+DUT      -> RD: ff848418 | NEXT_PC: 0000041c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x23, 68 | PC: 00000480
+EXPECTED -> RD: 00000484 | NEXT_PC: 000004c4
+DUT      -> RD: 00000484 | NEXT_PC: 000004c4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x17, x24, 148 | PC: 000004b8
+      (rs1_val = 0000045c)
+EXPECTED -> RD: 000004bc | NEXT_PC: 000004f0
+DUT      -> RD: 000004bc | NEXT_PC: 000004f0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x21, 0xa2578 | PC: 0000045c
+EXPECTED -> RD: a2578000 | NEXT_PC: 00000460
+DUT      -> RD: a2578000 | NEXT_PC: 00000460
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x5, 0x2adb7 | PC: 0000042c
+EXPECTED -> RD: 2adb742c | NEXT_PC: 00000430
+DUT      -> RD: 2adb742c | NEXT_PC: 00000430
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x26, 126 | PC: 00000478
+EXPECTED -> RD: 0000047c | NEXT_PC: 000004f6
+DUT      -> RD: 0000047c | NEXT_PC: 000004f6
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x12, x24, 152 | PC: 00000430
+      (rs1_val = 0000044c)
+EXPECTED -> RD: 00000434 | NEXT_PC: 000004e4
+DUT      -> RD: 00000434 | NEXT_PC: 000004e4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x1, 0xdeb62 | PC: 00000498
+EXPECTED -> RD: deb62000 | NEXT_PC: 0000049c
+DUT      -> RD: deb62000 | NEXT_PC: 0000049c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x17, 0xfed02 | PC: 00000410
+EXPECTED -> RD: fed02410 | NEXT_PC: 00000414
+DUT      -> RD: fed02410 | NEXT_PC: 00000414
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x10, 180 | PC: 00000420
+EXPECTED -> RD: 00000424 | NEXT_PC: 000004d4
+DUT      -> RD: 00000424 | NEXT_PC: 000004d4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x8, x22, 60 | PC: 000004ac
+      (rs1_val = 00000420)
+EXPECTED -> RD: 000004b0 | NEXT_PC: 0000045c
+DUT      -> RD: 000004b0 | NEXT_PC: 0000045c
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x26, 0x454f2 | PC: 00000434
+EXPECTED -> RD: 454f2000 | NEXT_PC: 00000438
+DUT      -> RD: 454f2000 | NEXT_PC: 00000438
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x2, 0x99773 | PC: 000004dc
+EXPECTED -> RD: 997734dc | NEXT_PC: 000004e0
+DUT      -> RD: 997734dc | NEXT_PC: 000004e0
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x15, 102 | PC: 00000478
+EXPECTED -> RD: 0000047c | NEXT_PC: 000004de
+DUT      -> RD: 0000047c | NEXT_PC: 000004de
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x14, x8, 76 | PC: 0000043c
+      (rs1_val = 0000044c)
+EXPECTED -> RD: 00000440 | NEXT_PC: 00000498
+DUT      -> RD: 00000440 | NEXT_PC: 00000498
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x15, 0x1d9fe | PC: 0000049c
+EXPECTED -> RD: 1d9fe000 | NEXT_PC: 000004a0
+DUT      -> RD: 1d9fe000 | NEXT_PC: 000004a0
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x19, 0x5d235 | PC: 00000454
+EXPECTED -> RD: 5d235454 | NEXT_PC: 00000458
+DUT      -> RD: 5d235454 | NEXT_PC: 00000458
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x31, 124 | PC: 00000440
+EXPECTED -> RD: 00000444 | NEXT_PC: 000004bc
+DUT      -> RD: 00000444 | NEXT_PC: 000004bc
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x27, x28, 24 | PC: 00000470
+      (rs1_val = 00000458)
+EXPECTED -> RD: 00000474 | NEXT_PC: 00000470
+DUT      -> RD: 00000474 | NEXT_PC: 00000470
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x16, 0xae0a3 | PC: 00000464
+EXPECTED -> RD: ae0a3000 | NEXT_PC: 00000468
+DUT      -> RD: ae0a3000 | NEXT_PC: 00000468
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x12, 0x7b4ac | PC: 000004a0
+EXPECTED -> RD: 7b4ac4a0 | NEXT_PC: 000004a4
+DUT      -> RD: 7b4ac4a0 | NEXT_PC: 000004a4
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x6, 80 | PC: 00000498
+EXPECTED -> RD: 0000049c | NEXT_PC: 000004e8
+DUT      -> RD: 0000049c | NEXT_PC: 000004e8
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x6, x13, 136 | PC: 00000470
+      (rs1_val = 00000424)
+EXPECTED -> RD: 00000474 | NEXT_PC: 000004ac
+DUT      -> RD: 00000474 | NEXT_PC: 000004ac
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x5, 0x76e2a | PC: 00000440
+EXPECTED -> RD: 76e2a000 | NEXT_PC: 00000444
+DUT      -> RD: 76e2a000 | NEXT_PC: 00000444
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x19, 0x6e4ea | PC: 0000041c
+EXPECTED -> RD: 6e4ea41c | NEXT_PC: 00000420
+DUT      -> RD: 6e4ea41c | NEXT_PC: 00000420
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x15, 88 | PC: 00000478
+EXPECTED -> RD: 0000047c | NEXT_PC: 000004d0
+DUT      -> RD: 0000047c | NEXT_PC: 000004d0
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x4, x1, 24 | PC: 00000490
+      (rs1_val = 00000480)
+EXPECTED -> RD: 00000494 | NEXT_PC: 00000498
+DUT      -> RD: 00000494 | NEXT_PC: 00000498
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x17, 0xa093f | PC: 000004c0
+EXPECTED -> RD: a093f000 | NEXT_PC: 000004c4
+DUT      -> RD: a093f000 | NEXT_PC: 000004c4
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x7, 0x61b9e | PC: 00000494
+EXPECTED -> RD: 61b9e494 | NEXT_PC: 00000498
+DUT      -> RD: 61b9e494 | NEXT_PC: 00000498
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x30, 46 | PC: 000004c0
+EXPECTED -> RD: 000004c4 | NEXT_PC: 000004ee
+DUT      -> RD: 000004c4 | NEXT_PC: 000004ee
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x10, x23, 128 | PC: 0000041c
+      (rs1_val = 00000468)
+EXPECTED -> RD: 00000420 | NEXT_PC: 000004e8
+DUT      -> RD: 00000420 | NEXT_PC: 000004e8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x24, 0xab5ab | PC: 00000460
+EXPECTED -> RD: ab5ab000 | NEXT_PC: 00000464
+DUT      -> RD: ab5ab000 | NEXT_PC: 00000464
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x31, 0x6c3dc | PC: 000004b8
+EXPECTED -> RD: 6c3dc4b8 | NEXT_PC: 000004bc
+DUT      -> RD: 6c3dc4b8 | NEXT_PC: 000004bc
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x10, 26 | PC: 000004c0
+EXPECTED -> RD: 000004c4 | NEXT_PC: 000004da
+DUT      -> RD: 000004c4 | NEXT_PC: 000004da
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x17, x3, 144 | PC: 00000454
+      (rs1_val = 0000043c)
+EXPECTED -> RD: 00000458 | NEXT_PC: 000004cc
+DUT      -> RD: 00000458 | NEXT_PC: 000004cc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x7, 0x2b2fa | PC: 00000438
+EXPECTED -> RD: 2b2fa000 | NEXT_PC: 0000043c
+DUT      -> RD: 2b2fa000 | NEXT_PC: 0000043c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x25, 0xae17e | PC: 000004b0
+EXPECTED -> RD: ae17e4b0 | NEXT_PC: 000004b4
+DUT      -> RD: ae17e4b0 | NEXT_PC: 000004b4
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x15, 8 | PC: 000004b0
+EXPECTED -> RD: 000004b4 | NEXT_PC: 000004b8
+DUT      -> RD: 000004b4 | NEXT_PC: 000004b8
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x6, x2, 128 | PC: 000004d8
+      (rs1_val = 0000045c)
+EXPECTED -> RD: 000004dc | NEXT_PC: 000004dc
+DUT      -> RD: 000004dc | NEXT_PC: 000004dc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x19, 0xa9d6b | PC: 00000498
+EXPECTED -> RD: a9d6b000 | NEXT_PC: 0000049c
+DUT      -> RD: a9d6b000 | NEXT_PC: 0000049c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x8, 0xfa311 | PC: 000004d4
+EXPECTED -> RD: fa3114d4 | NEXT_PC: 000004d8
+DUT      -> RD: fa3114d4 | NEXT_PC: 000004d8
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x14, 126 | PC: 00000460
+EXPECTED -> RD: 00000464 | NEXT_PC: 000004de
+DUT      -> RD: 00000464 | NEXT_PC: 000004de
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x22, x6, 220 | PC: 0000044c
+      (rs1_val = 0000040c)
+EXPECTED -> RD: 00000450 | NEXT_PC: 000004e8
+DUT      -> RD: 00000450 | NEXT_PC: 000004e8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x29, 0x8c499 | PC: 00000498
+EXPECTED -> RD: 8c499000 | NEXT_PC: 0000049c
+DUT      -> RD: 8c499000 | NEXT_PC: 0000049c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x23, 0x8c0c6 | PC: 0000045c
+EXPECTED -> RD: 8c0c645c | NEXT_PC: 00000460
+DUT      -> RD: 8c0c645c | NEXT_PC: 00000460
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x13, 148 | PC: 00000404
+EXPECTED -> RD: 00000408 | NEXT_PC: 00000498
+DUT      -> RD: 00000408 | NEXT_PC: 00000498
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x23, x19, 52 | PC: 00000460
+      (rs1_val = 00000458)
+EXPECTED -> RD: 00000464 | NEXT_PC: 0000048c
+DUT      -> RD: 00000464 | NEXT_PC: 0000048c
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x29, 0x6077c | PC: 000004b0
+EXPECTED -> RD: 6077c000 | NEXT_PC: 000004b4
+DUT      -> RD: 6077c000 | NEXT_PC: 000004b4
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x14, 0x1fe5c | PC: 000004a8
+EXPECTED -> RD: 1fe5c4a8 | NEXT_PC: 000004ac
+DUT      -> RD: 1fe5c4a8 | NEXT_PC: 000004ac
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x13, 60 | PC: 00000448
+EXPECTED -> RD: 0000044c | NEXT_PC: 00000484
+DUT      -> RD: 0000044c | NEXT_PC: 00000484
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x31, x25, 124 | PC: 000004e0
+      (rs1_val = 00000444)
+EXPECTED -> RD: 000004e4 | NEXT_PC: 000004c0
+DUT      -> RD: 000004e4 | NEXT_PC: 000004c0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x16, 0x413fb | PC: 00000420
+EXPECTED -> RD: 413fb000 | NEXT_PC: 00000424
+DUT      -> RD: 413fb000 | NEXT_PC: 00000424
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x5, 0x8a698 | PC: 000004a0
+EXPECTED -> RD: 8a6984a0 | NEXT_PC: 000004a4
+DUT      -> RD: 8a6984a0 | NEXT_PC: 000004a4
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x8, 30 | PC: 000004a0
+EXPECTED -> RD: 000004a4 | NEXT_PC: 000004be
+DUT      -> RD: 000004a4 | NEXT_PC: 000004be
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x8, x21, 88 | PC: 00000480
+      (rs1_val = 00000478)
+EXPECTED -> RD: 00000484 | NEXT_PC: 000004d0
+DUT      -> RD: 00000484 | NEXT_PC: 000004d0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x8, 0x42dce | PC: 00000434
+EXPECTED -> RD: 42dce000 | NEXT_PC: 00000438
+DUT      -> RD: 42dce000 | NEXT_PC: 00000438
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x16, 0x2cbf5 | PC: 000004a4
+EXPECTED -> RD: 2cbf54a4 | NEXT_PC: 000004a8
+DUT      -> RD: 2cbf54a4 | NEXT_PC: 000004a8
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x20, 24 | PC: 00000430
+EXPECTED -> RD: 00000434 | NEXT_PC: 00000448
+DUT      -> RD: 00000434 | NEXT_PC: 00000448
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x3, x23, 40 | PC: 00000468
+      (rs1_val = 00000494)
+EXPECTED -> RD: 0000046c | NEXT_PC: 000004bc
+DUT      -> RD: 0000046c | NEXT_PC: 000004bc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x14, 0x5ff63 | PC: 00000490
+EXPECTED -> RD: 5ff63000 | NEXT_PC: 00000494
+DUT      -> RD: 5ff63000 | NEXT_PC: 00000494
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x7, 0xc25c4 | PC: 000004a4
+EXPECTED -> RD: c25c44a4 | NEXT_PC: 000004a8
+DUT      -> RD: c25c44a4 | NEXT_PC: 000004a8
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x15, 60 | PC: 00000488
+EXPECTED -> RD: 0000048c | NEXT_PC: 000004c4
+DUT      -> RD: 0000048c | NEXT_PC: 000004c4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x17, x27, 8 | PC: 000004ac
+      (rs1_val = 00000424)
+EXPECTED -> RD: 000004b0 | NEXT_PC: 0000042c
+DUT      -> RD: 000004b0 | NEXT_PC: 0000042c
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x6, 0x14618 | PC: 0000047c
+EXPECTED -> RD: 14618000 | NEXT_PC: 00000480
+DUT      -> RD: 14618000 | NEXT_PC: 00000480
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x10, 0xcdc5 | PC: 0000048c
+EXPECTED -> RD: 0cdc548c | NEXT_PC: 00000490
+DUT      -> RD: 0cdc548c | NEXT_PC: 00000490
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x29, 90 | PC: 0000049c
+EXPECTED -> RD: 000004a0 | NEXT_PC: 000004f6
+DUT      -> RD: 000004a0 | NEXT_PC: 000004f6
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x10, x25, 232 | PC: 00000458
+      (rs1_val = 00000414)
+EXPECTED -> RD: 0000045c | NEXT_PC: 000004fc
+DUT      -> RD: 0000045c | NEXT_PC: 000004fc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x4, 0xf024 | PC: 00000498
+EXPECTED -> RD: 0f024000 | NEXT_PC: 0000049c
+DUT      -> RD: 0f024000 | NEXT_PC: 0000049c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x1, 0x65af0 | PC: 0000043c
+EXPECTED -> RD: 65af043c | NEXT_PC: 00000440
+DUT      -> RD: 65af043c | NEXT_PC: 00000440
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x13, 220 | PC: 0000041c
+EXPECTED -> RD: 00000420 | NEXT_PC: 000004f8
+DUT      -> RD: 00000420 | NEXT_PC: 000004f8
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x1, x29, 64 | PC: 00000474
+      (rs1_val = 00000480)
+EXPECTED -> RD: 00000478 | NEXT_PC: 000004c0
+DUT      -> RD: 00000478 | NEXT_PC: 000004c0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x13, 0x3c033 | PC: 00000484
+EXPECTED -> RD: 3c033000 | NEXT_PC: 00000488
+DUT      -> RD: 3c033000 | NEXT_PC: 00000488
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x22, 0x20ff5 | PC: 00000408
+EXPECTED -> RD: 20ff5408 | NEXT_PC: 0000040c
+DUT      -> RD: 20ff5408 | NEXT_PC: 0000040c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x19, 176 | PC: 0000043c
+EXPECTED -> RD: 00000440 | NEXT_PC: 000004ec
+DUT      -> RD: 00000440 | NEXT_PC: 000004ec
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x25, x13, 196 | PC: 000004a4
+      (rs1_val = 0000042c)
+EXPECTED -> RD: 000004a8 | NEXT_PC: 000004f0
+DUT      -> RD: 000004a8 | NEXT_PC: 000004f0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x20, 0x4b8f4 | PC: 0000045c
+EXPECTED -> RD: 4b8f4000 | NEXT_PC: 00000460
+DUT      -> RD: 4b8f4000 | NEXT_PC: 00000460
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x24, 0x2689d | PC: 00000454
+EXPECTED -> RD: 2689d454 | NEXT_PC: 00000458
+DUT      -> RD: 2689d454 | NEXT_PC: 00000458
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x25, 94 | PC: 00000470
+EXPECTED -> RD: 00000474 | NEXT_PC: 000004ce
+DUT      -> RD: 00000474 | NEXT_PC: 000004ce
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x16, x4, 116 | PC: 00000430
+      (rs1_val = 00000410)
+EXPECTED -> RD: 00000434 | NEXT_PC: 00000484
+DUT      -> RD: 00000434 | NEXT_PC: 00000484
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x1, 0x1fd65 | PC: 00000458
+EXPECTED -> RD: 1fd65000 | NEXT_PC: 0000045c
+DUT      -> RD: 1fd65000 | NEXT_PC: 0000045c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x5, 0x10675 | PC: 000004d4
+EXPECTED -> RD: 106754d4 | NEXT_PC: 000004d8
+DUT      -> RD: 106754d4 | NEXT_PC: 000004d8
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x14, 178 | PC: 00000414
+EXPECTED -> RD: 00000418 | NEXT_PC: 000004c6
+DUT      -> RD: 00000418 | NEXT_PC: 000004c6
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x19, x12, 176 | PC: 000004c8
+      (rs1_val = 0000043c)
+EXPECTED -> RD: 000004cc | NEXT_PC: 000004ec
+DUT      -> RD: 000004cc | NEXT_PC: 000004ec
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x5, 0xe01fc | PC: 00000430
+EXPECTED -> RD: e01fc000 | NEXT_PC: 00000434
+DUT      -> RD: e01fc000 | NEXT_PC: 00000434
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x29, 0x6b99c | PC: 00000400
+EXPECTED -> RD: 6b99c400 | NEXT_PC: 00000404
+DUT      -> RD: 6b99c400 | NEXT_PC: 00000404
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x18, 206 | PC: 00000408
+EXPECTED -> RD: 0000040c | NEXT_PC: 000004d6
+DUT      -> RD: 0000040c | NEXT_PC: 000004d6
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x28, x25, 48 | PC: 000004b8
+      (rs1_val = 000004c8)
+EXPECTED -> RD: 000004bc | NEXT_PC: 000004f8
+DUT      -> RD: 000004bc | NEXT_PC: 000004f8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x27, 0xcc738 | PC: 00000488
+EXPECTED -> RD: cc738000 | NEXT_PC: 0000048c
+DUT      -> RD: cc738000 | NEXT_PC: 0000048c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x13, 0xc0abb | PC: 0000040c
+EXPECTED -> RD: c0abb40c | NEXT_PC: 00000410
+DUT      -> RD: c0abb40c | NEXT_PC: 00000410
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x3, 122 | PC: 00000430
+EXPECTED -> RD: 00000434 | NEXT_PC: 000004aa
+DUT      -> RD: 00000434 | NEXT_PC: 000004aa
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x18, x17, 112 | PC: 000004dc
+      (rs1_val = 0000046c)
+EXPECTED -> RD: 000004e0 | NEXT_PC: 000004dc
+DUT      -> RD: 000004e0 | NEXT_PC: 000004dc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x14, 0x9d225 | PC: 0000045c
+EXPECTED -> RD: 9d225000 | NEXT_PC: 00000460
+DUT      -> RD: 9d225000 | NEXT_PC: 00000460
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x19, 0x35d56 | PC: 00000430
+EXPECTED -> RD: 35d56430 | NEXT_PC: 00000434
+DUT      -> RD: 35d56430 | NEXT_PC: 00000434
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x17, 30 | PC: 000004a8
+EXPECTED -> RD: 000004ac | NEXT_PC: 000004c6
+DUT      -> RD: 000004ac | NEXT_PC: 000004c6
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x19, x27, 108 | PC: 00000450
+      (rs1_val = 00000458)
+EXPECTED -> RD: 00000454 | NEXT_PC: 000004c4
+DUT      -> RD: 00000454 | NEXT_PC: 000004c4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x3, 0x7699f | PC: 000004d4
+EXPECTED -> RD: 7699f000 | NEXT_PC: 000004d8
+DUT      -> RD: 7699f000 | NEXT_PC: 000004d8
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x19, 0x5a9d8 | PC: 00000450
+EXPECTED -> RD: 5a9d8450 | NEXT_PC: 00000454
+DUT      -> RD: 5a9d8450 | NEXT_PC: 00000454
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x1, 86 | PC: 0000049c
+EXPECTED -> RD: 000004a0 | NEXT_PC: 000004f2
+DUT      -> RD: 000004a0 | NEXT_PC: 000004f2
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x2, x9, 152 | PC: 00000478
+      (rs1_val = 00000430)
+EXPECTED -> RD: 0000047c | NEXT_PC: 000004c8
+DUT      -> RD: 0000047c | NEXT_PC: 000004c8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x21, 0xe92b1 | PC: 000004dc
+EXPECTED -> RD: e92b1000 | NEXT_PC: 000004e0
+DUT      -> RD: e92b1000 | NEXT_PC: 000004e0
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x5, 0x92f53 | PC: 00000478
+EXPECTED -> RD: 92f53478 | NEXT_PC: 0000047c
+DUT      -> RD: 92f53478 | NEXT_PC: 0000047c
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x2, 78 | PC: 0000040c
+EXPECTED -> RD: 00000410 | NEXT_PC: 0000045a
+DUT      -> RD: 00000410 | NEXT_PC: 0000045a
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x28, x20, 76 | PC: 000004a0
+      (rs1_val = 00000404)
+EXPECTED -> RD: 000004a4 | NEXT_PC: 00000450
+DUT      -> RD: 000004a4 | NEXT_PC: 00000450
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x4, 0x33e8f | PC: 000004ac
+EXPECTED -> RD: 33e8f000 | NEXT_PC: 000004b0
+DUT      -> RD: 33e8f000 | NEXT_PC: 000004b0
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x23, 0xd1b37 | PC: 00000444
+EXPECTED -> RD: d1b37444 | NEXT_PC: 00000448
+DUT      -> RD: d1b37444 | NEXT_PC: 00000448
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x14, 34 | PC: 00000418
+EXPECTED -> RD: 0000041c | NEXT_PC: 0000043a
+DUT      -> RD: 0000041c | NEXT_PC: 0000043a
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x1, x4, 152 | PC: 000004a8
+      (rs1_val = 0000045c)
+EXPECTED -> RD: 000004ac | NEXT_PC: 000004f4
+DUT      -> RD: 000004ac | NEXT_PC: 000004f4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x14, 0x46912 | PC: 0000041c
+EXPECTED -> RD: 46912000 | NEXT_PC: 00000420
+DUT      -> RD: 46912000 | NEXT_PC: 00000420
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x29, 0x24aa7 | PC: 00000434
+EXPECTED -> RD: 24aa7434 | NEXT_PC: 00000438
+DUT      -> RD: 24aa7434 | NEXT_PC: 00000438
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x19, 102 | PC: 00000490
+EXPECTED -> RD: 00000494 | NEXT_PC: 000004f6
+DUT      -> RD: 00000494 | NEXT_PC: 000004f6
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x26, x17, 24 | PC: 000004bc
+      (rs1_val = 000004e0)
+EXPECTED -> RD: 000004c0 | NEXT_PC: 000004f8
+DUT      -> RD: 000004c0 | NEXT_PC: 000004f8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x13, 0x356a9 | PC: 00000468
+EXPECTED -> RD: 356a9000 | NEXT_PC: 0000046c
+DUT      -> RD: 356a9000 | NEXT_PC: 0000046c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x25, 0xcd2ce | PC: 00000434
+EXPECTED -> RD: cd2ce434 | NEXT_PC: 00000438
+DUT      -> RD: cd2ce434 | NEXT_PC: 00000438
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x5, 140 | PC: 0000045c
+EXPECTED -> RD: 00000460 | NEXT_PC: 000004e8
+DUT      -> RD: 00000460 | NEXT_PC: 000004e8
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x28, x8, 56 | PC: 00000440
+      (rs1_val = 00000440)
+EXPECTED -> RD: 00000444 | NEXT_PC: 00000478
+DUT      -> RD: 00000444 | NEXT_PC: 00000478
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x6, 0xdaef4 | PC: 000004cc
+EXPECTED -> RD: daef4000 | NEXT_PC: 000004d0
+DUT      -> RD: daef4000 | NEXT_PC: 000004d0
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x27, 0x9e5f5 | PC: 000004a4
+EXPECTED -> RD: 9e5f54a4 | NEXT_PC: 000004a8
+DUT      -> RD: 9e5f54a4 | NEXT_PC: 000004a8
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x15, 124 | PC: 0000047c
+EXPECTED -> RD: 00000480 | NEXT_PC: 000004f8
+DUT      -> RD: 00000480 | NEXT_PC: 000004f8
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x7, x10, 44 | PC: 00000404
+      (rs1_val = 000004d0)
+EXPECTED -> RD: 00000408 | NEXT_PC: 000004fc
+DUT      -> RD: 00000408 | NEXT_PC: 000004fc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x18, 0x79905 | PC: 00000430
+EXPECTED -> RD: 79905000 | NEXT_PC: 00000434
+DUT      -> RD: 79905000 | NEXT_PC: 00000434
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x23, 0x1b996 | PC: 00000440
+EXPECTED -> RD: 1b996440 | NEXT_PC: 00000444
+DUT      -> RD: 1b996440 | NEXT_PC: 00000444
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x13, 172 | PC: 00000448
+EXPECTED -> RD: 0000044c | NEXT_PC: 000004f4
+DUT      -> RD: 0000044c | NEXT_PC: 000004f4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x14, x21, 228 | PC: 00000484
+      (rs1_val = 00000418)
+EXPECTED -> RD: 00000488 | NEXT_PC: 000004fc
+DUT      -> RD: 00000488 | NEXT_PC: 000004fc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x2, 0x66e6e | PC: 00000430
+EXPECTED -> RD: 66e6e000 | NEXT_PC: 00000434
+DUT      -> RD: 66e6e000 | NEXT_PC: 00000434
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x27, 0x40e51 | PC: 0000041c
+EXPECTED -> RD: 40e5141c | NEXT_PC: 00000420
+DUT      -> RD: 40e5141c | NEXT_PC: 00000420
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x26, 118 | PC: 00000430
+EXPECTED -> RD: 00000434 | NEXT_PC: 000004a6
+DUT      -> RD: 00000434 | NEXT_PC: 000004a6
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x16, x4, 100 | PC: 000004a8
+      (rs1_val = 00000474)
+EXPECTED -> RD: 000004ac | NEXT_PC: 000004d8
+DUT      -> RD: 000004ac | NEXT_PC: 000004d8
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x29, 0xd2558 | PC: 000004b8
+EXPECTED -> RD: d2558000 | NEXT_PC: 000004bc
+DUT      -> RD: d2558000 | NEXT_PC: 000004bc
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x10, 0xd5324 | PC: 00000424
+EXPECTED -> RD: d5324424 | NEXT_PC: 00000428
+DUT      -> RD: d5324424 | NEXT_PC: 00000428
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x28, 42 | PC: 000004cc
+EXPECTED -> RD: 000004d0 | NEXT_PC: 000004f6
+DUT      -> RD: 000004d0 | NEXT_PC: 000004f6
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x24, x24, 96 | PC: 0000045c
+      (rs1_val = 00000474)
+EXPECTED -> RD: 00000460 | NEXT_PC: 000004d4
+DUT      -> RD: 00000460 | NEXT_PC: 000004d4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x6, 0x2b22d | PC: 00000404
+EXPECTED -> RD: 2b22d000 | NEXT_PC: 00000408
+DUT      -> RD: 2b22d000 | NEXT_PC: 00000408
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x1, 0x52d26 | PC: 00000480
+EXPECTED -> RD: 52d26480 | NEXT_PC: 00000484
+DUT      -> RD: 52d26480 | NEXT_PC: 00000484
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x25, 30 | PC: 000004c4
+EXPECTED -> RD: 000004c8 | NEXT_PC: 000004e2
+DUT      -> RD: 000004c8 | NEXT_PC: 000004e2
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x20, x31, 64 | PC: 00000408
+      (rs1_val = 000004a0)
+EXPECTED -> RD: 0000040c | NEXT_PC: 000004e0
+DUT      -> RD: 0000040c | NEXT_PC: 000004e0
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x8, 0x19ac0 | PC: 00000408
+EXPECTED -> RD: 19ac0000 | NEXT_PC: 0000040c
+DUT      -> RD: 19ac0000 | NEXT_PC: 0000040c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x4, 0x21fc4 | PC: 0000048c
+EXPECTED -> RD: 21fc448c | NEXT_PC: 00000490
+DUT      -> RD: 21fc448c | NEXT_PC: 00000490
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x17, 192 | PC: 00000424
+EXPECTED -> RD: 00000428 | NEXT_PC: 000004e4
+DUT      -> RD: 00000428 | NEXT_PC: 000004e4
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x30, x18, 40 | PC: 0000046c
+      (rs1_val = 00000440)
+EXPECTED -> RD: 00000470 | NEXT_PC: 00000468
+DUT      -> RD: 00000470 | NEXT_PC: 00000468
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x28, 0xe5bfe | PC: 00000454
+EXPECTED -> RD: e5bfe000 | NEXT_PC: 00000458
+DUT      -> RD: e5bfe000 | NEXT_PC: 00000458
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x26, 0x4a88c | PC: 000004c0
+EXPECTED -> RD: 4a88c4c0 | NEXT_PC: 000004c4
+DUT      -> RD: 4a88c4c0 | NEXT_PC: 000004c4
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x13, 14 | PC: 00000460
+EXPECTED -> RD: 00000464 | NEXT_PC: 0000046e
+DUT      -> RD: 00000464 | NEXT_PC: 0000046e
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x21, x25, 168 | PC: 00000438
+      (rs1_val = 0000044c)
+EXPECTED -> RD: 0000043c | NEXT_PC: 000004f4
+DUT      -> RD: 0000043c | NEXT_PC: 000004f4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x11, 0x5cef1 | PC: 00000428
+EXPECTED -> RD: 5cef1000 | NEXT_PC: 0000042c
+DUT      -> RD: 5cef1000 | NEXT_PC: 0000042c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x25, 0xa3d91 | PC: 00000420
+EXPECTED -> RD: a3d91420 | NEXT_PC: 00000424
+DUT      -> RD: a3d91420 | NEXT_PC: 00000424
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x22, 144 | PC: 0000045c
+EXPECTED -> RD: 00000460 | NEXT_PC: 000004ec
+DUT      -> RD: 00000460 | NEXT_PC: 000004ec
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x13, x27, 156 | PC: 000004a8
+      (rs1_val = 00000448)
+EXPECTED -> RD: 000004ac | NEXT_PC: 000004e4
+DUT      -> RD: 000004ac | NEXT_PC: 000004e4
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x27, 0xc08b5 | PC: 00000408
+EXPECTED -> RD: c08b5000 | NEXT_PC: 0000040c
+DUT      -> RD: c08b5000 | NEXT_PC: 0000040c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x14, 0xa7acb | PC: 000004dc
+EXPECTED -> RD: a7acb4dc | NEXT_PC: 000004e0
+DUT      -> RD: a7acb4dc | NEXT_PC: 000004e0
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x18, 64 | PC: 00000430
+EXPECTED -> RD: 00000434 | NEXT_PC: 00000470
+DUT      -> RD: 00000434 | NEXT_PC: 00000470
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x15, x3, 96 | PC: 00000444
+      (rs1_val = 0000045c)
+EXPECTED -> RD: 00000448 | NEXT_PC: 000004bc
+DUT      -> RD: 00000448 | NEXT_PC: 000004bc
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : LUI x11, 0xd422d | PC: 00000438
+EXPECTED -> RD: d422d000 | NEXT_PC: 0000043c
+DUT      -> RD: d422d000 | NEXT_PC: 0000043c
+[PASS] OP_LUI VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : AUIPC x6, 0xd4a0f | PC: 00000460
+EXPECTED -> RD: d4a0f460 | NEXT_PC: 00000464
+DUT      -> RD: d4a0f460 | NEXT_PC: 00000464
+[PASS] OP_AUIPC VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JAL x25, 146 | PC: 00000450
+EXPECTED -> RD: 00000454 | NEXT_PC: 000004e2
+DUT      -> RD: 00000454 | NEXT_PC: 000004e2
+[PASS] OP_JAL VERIFIED
+=======================================================
+
+
+=======================================================
+ASM : JALR x30, x4, 48 | PC: 0000044c
+      (rs1_val = 00000430)
+EXPECTED -> RD: 00000450 | NEXT_PC: 00000460
+DUT      -> RD: 00000450 | NEXT_PC: 00000460
+[PASS] OP_JALR VERIFIED
+=======================================================
+
+=======================================
+ VERIFICATION COMPLETE
+ Total Tests Requested: 500
+ Total Checks Executed: 500
+ Pipeline Timeouts:     0
+ Total Errors Found:    0
+ Coverage percentage:   100.000000%
+=======================================
+>>> TEST PASSED <<<
+Simulation complete via $finish(1) at time 55205 NS + 0
+./ju_type_rand_tb.sv:372     $finish;
+ncsim> exit
+ncsim: *N,COVCGN: Coverage configuration file command "set_covergroup -new_instance_reporting" can be specified to improve the scoping and naming of covergroup instances. It may be noted that subsequent merging of a coverage database saved with this command and a coverage database saved without this command is not allowed.
+ncsim: *W,CGDEFN: Default name "ju_rand_tb.cov.ju_cg" will be generated for covergroup instance "ju_cg" as the name of the covergroup instance is not specified explicitly: ./ju_type_rand_tb.sv, 100.
+
+coverage setup:
+  workdir  :  ./cov_work
+  dutinst  :  dp_ram(dp_ram)
+  dutinst  :  half_adder(half_adder)
+  dutinst  :  ju_rand_tb(ju_rand_tb)
+  scope    :  scope
+  testname :  seed_3333
+
+coverage files:
+  model(design data) :  ./cov_work/scope/icc_7fe58159_5cd8e718.ucm (reused)
+  data               :  ./cov_work/scope/seed_3333/icc_7fe58159_5cd8e718.ucd
+TOOL:	irun(64)	15.20-s051: Exiting on Jun 16, 2026 at 16:55:04 IST  (total: 00:00:02)

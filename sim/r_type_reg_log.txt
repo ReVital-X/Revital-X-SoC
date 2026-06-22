@@ -1,0 +1,1868 @@
+[pguser@cegpgvlsilab1 rtl]$ make
+make run SEED=1001
+make[1]: Entering directory `/home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl'
+irun -sv \
+	-access +rwc \
+	-linedebug \
+	-coverage all \
+	-covoverwrite \
+	-covtest seed_1001 \
+	alu_in2_mux.sv Memory_Ctrl.sv sp_ram.sv instr_ram.sv data_ram.sv dp_ram.sv Stage1.sv alu_mul_mux.sv Stage2.sv LSU_RVX.sv pc_mux.sv immediate_generator.sv register_file.sv Control_Unit.sv CoreRV.sv stall_controller.sv memtoreg_mux.sv alu.sv alu_in1_mux.sv Pipelined_M.sv /home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl/core_R_type_tb.sv \
+	-svseed 1001 
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+irun(64): 15.20-s051: (c) Copyright 1995-2018 Cadence Design Systems, Inc.
+irun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+ncsim: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+ncsim: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+Loading snapshot worklib.dp_ram:sv .................... Done
+SVSEED set from command line: 1001
+ncsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+ncsim> source /home/install/INCISIVE152/tools/inca/files/ncsimrc
+ncsim> run
+
+[INFO] Starting R-Type Random Regression run with SEED = 1001
+
+=== RF PRELOAD CHECK ===
+========================
+
+
+[DEBUG TRACE] First 15 Random R-Type Instructions injected
+-----------------------------------------------------------------------------------------
+PC: 0000 | ADD   x0 , x11, x18
+PC: 0004 | SUB   x9 , x12, x20
+PC: 0008 | SLL   x16, x19, x0 
+PC: 0012 | SLT   x6 , x19, x28
+PC: 0016 | SLTU  x26, x16, x13
+PC: 0020 | XOR   x27, x13, x16
+PC: 0024 | SRL   x16, x16, x22
+PC: 0028 | SRA   x28, x28, x1 
+PC: 0032 | OR    x13, x25, x19
+PC: 0036 | AND   x16, x20, x10
+PC: 0040 | AND   x8 , x28, x0 
+PC: 0044 | OR    x16, x0 , x26
+PC: 0048 | SRL   x24, x14, x20
+PC: 0052 | ADD   x15, x19, x18
+PC: 0056 | SRL   x5 , x14, x17
+-----------------------------------------------------------------------------------------
+
+[INFO] Waiting for 188 valid register writebacks to complete...
+[95000] PC=0x00000018 WB x9 <= 3a982e76 (Count: 1/188)
+[105000] PC=0x0000001c WB x16 <= c385a287 (Count: 2/188)
+[115000] PC=0x00000020 WB x6 <= 00000001 (Count: 3/188)
+[125000] PC=0x00000024 WB x26 <= 00000000 (Count: 4/188)
+[135000] PC=0x00000028 WB x27 <= dc4c77b8 (Count: 5/188)
+[145000] PC=0x0000002c WB x16 <= 00000187 (Count: 6/188)
+[155000] PC=0x00000030 WB x28 <= fffbbcb8 (Count: 7/188)
+[165000] PC=0x00000034 WB x13 <= c3b5a387 (Count: 8/188)
+[175000] PC=0x00000038 WB x16 <= 288d8051 (Count: 9/188)
+[185000] PC=0x0000003c WB x8 <= 00000000 (Count: 10/188)
+[195000] PC=0x00000040 WB x16 <= 00000000 (Count: 11/188)
+[205000] PC=0x00000044 WB x24 <= 00000043 (Count: 12/188)
+[215000] PC=0x00000048 WB x15 <= 8686390d (Count: 13/188)
+[225000] PC=0x0000004c WB x5 <= 0000043b (Count: 14/188)
+[235000] PC=0x00000050 WB x24 <= bc3f7f78 (Count: 15/188)
+[245000] PC=0x00000054 WB x14 <= 174a31ae (Count: 16/188)
+[255000] PC=0x00000058 WB x7 <= ff0d0c72 (Count: 17/188)
+[265000] PC=0x0000005c WB x2 <= 01870b45 (Count: 18/188)
+[275000] PC=0x00000060 WB x4 <= 00000000 (Count: 19/188)
+[285000] PC=0x00000064 WB x2 <= 40562681 (Count: 20/188)
+[295000] PC=0x00000068 WB x18 <= 03125342 (Count: 21/188)
+[305000] PC=0x0000006c WB x6 <= a4c69849 (Count: 22/188)
+[315000] PC=0x00000070 WB x10 <= ffff0e16 (Count: 23/188)
+[325000] PC=0x00000074 WB x6 <= 9d800000 (Count: 24/188)
+[335000] PC=0x00000078 WB x11 <= 00000000 (Count: 25/188)
+[345000] PC=0x0000007c WB x31 <= 00000000 (Count: 26/188)
+[355000] PC=0x00000080 WB x25 <= c56ac68a (Count: 27/188)
+[365000] PC=0x00000084 WB x23 <= 00000001 (Count: 28/188)
+[375000] PC=0x00000088 WB x6 <= c384b09d (Count: 29/188)
+[385000] PC=0x0000008c WB x6 <= 0001121a (Count: 30/188)
+[395000] PC=0x00000090 WB x25 <= 00000000 (Count: 31/188)
+[405000] PC=0x00000094 WB x26 <= 00000030 (Count: 32/188)
+[415000] PC=0x00000098 WB x18 <= 00000000 (Count: 33/188)
+[425000] PC=0x0000009c WB x29 <= 00000000 (Count: 34/188)
+[435000] PC=0x000000a0 WB x14 <= 00000000 (Count: 35/188)
+[445000] PC=0x000000a4 WB x29 <= 000000ea (Count: 36/188)
+[455000] PC=0x000000a8 WB x20 <= 000002af (Count: 37/188)
+[465000] PC=0x000000ac WB x15 <= 52af6ea5 (Count: 38/188)
+[475000] PC=0x000000b0 WB x19 <= 00000000 (Count: 39/188)
+[485000] PC=0x000000b4 WB x24 <= fffbbcb8 (Count: 40/188)
+[495000] PC=0x000000b8 WB x14 <= 00000001 (Count: 41/188)
+[505000] PC=0x000000bc WB x17 <= 00000000 (Count: 42/188)
+[515000] PC=0x000000c0 WB x29 <= 00000002 (Count: 43/188)
+[525000] PC=0x000000c4 WB x13 <= 00000157 (Count: 44/188)
+[535000] PC=0x000000c8 WB x25 <= 00000002 (Count: 45/188)
+[545000] PC=0x000000cc WB x1 <= 00000000 (Count: 46/188)
+[555000] PC=0x000000d0 WB x28 <= 00011655 (Count: 47/188)
+[565000] PC=0x000000d4 WB x8 <= 00000001 (Count: 48/188)
+[575000] PC=0x000000d8 WB x10 <= 00000002 (Count: 49/188)
+[585000] PC=0x000000dc WB x9 <= 00000000 (Count: 50/188)
+[595000] PC=0x000000e0 WB x23 <= c15efcbb (Count: 51/188)
+[605000] PC=0x000000e4 WB x29 <= abe5a306 (Count: 52/188)
+[615000] PC=0x000000e8 WB x12 <= 00000000 (Count: 53/188)
+[625000] PC=0x000000ec WB x24 <= 4b296396 (Count: 54/188)
+[635000] PC=0x000000f0 WB x16 <= 00000001 (Count: 55/188)
+[645000] PC=0x000000f4 WB x10 <= 00000000 (Count: 56/188)
+[655000] PC=0x000000f8 WB x8 <= 00000040 (Count: 57/188)
+[665000] PC=0x000000fc WB x10 <= 4056267f (Count: 58/188)
+[675000] PC=0x00000100 WB x3 <= 93f19227 (Count: 59/188)
+[685000] PC=0x00000104 WB x23 <= abe5a2d6 (Count: 60/188)
+[695000] PC=0x00000108 WB x28 <= ffffffff (Count: 61/188)
+[705000] PC=0x0000010c WB x3 <= 00000000 (Count: 62/188)
+[715000] PC=0x00000110 WB x4 <= 00000001 (Count: 63/188)
+[725000] PC=0x00000114 WB x21 <= fffffffe (Count: 64/188)
+[735000] PC=0x00000118 WB x3 <= 4b7f6797 (Count: 65/188)
+[745000] PC=0x0000011c WB x18 <= 000002af (Count: 66/188)
+[755000] PC=0x00000120 WB x2 <= 00000000 (Count: 67/188)
+[775000] PC=0x00000128 WB x16 <= 00000000 (Count: 68/188)
+[785000] PC=0x0000012c WB x13 <= 00000000 (Count: 69/188)
+[795000] PC=0x00000130 WB x5 <= 00000000 (Count: 70/188)
+[805000] PC=0x00000134 WB x26 <= ff0d0c72 (Count: 71/188)
+[815000] PC=0x00000138 WB x14 <= 00000001 (Count: 72/188)
+[825000] PC=0x0000013c WB x23 <= 00000001 (Count: 73/188)
+[835000] PC=0x00000140 WB x14 <= 00000000 (Count: 74/188)
+[845000] PC=0x00000144 WB x18 <= 00000000 (Count: 75/188)
+[855000] PC=0x00000148 WB x5 <= 00000000 (Count: 76/188)
+[865000] PC=0x0000014c WB x24 <= 00000040 (Count: 77/188)
+[875000] PC=0x00000150 WB x23 <= 00000000 (Count: 78/188)
+[885000] PC=0x00000154 WB x31 <= 00000000 (Count: 79/188)
+[895000] PC=0x00000158 WB x19 <= 541a5cfa (Count: 80/188)
+[905000] PC=0x0000015c WB x6 <= 00000001 (Count: 81/188)
+[915000] PC=0x00000160 WB x22 <= 00000000 (Count: 82/188)
+[925000] PC=0x00000164 WB x1 <= 00000001 (Count: 83/188)
+[935000] PC=0x00000168 WB x19 <= 00000000 (Count: 84/188)
+[945000] PC=0x0000016c WB x29 <= 00000000 (Count: 85/188)
+[955000] PC=0x00000170 WB x24 <= 52af6ea5 (Count: 86/188)
+[965000] PC=0x00000174 WB x4 <= 00000003 (Count: 87/188)
+[975000] PC=0x00000178 WB x21 <= 52af6ea5 (Count: 88/188)
+[985000] PC=0x0000017c WB x5 <= 00000000 (Count: 89/188)
+[995000] PC=0x00000180 WB x3 <= 00000000 (Count: 90/188)
+[1005000] PC=0x00000184 WB x26 <= 52af6ea5 (Count: 91/188)
+[1015000] PC=0x00000188 WB x7 <= 52af6ea5 (Count: 92/188)
+[1025000] PC=0x0000018c WB x13 <= 00000000 (Count: 93/188)
+[1035000] PC=0x00000190 WB x26 <= 00000000 (Count: 94/188)
+[1055000] PC=0x00000198 WB x14 <= 00000000 (Count: 95/188)
+[1065000] PC=0x0000019c WB x17 <= 00000000 (Count: 96/188)
+[1075000] PC=0x000001a0 WB x22 <= 00000000 (Count: 97/188)
+[1085000] PC=0x000001a4 WB x31 <= 00000001 (Count: 98/188)
+[1095000] PC=0x000001a8 WB x10 <= 00000001 (Count: 99/188)
+[1105000] PC=0x000001ac WB x19 <= 00000001 (Count: 100/188)
+[1115000] PC=0x000001b0 WB x12 <= 00000000 (Count: 101/188)
+[1125000] PC=0x000001b4 WB x4 <= 00000000 (Count: 102/188)
+[1135000] PC=0x000001b8 WB x18 <= 00000000 (Count: 103/188)
+[1155000] PC=0x000001c0 WB x8 <= 00000040 (Count: 104/188)
+[1165000] PC=0x000001c4 WB x12 <= 00000000 (Count: 105/188)
+[1175000] PC=0x000001c8 WB x24 <= 52af6ea5 (Count: 106/188)
+[1185000] PC=0x000001cc WB x15 <= 00000040 (Count: 107/188)
+[1195000] PC=0x000001d0 WB x17 <= 00000000 (Count: 108/188)
+[1205000] PC=0x000001d4 WB x23 <= 00000000 (Count: 109/188)
+[1215000] PC=0x000001d8 WB x9 <= 00000000 (Count: 110/188)
+[1235000] PC=0x000001e0 WB x8 <= 00000000 (Count: 111/188)
+[1245000] PC=0x000001e4 WB x20 <= 00000001 (Count: 112/188)
+[1255000] PC=0x000001e8 WB x10 <= 00000000 (Count: 113/188)
+[1265000] PC=0x000001ec WB x27 <= 00000002 (Count: 114/188)
+[1275000] PC=0x000001f0 WB x7 <= 00000000 (Count: 115/188)
+[1285000] PC=0x000001f4 WB x25 <= 00000080 (Count: 116/188)
+[1295000] PC=0x000001f8 WB x24 <= 00000000 (Count: 117/188)
+[1305000] PC=0x000001fc WB x21 <= 00000001 (Count: 118/188)
+[1325000] PC=0x00000204 WB x5 <= 00000000 (Count: 119/188)
+[1335000] PC=0x00000208 WB x13 <= 00000002 (Count: 120/188)
+[1345000] PC=0x0000020c WB x10 <= 00000000 (Count: 121/188)
+[1355000] PC=0x00000210 WB x1 <= 00000041 (Count: 122/188)
+[1375000] PC=0x00000218 WB x25 <= 00000001 (Count: 123/188)
+[1385000] PC=0x0000021c WB x31 <= 00000000 (Count: 124/188)
+[1395000] PC=0x00000220 WB x16 <= 00000000 (Count: 125/188)
+[1415000] PC=0x00000228 WB x8 <= 00000000 (Count: 126/188)
+[1425000] PC=0x0000022c WB x4 <= 00000000 (Count: 127/188)
+[1435000] PC=0x00000230 WB x13 <= 00000000 (Count: 128/188)
+[1445000] PC=0x00000234 WB x30 <= 00000001 (Count: 129/188)
+[1455000] PC=0x00000238 WB x30 <= 00000000 (Count: 130/188)
+[1465000] PC=0x0000023c WB x18 <= 00000000 (Count: 131/188)
+[1475000] PC=0x00000240 WB x17 <= 00000040 (Count: 132/188)
+[1485000] PC=0x00000244 WB x1 <= 00000000 (Count: 133/188)
+[1495000] PC=0x00000248 WB x26 <= 00000001 (Count: 134/188)
+[1505000] PC=0x0000024c WB x11 <= 00000000 (Count: 135/188)
+[1515000] PC=0x00000250 WB x15 <= 00000001 (Count: 136/188)
+[1525000] PC=0x00000254 WB x24 <= 00000000 (Count: 137/188)
+[1535000] PC=0x00000258 WB x18 <= 00000001 (Count: 138/188)
+[1545000] PC=0x0000025c WB x28 <= 00000000 (Count: 139/188)
+[1555000] PC=0x00000260 WB x19 <= 00000000 (Count: 140/188)
+[1565000] PC=0x00000264 WB x29 <= 00000001 (Count: 141/188)
+[1575000] PC=0x00000268 WB x24 <= 00000001 (Count: 142/188)
+[1585000] PC=0x0000026c WB x25 <= 00000000 (Count: 143/188)
+[1595000] PC=0x00000270 WB x4 <= 00000000 (Count: 144/188)
+[1605000] PC=0x00000274 WB x16 <= 00000001 (Count: 145/188)
+[1615000] PC=0x00000278 WB x24 <= 00000000 (Count: 146/188)
+[1625000] PC=0x0000027c WB x3 <= 00000001 (Count: 147/188)
+[1635000] PC=0x00000280 WB x31 <= 00000000 (Count: 148/188)
+[1645000] PC=0x00000284 WB x30 <= 00000000 (Count: 149/188)
+[1655000] PC=0x00000288 WB x19 <= 00000001 (Count: 150/188)
+[1675000] PC=0x00000290 WB x31 <= 00000000 (Count: 151/188)
+[1685000] PC=0x00000294 WB x28 <= 00000040 (Count: 152/188)
+[1695000] PC=0x00000298 WB x9 <= 00000000 (Count: 153/188)
+[1705000] PC=0x0000029c WB x3 <= 00000001 (Count: 154/188)
+[1715000] PC=0x000002a0 WB x22 <= 00000001 (Count: 155/188)
+[1725000] PC=0x000002a4 WB x9 <= 00000000 (Count: 156/188)
+[1735000] PC=0x000002a8 WB x16 <= 00000080 (Count: 157/188)
+[1745000] PC=0x000002ac WB x8 <= 00000000 (Count: 158/188)
+[1755000] PC=0x000002b0 WB x15 <= 00000000 (Count: 159/188)
+[1765000] PC=0x000002b4 WB x12 <= 00000000 (Count: 160/188)
+[1775000] PC=0x000002b8 WB x25 <= 00000000 (Count: 161/188)
+[1785000] PC=0x000002bc WB x20 <= 00000000 (Count: 162/188)
+[1795000] PC=0x000002c0 WB x16 <= 00000001 (Count: 163/188)
+[1805000] PC=0x000002c4 WB x24 <= 00000001 (Count: 164/188)
+[1815000] PC=0x000002c8 WB x14 <= 00000000 (Count: 165/188)
+[1825000] PC=0x000002cc WB x20 <= 00000040 (Count: 166/188)
+[1835000] PC=0x000002d0 WB x23 <= 00000040 (Count: 167/188)
+[1845000] PC=0x000002d4 WB x8 <= 00000000 (Count: 168/188)
+[1855000] PC=0x000002d8 WB x19 <= 00000001 (Count: 169/188)
+[1865000] PC=0x000002dc WB x1 <= 00000000 (Count: 170/188)
+[1875000] PC=0x000002e0 WB x29 <= 00000000 (Count: 171/188)
+[1895000] PC=0x000002e8 WB x4 <= 00000000 (Count: 172/188)
+[1905000] PC=0x000002ec WB x29 <= 00000042 (Count: 173/188)
+[1915000] PC=0x000002f0 WB x20 <= 00000002 (Count: 174/188)
+[1925000] PC=0x000002f4 WB x15 <= 00000000 (Count: 175/188)
+[1935000] PC=0x000002f8 WB x25 <= 00000010 (Count: 176/188)
+[1945000] PC=0x000002fc WB x18 <= 00000000 (Count: 177/188)
+[1955000] PC=0x00000300 WB x7 <= 00000001 (Count: 178/188)
+[1965000] PC=0x00000304 WB x12 <= 00000001 (Count: 179/188)
+[1985000] PC=0x0000030c WB x20 <= 00000000 (Count: 180/188)
+[1995000] PC=0x00000310 WB x26 <= 00000001 (Count: 181/188)
+[2005000] PC=0x00000314 WB x25 <= 00000010 (Count: 182/188)
+[2015000] PC=0x00000318 WB x5 <= 00000000 (Count: 183/188)
+[2025000] PC=0x0000031c WB x3 <= 00000000 (Count: 184/188)
+[2035000] PC=0x00000320 WB x13 <= 00000000 (Count: 185/188)
+[2055000] PC=0x00000328 WB x9 <= 00000000 (Count: 186/188)
+[2065000] PC=0x0000032c WB x4 <= 00000000 (Count: 187/188)
+[2075000] PC=0x00000330 WB x23 <= 00000000 (Count: 188/188)
+
+==========================================================================
+ ARCHITECTURAL STATE COMPARISON (SHADOW RF vs DUT RF)
+==========================================================================
+| REG   | EXPECTED     | ACTUAL       | STATUS |
+--------------------------------------------------------------------------
+| x0    | 0x00000000   | 0x00000000   | PASS   |
+| x1    | 0x00000000   | 0x00000000   | PASS   |
+| x2    | 0x00000000   | 0x00000000   | PASS   |
+| x3    | 0x00000000   | 0x00000000   | PASS   |
+| x4    | 0x00000000   | 0x00000000   | PASS   |
+| x29   | 0x00000042   | 0x00000042   | PASS   |
+| x30   | 0x00000000   | 0x00000000   | PASS   |
+| x31   | 0x00000000   | 0x00000000   | PASS   |
+
+FINAL DUT REGISTER FILE
+x0 DUT=00000000 SHADOW=00000000
+x1 DUT=00000000 SHADOW=00000000
+x2 DUT=00000000 SHADOW=00000000
+x3 DUT=00000000 SHADOW=00000000
+x4 DUT=00000000 SHADOW=00000000
+x5 DUT=00000000 SHADOW=00000000
+x6 DUT=00000001 SHADOW=00000001
+x7 DUT=00000001 SHADOW=00000001
+x8 DUT=00000000 SHADOW=00000000
+x9 DUT=00000000 SHADOW=00000000
+x10 DUT=00000000 SHADOW=00000000
+x11 DUT=00000000 SHADOW=00000000
+x12 DUT=00000001 SHADOW=00000001
+x13 DUT=00000000 SHADOW=00000000
+x14 DUT=00000000 SHADOW=00000000
+x15 DUT=00000000 SHADOW=00000000
+x16 DUT=00000001 SHADOW=00000001
+x17 DUT=00000040 SHADOW=00000040
+x18 DUT=00000000 SHADOW=00000000
+x19 DUT=00000001 SHADOW=00000001
+x20 DUT=00000000 SHADOW=00000000
+x21 DUT=00000001 SHADOW=00000001
+x22 DUT=00000001 SHADOW=00000001
+x23 DUT=00000000 SHADOW=00000000
+x24 DUT=00000001 SHADOW=00000001
+x25 DUT=00000010 SHADOW=00000010
+x26 DUT=00000001 SHADOW=00000001
+x27 DUT=00000002 SHADOW=00000002
+x28 DUT=00000040 SHADOW=00000040
+x29 DUT=00000042 SHADOW=00000042
+x30 DUT=00000000 SHADOW=00000000
+x31 DUT=00000000 SHADOW=00000000
+
+==========================================================================
+ R-TYPE RANDOM REGRESSION SUMMARY (SEED: 1001)
+==========================================================================
+ Registers Checked : 32
+ Passed            : 32
+ Failed            : 0
+ ADD  Count        : 21
+ SUB  Count        : 19
+ SLL  Count        : 23
+ SLT  Count        : 15
+ SLTU Count        : 21
+ XOR  Count        : 14
+ SRL  Count        : 25
+ SRA  Count        : 30
+ OR   Count        : 10
+ AND  Count        : 22
+
+ STATUS            : SIGN-OFF PASS
+==========================================================================
+
+Simulation complete via $finish(1) at time 2176 NS + 0
+./core_R_type_tb.sv:344         $finish;
+ncsim> exit
+
+coverage setup:
+  workdir  :  ./cov_work
+  dutinst  :  dp_ram(dp_ram)
+  dutinst  :  half_adder(half_adder)
+  dutinst  :  core_R_type_rand_tb(core_R_type_rand_tb)
+  scope    :  scope
+  testname :  seed_1001
+
+coverage files:
+  model(design data) :  ./cov_work/scope/icc_5cfaadb3_00000000.ucm (reused)
+  data               :  ./cov_work/scope/seed_1001/icc_5cfaadb3_00000000.ucd
+make[1]: Leaving directory `/home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl'
+make run SEED=3003
+make[1]: Entering directory `/home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl'
+irun -sv \
+	-access +rwc \
+	-linedebug \
+	-coverage all \
+	-covoverwrite \
+	-covtest seed_3003 \
+	alu_in2_mux.sv Memory_Ctrl.sv sp_ram.sv instr_ram.sv data_ram.sv dp_ram.sv Stage1.sv alu_mul_mux.sv Stage2.sv LSU_RVX.sv pc_mux.sv immediate_generator.sv register_file.sv Control_Unit.sv CoreRV.sv stall_controller.sv memtoreg_mux.sv alu.sv alu_in1_mux.sv Pipelined_M.sv /home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl/core_R_type_tb.sv \
+	-svseed 3003 
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+irun(64): 15.20-s051: (c) Copyright 1995-2018 Cadence Design Systems, Inc.
+irun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+ncsim: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+ncsim: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+Loading snapshot worklib.dp_ram:sv .................... Done
+SVSEED set from command line: 3003
+ncsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+ncsim> source /home/install/INCISIVE152/tools/inca/files/ncsimrc
+ncsim> run
+
+[INFO] Starting R-Type Random Regression run with SEED = 1001
+
+=== RF PRELOAD CHECK ===
+========================
+
+
+[DEBUG TRACE] First 15 Random R-Type Instructions injected
+-----------------------------------------------------------------------------------------
+PC: 0000 | ADD   x0 , x11, x18
+PC: 0004 | SUB   x9 , x12, x20
+PC: 0008 | SLL   x16, x19, x0 
+PC: 0012 | SLT   x6 , x19, x28
+PC: 0016 | SLTU  x26, x16, x13
+PC: 0020 | XOR   x27, x13, x16
+PC: 0024 | SRL   x16, x16, x22
+PC: 0028 | SRA   x28, x28, x1 
+PC: 0032 | OR    x13, x25, x19
+PC: 0036 | AND   x16, x20, x10
+PC: 0040 | AND   x8 , x28, x0 
+PC: 0044 | OR    x16, x0 , x26
+PC: 0048 | SRL   x24, x14, x20
+PC: 0052 | ADD   x15, x19, x18
+PC: 0056 | SRL   x5 , x14, x17
+-----------------------------------------------------------------------------------------
+
+[INFO] Waiting for 188 valid register writebacks to complete...
+[95000] PC=0x00000018 WB x9 <= 3a982e76 (Count: 1/188)
+[105000] PC=0x0000001c WB x16 <= c385a287 (Count: 2/188)
+[115000] PC=0x00000020 WB x6 <= 00000001 (Count: 3/188)
+[125000] PC=0x00000024 WB x26 <= 00000000 (Count: 4/188)
+[135000] PC=0x00000028 WB x27 <= dc4c77b8 (Count: 5/188)
+[145000] PC=0x0000002c WB x16 <= 00000187 (Count: 6/188)
+[155000] PC=0x00000030 WB x28 <= fffbbcb8 (Count: 7/188)
+[165000] PC=0x00000034 WB x13 <= c3b5a387 (Count: 8/188)
+[175000] PC=0x00000038 WB x16 <= 288d8051 (Count: 9/188)
+[185000] PC=0x0000003c WB x8 <= 00000000 (Count: 10/188)
+[195000] PC=0x00000040 WB x16 <= 00000000 (Count: 11/188)
+[205000] PC=0x00000044 WB x24 <= 00000043 (Count: 12/188)
+[215000] PC=0x00000048 WB x15 <= 8686390d (Count: 13/188)
+[225000] PC=0x0000004c WB x5 <= 0000043b (Count: 14/188)
+[235000] PC=0x00000050 WB x24 <= bc3f7f78 (Count: 15/188)
+[245000] PC=0x00000054 WB x14 <= 174a31ae (Count: 16/188)
+[255000] PC=0x00000058 WB x7 <= ff0d0c72 (Count: 17/188)
+[265000] PC=0x0000005c WB x2 <= 01870b45 (Count: 18/188)
+[275000] PC=0x00000060 WB x4 <= 00000000 (Count: 19/188)
+[285000] PC=0x00000064 WB x2 <= 40562681 (Count: 20/188)
+[295000] PC=0x00000068 WB x18 <= 03125342 (Count: 21/188)
+[305000] PC=0x0000006c WB x6 <= a4c69849 (Count: 22/188)
+[315000] PC=0x00000070 WB x10 <= ffff0e16 (Count: 23/188)
+[325000] PC=0x00000074 WB x6 <= 9d800000 (Count: 24/188)
+[335000] PC=0x00000078 WB x11 <= 00000000 (Count: 25/188)
+[345000] PC=0x0000007c WB x31 <= 00000000 (Count: 26/188)
+[355000] PC=0x00000080 WB x25 <= c56ac68a (Count: 27/188)
+[365000] PC=0x00000084 WB x23 <= 00000001 (Count: 28/188)
+[375000] PC=0x00000088 WB x6 <= c384b09d (Count: 29/188)
+[385000] PC=0x0000008c WB x6 <= 0001121a (Count: 30/188)
+[395000] PC=0x00000090 WB x25 <= 00000000 (Count: 31/188)
+[405000] PC=0x00000094 WB x26 <= 00000030 (Count: 32/188)
+[415000] PC=0x00000098 WB x18 <= 00000000 (Count: 33/188)
+[425000] PC=0x0000009c WB x29 <= 00000000 (Count: 34/188)
+[435000] PC=0x000000a0 WB x14 <= 00000000 (Count: 35/188)
+[445000] PC=0x000000a4 WB x29 <= 000000ea (Count: 36/188)
+[455000] PC=0x000000a8 WB x20 <= 000002af (Count: 37/188)
+[465000] PC=0x000000ac WB x15 <= 52af6ea5 (Count: 38/188)
+[475000] PC=0x000000b0 WB x19 <= 00000000 (Count: 39/188)
+[485000] PC=0x000000b4 WB x24 <= fffbbcb8 (Count: 40/188)
+[495000] PC=0x000000b8 WB x14 <= 00000001 (Count: 41/188)
+[505000] PC=0x000000bc WB x17 <= 00000000 (Count: 42/188)
+[515000] PC=0x000000c0 WB x29 <= 00000002 (Count: 43/188)
+[525000] PC=0x000000c4 WB x13 <= 00000157 (Count: 44/188)
+[535000] PC=0x000000c8 WB x25 <= 00000002 (Count: 45/188)
+[545000] PC=0x000000cc WB x1 <= 00000000 (Count: 46/188)
+[555000] PC=0x000000d0 WB x28 <= 00011655 (Count: 47/188)
+[565000] PC=0x000000d4 WB x8 <= 00000001 (Count: 48/188)
+[575000] PC=0x000000d8 WB x10 <= 00000002 (Count: 49/188)
+[585000] PC=0x000000dc WB x9 <= 00000000 (Count: 50/188)
+[595000] PC=0x000000e0 WB x23 <= c15efcbb (Count: 51/188)
+[605000] PC=0x000000e4 WB x29 <= abe5a306 (Count: 52/188)
+[615000] PC=0x000000e8 WB x12 <= 00000000 (Count: 53/188)
+[625000] PC=0x000000ec WB x24 <= 4b296396 (Count: 54/188)
+[635000] PC=0x000000f0 WB x16 <= 00000001 (Count: 55/188)
+[645000] PC=0x000000f4 WB x10 <= 00000000 (Count: 56/188)
+[655000] PC=0x000000f8 WB x8 <= 00000040 (Count: 57/188)
+[665000] PC=0x000000fc WB x10 <= 4056267f (Count: 58/188)
+[675000] PC=0x00000100 WB x3 <= 93f19227 (Count: 59/188)
+[685000] PC=0x00000104 WB x23 <= abe5a2d6 (Count: 60/188)
+[695000] PC=0x00000108 WB x28 <= ffffffff (Count: 61/188)
+[705000] PC=0x0000010c WB x3 <= 00000000 (Count: 62/188)
+[715000] PC=0x00000110 WB x4 <= 00000001 (Count: 63/188)
+[725000] PC=0x00000114 WB x21 <= fffffffe (Count: 64/188)
+[735000] PC=0x00000118 WB x3 <= 4b7f6797 (Count: 65/188)
+[745000] PC=0x0000011c WB x18 <= 000002af (Count: 66/188)
+[755000] PC=0x00000120 WB x2 <= 00000000 (Count: 67/188)
+[775000] PC=0x00000128 WB x16 <= 00000000 (Count: 68/188)
+[785000] PC=0x0000012c WB x13 <= 00000000 (Count: 69/188)
+[795000] PC=0x00000130 WB x5 <= 00000000 (Count: 70/188)
+[805000] PC=0x00000134 WB x26 <= ff0d0c72 (Count: 71/188)
+[815000] PC=0x00000138 WB x14 <= 00000001 (Count: 72/188)
+[825000] PC=0x0000013c WB x23 <= 00000001 (Count: 73/188)
+[835000] PC=0x00000140 WB x14 <= 00000000 (Count: 74/188)
+[845000] PC=0x00000144 WB x18 <= 00000000 (Count: 75/188)
+[855000] PC=0x00000148 WB x5 <= 00000000 (Count: 76/188)
+[865000] PC=0x0000014c WB x24 <= 00000040 (Count: 77/188)
+[875000] PC=0x00000150 WB x23 <= 00000000 (Count: 78/188)
+[885000] PC=0x00000154 WB x31 <= 00000000 (Count: 79/188)
+[895000] PC=0x00000158 WB x19 <= 541a5cfa (Count: 80/188)
+[905000] PC=0x0000015c WB x6 <= 00000001 (Count: 81/188)
+[915000] PC=0x00000160 WB x22 <= 00000000 (Count: 82/188)
+[925000] PC=0x00000164 WB x1 <= 00000001 (Count: 83/188)
+[935000] PC=0x00000168 WB x19 <= 00000000 (Count: 84/188)
+[945000] PC=0x0000016c WB x29 <= 00000000 (Count: 85/188)
+[955000] PC=0x00000170 WB x24 <= 52af6ea5 (Count: 86/188)
+[965000] PC=0x00000174 WB x4 <= 00000003 (Count: 87/188)
+[975000] PC=0x00000178 WB x21 <= 52af6ea5 (Count: 88/188)
+[985000] PC=0x0000017c WB x5 <= 00000000 (Count: 89/188)
+[995000] PC=0x00000180 WB x3 <= 00000000 (Count: 90/188)
+[1005000] PC=0x00000184 WB x26 <= 52af6ea5 (Count: 91/188)
+[1015000] PC=0x00000188 WB x7 <= 52af6ea5 (Count: 92/188)
+[1025000] PC=0x0000018c WB x13 <= 00000000 (Count: 93/188)
+[1035000] PC=0x00000190 WB x26 <= 00000000 (Count: 94/188)
+[1055000] PC=0x00000198 WB x14 <= 00000000 (Count: 95/188)
+[1065000] PC=0x0000019c WB x17 <= 00000000 (Count: 96/188)
+[1075000] PC=0x000001a0 WB x22 <= 00000000 (Count: 97/188)
+[1085000] PC=0x000001a4 WB x31 <= 00000001 (Count: 98/188)
+[1095000] PC=0x000001a8 WB x10 <= 00000001 (Count: 99/188)
+[1105000] PC=0x000001ac WB x19 <= 00000001 (Count: 100/188)
+[1115000] PC=0x000001b0 WB x12 <= 00000000 (Count: 101/188)
+[1125000] PC=0x000001b4 WB x4 <= 00000000 (Count: 102/188)
+[1135000] PC=0x000001b8 WB x18 <= 00000000 (Count: 103/188)
+[1155000] PC=0x000001c0 WB x8 <= 00000040 (Count: 104/188)
+[1165000] PC=0x000001c4 WB x12 <= 00000000 (Count: 105/188)
+[1175000] PC=0x000001c8 WB x24 <= 52af6ea5 (Count: 106/188)
+[1185000] PC=0x000001cc WB x15 <= 00000040 (Count: 107/188)
+[1195000] PC=0x000001d0 WB x17 <= 00000000 (Count: 108/188)
+[1205000] PC=0x000001d4 WB x23 <= 00000000 (Count: 109/188)
+[1215000] PC=0x000001d8 WB x9 <= 00000000 (Count: 110/188)
+[1235000] PC=0x000001e0 WB x8 <= 00000000 (Count: 111/188)
+[1245000] PC=0x000001e4 WB x20 <= 00000001 (Count: 112/188)
+[1255000] PC=0x000001e8 WB x10 <= 00000000 (Count: 113/188)
+[1265000] PC=0x000001ec WB x27 <= 00000002 (Count: 114/188)
+[1275000] PC=0x000001f0 WB x7 <= 00000000 (Count: 115/188)
+[1285000] PC=0x000001f4 WB x25 <= 00000080 (Count: 116/188)
+[1295000] PC=0x000001f8 WB x24 <= 00000000 (Count: 117/188)
+[1305000] PC=0x000001fc WB x21 <= 00000001 (Count: 118/188)
+[1325000] PC=0x00000204 WB x5 <= 00000000 (Count: 119/188)
+[1335000] PC=0x00000208 WB x13 <= 00000002 (Count: 120/188)
+[1345000] PC=0x0000020c WB x10 <= 00000000 (Count: 121/188)
+[1355000] PC=0x00000210 WB x1 <= 00000041 (Count: 122/188)
+[1375000] PC=0x00000218 WB x25 <= 00000001 (Count: 123/188)
+[1385000] PC=0x0000021c WB x31 <= 00000000 (Count: 124/188)
+[1395000] PC=0x00000220 WB x16 <= 00000000 (Count: 125/188)
+[1415000] PC=0x00000228 WB x8 <= 00000000 (Count: 126/188)
+[1425000] PC=0x0000022c WB x4 <= 00000000 (Count: 127/188)
+[1435000] PC=0x00000230 WB x13 <= 00000000 (Count: 128/188)
+[1445000] PC=0x00000234 WB x30 <= 00000001 (Count: 129/188)
+[1455000] PC=0x00000238 WB x30 <= 00000000 (Count: 130/188)
+[1465000] PC=0x0000023c WB x18 <= 00000000 (Count: 131/188)
+[1475000] PC=0x00000240 WB x17 <= 00000040 (Count: 132/188)
+[1485000] PC=0x00000244 WB x1 <= 00000000 (Count: 133/188)
+[1495000] PC=0x00000248 WB x26 <= 00000001 (Count: 134/188)
+[1505000] PC=0x0000024c WB x11 <= 00000000 (Count: 135/188)
+[1515000] PC=0x00000250 WB x15 <= 00000001 (Count: 136/188)
+[1525000] PC=0x00000254 WB x24 <= 00000000 (Count: 137/188)
+[1535000] PC=0x00000258 WB x18 <= 00000001 (Count: 138/188)
+[1545000] PC=0x0000025c WB x28 <= 00000000 (Count: 139/188)
+[1555000] PC=0x00000260 WB x19 <= 00000000 (Count: 140/188)
+[1565000] PC=0x00000264 WB x29 <= 00000001 (Count: 141/188)
+[1575000] PC=0x00000268 WB x24 <= 00000001 (Count: 142/188)
+[1585000] PC=0x0000026c WB x25 <= 00000000 (Count: 143/188)
+[1595000] PC=0x00000270 WB x4 <= 00000000 (Count: 144/188)
+[1605000] PC=0x00000274 WB x16 <= 00000001 (Count: 145/188)
+[1615000] PC=0x00000278 WB x24 <= 00000000 (Count: 146/188)
+[1625000] PC=0x0000027c WB x3 <= 00000001 (Count: 147/188)
+[1635000] PC=0x00000280 WB x31 <= 00000000 (Count: 148/188)
+[1645000] PC=0x00000284 WB x30 <= 00000000 (Count: 149/188)
+[1655000] PC=0x00000288 WB x19 <= 00000001 (Count: 150/188)
+[1675000] PC=0x00000290 WB x31 <= 00000000 (Count: 151/188)
+[1685000] PC=0x00000294 WB x28 <= 00000040 (Count: 152/188)
+[1695000] PC=0x00000298 WB x9 <= 00000000 (Count: 153/188)
+[1705000] PC=0x0000029c WB x3 <= 00000001 (Count: 154/188)
+[1715000] PC=0x000002a0 WB x22 <= 00000001 (Count: 155/188)
+[1725000] PC=0x000002a4 WB x9 <= 00000000 (Count: 156/188)
+[1735000] PC=0x000002a8 WB x16 <= 00000080 (Count: 157/188)
+[1745000] PC=0x000002ac WB x8 <= 00000000 (Count: 158/188)
+[1755000] PC=0x000002b0 WB x15 <= 00000000 (Count: 159/188)
+[1765000] PC=0x000002b4 WB x12 <= 00000000 (Count: 160/188)
+[1775000] PC=0x000002b8 WB x25 <= 00000000 (Count: 161/188)
+[1785000] PC=0x000002bc WB x20 <= 00000000 (Count: 162/188)
+[1795000] PC=0x000002c0 WB x16 <= 00000001 (Count: 163/188)
+[1805000] PC=0x000002c4 WB x24 <= 00000001 (Count: 164/188)
+[1815000] PC=0x000002c8 WB x14 <= 00000000 (Count: 165/188)
+[1825000] PC=0x000002cc WB x20 <= 00000040 (Count: 166/188)
+[1835000] PC=0x000002d0 WB x23 <= 00000040 (Count: 167/188)
+[1845000] PC=0x000002d4 WB x8 <= 00000000 (Count: 168/188)
+[1855000] PC=0x000002d8 WB x19 <= 00000001 (Count: 169/188)
+[1865000] PC=0x000002dc WB x1 <= 00000000 (Count: 170/188)
+[1875000] PC=0x000002e0 WB x29 <= 00000000 (Count: 171/188)
+[1895000] PC=0x000002e8 WB x4 <= 00000000 (Count: 172/188)
+[1905000] PC=0x000002ec WB x29 <= 00000042 (Count: 173/188)
+[1915000] PC=0x000002f0 WB x20 <= 00000002 (Count: 174/188)
+[1925000] PC=0x000002f4 WB x15 <= 00000000 (Count: 175/188)
+[1935000] PC=0x000002f8 WB x25 <= 00000010 (Count: 176/188)
+[1945000] PC=0x000002fc WB x18 <= 00000000 (Count: 177/188)
+[1955000] PC=0x00000300 WB x7 <= 00000001 (Count: 178/188)
+[1965000] PC=0x00000304 WB x12 <= 00000001 (Count: 179/188)
+[1985000] PC=0x0000030c WB x20 <= 00000000 (Count: 180/188)
+[1995000] PC=0x00000310 WB x26 <= 00000001 (Count: 181/188)
+[2005000] PC=0x00000314 WB x25 <= 00000010 (Count: 182/188)
+[2015000] PC=0x00000318 WB x5 <= 00000000 (Count: 183/188)
+[2025000] PC=0x0000031c WB x3 <= 00000000 (Count: 184/188)
+[2035000] PC=0x00000320 WB x13 <= 00000000 (Count: 185/188)
+[2055000] PC=0x00000328 WB x9 <= 00000000 (Count: 186/188)
+[2065000] PC=0x0000032c WB x4 <= 00000000 (Count: 187/188)
+[2075000] PC=0x00000330 WB x23 <= 00000000 (Count: 188/188)
+
+==========================================================================
+ ARCHITECTURAL STATE COMPARISON (SHADOW RF vs DUT RF)
+==========================================================================
+| REG   | EXPECTED     | ACTUAL       | STATUS |
+--------------------------------------------------------------------------
+| x0    | 0x00000000   | 0x00000000   | PASS   |
+| x1    | 0x00000000   | 0x00000000   | PASS   |
+| x2    | 0x00000000   | 0x00000000   | PASS   |
+| x3    | 0x00000000   | 0x00000000   | PASS   |
+| x4    | 0x00000000   | 0x00000000   | PASS   |
+| x29   | 0x00000042   | 0x00000042   | PASS   |
+| x30   | 0x00000000   | 0x00000000   | PASS   |
+| x31   | 0x00000000   | 0x00000000   | PASS   |
+
+FINAL DUT REGISTER FILE
+x0 DUT=00000000 SHADOW=00000000
+x1 DUT=00000000 SHADOW=00000000
+x2 DUT=00000000 SHADOW=00000000
+x3 DUT=00000000 SHADOW=00000000
+x4 DUT=00000000 SHADOW=00000000
+x5 DUT=00000000 SHADOW=00000000
+x6 DUT=00000001 SHADOW=00000001
+x7 DUT=00000001 SHADOW=00000001
+x8 DUT=00000000 SHADOW=00000000
+x9 DUT=00000000 SHADOW=00000000
+x10 DUT=00000000 SHADOW=00000000
+x11 DUT=00000000 SHADOW=00000000
+x12 DUT=00000001 SHADOW=00000001
+x13 DUT=00000000 SHADOW=00000000
+x14 DUT=00000000 SHADOW=00000000
+x15 DUT=00000000 SHADOW=00000000
+x16 DUT=00000001 SHADOW=00000001
+x17 DUT=00000040 SHADOW=00000040
+x18 DUT=00000000 SHADOW=00000000
+x19 DUT=00000001 SHADOW=00000001
+x20 DUT=00000000 SHADOW=00000000
+x21 DUT=00000001 SHADOW=00000001
+x22 DUT=00000001 SHADOW=00000001
+x23 DUT=00000000 SHADOW=00000000
+x24 DUT=00000001 SHADOW=00000001
+x25 DUT=00000010 SHADOW=00000010
+x26 DUT=00000001 SHADOW=00000001
+x27 DUT=00000002 SHADOW=00000002
+x28 DUT=00000040 SHADOW=00000040
+x29 DUT=00000042 SHADOW=00000042
+x30 DUT=00000000 SHADOW=00000000
+x31 DUT=00000000 SHADOW=00000000
+
+==========================================================================
+ R-TYPE RANDOM REGRESSION SUMMARY (SEED: 1001)
+==========================================================================
+ Registers Checked : 32
+ Passed            : 32
+ Failed            : 0
+ ADD  Count        : 21
+ SUB  Count        : 19
+ SLL  Count        : 23
+ SLT  Count        : 15
+ SLTU Count        : 21
+ XOR  Count        : 14
+ SRL  Count        : 25
+ SRA  Count        : 30
+ OR   Count        : 10
+ AND  Count        : 22
+
+ STATUS            : SIGN-OFF PASS
+==========================================================================
+
+Simulation complete via $finish(1) at time 2176 NS + 0
+./core_R_type_tb.sv:344         $finish;
+ncsim> exit
+
+coverage setup:
+  workdir  :  ./cov_work
+  dutinst  :  dp_ram(dp_ram)
+  dutinst  :  half_adder(half_adder)
+  dutinst  :  core_R_type_rand_tb(core_R_type_rand_tb)
+  scope    :  scope
+  testname :  seed_3003
+
+coverage files:
+  model(design data) :  ./cov_work/scope/icc_5cfaadb3_00000000.ucm (reused)
+  data               :  ./cov_work/scope/seed_3003/icc_5cfaadb3_00000000.ucd
+make[1]: Leaving directory `/home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl'
+make run SEED=4455
+make[1]: Entering directory `/home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl'
+irun -sv \
+	-access +rwc \
+	-linedebug \
+	-coverage all \
+	-covoverwrite \
+	-covtest seed_4455 \
+	alu_in2_mux.sv Memory_Ctrl.sv sp_ram.sv instr_ram.sv data_ram.sv dp_ram.sv Stage1.sv alu_mul_mux.sv Stage2.sv LSU_RVX.sv pc_mux.sv immediate_generator.sv register_file.sv Control_Unit.sv CoreRV.sv stall_controller.sv memtoreg_mux.sv alu.sv alu_in1_mux.sv Pipelined_M.sv /home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl/core_R_type_tb.sv \
+	-svseed 4455 
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+irun(64): 15.20-s051: (c) Copyright 1995-2018 Cadence Design Systems, Inc.
+irun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+ncsim: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+ncsim: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+Loading snapshot worklib.dp_ram:sv .................... Done
+SVSEED set from command line: 4455
+ncsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+ncsim> source /home/install/INCISIVE152/tools/inca/files/ncsimrc
+ncsim> run
+
+[INFO] Starting R-Type Random Regression run with SEED = 1001
+
+=== RF PRELOAD CHECK ===
+========================
+
+
+[DEBUG TRACE] First 15 Random R-Type Instructions injected
+-----------------------------------------------------------------------------------------
+PC: 0000 | ADD   x0 , x11, x18
+PC: 0004 | SUB   x9 , x12, x20
+PC: 0008 | SLL   x16, x19, x0 
+PC: 0012 | SLT   x6 , x19, x28
+PC: 0016 | SLTU  x26, x16, x13
+PC: 0020 | XOR   x27, x13, x16
+PC: 0024 | SRL   x16, x16, x22
+PC: 0028 | SRA   x28, x28, x1 
+PC: 0032 | OR    x13, x25, x19
+PC: 0036 | AND   x16, x20, x10
+PC: 0040 | AND   x8 , x28, x0 
+PC: 0044 | OR    x16, x0 , x26
+PC: 0048 | SRL   x24, x14, x20
+PC: 0052 | ADD   x15, x19, x18
+PC: 0056 | SRL   x5 , x14, x17
+-----------------------------------------------------------------------------------------
+
+[INFO] Waiting for 188 valid register writebacks to complete...
+[95000] PC=0x00000018 WB x9 <= 3a982e76 (Count: 1/188)
+[105000] PC=0x0000001c WB x16 <= c385a287 (Count: 2/188)
+[115000] PC=0x00000020 WB x6 <= 00000001 (Count: 3/188)
+[125000] PC=0x00000024 WB x26 <= 00000000 (Count: 4/188)
+[135000] PC=0x00000028 WB x27 <= dc4c77b8 (Count: 5/188)
+[145000] PC=0x0000002c WB x16 <= 00000187 (Count: 6/188)
+[155000] PC=0x00000030 WB x28 <= fffbbcb8 (Count: 7/188)
+[165000] PC=0x00000034 WB x13 <= c3b5a387 (Count: 8/188)
+[175000] PC=0x00000038 WB x16 <= 288d8051 (Count: 9/188)
+[185000] PC=0x0000003c WB x8 <= 00000000 (Count: 10/188)
+[195000] PC=0x00000040 WB x16 <= 00000000 (Count: 11/188)
+[205000] PC=0x00000044 WB x24 <= 00000043 (Count: 12/188)
+[215000] PC=0x00000048 WB x15 <= 8686390d (Count: 13/188)
+[225000] PC=0x0000004c WB x5 <= 0000043b (Count: 14/188)
+[235000] PC=0x00000050 WB x24 <= bc3f7f78 (Count: 15/188)
+[245000] PC=0x00000054 WB x14 <= 174a31ae (Count: 16/188)
+[255000] PC=0x00000058 WB x7 <= ff0d0c72 (Count: 17/188)
+[265000] PC=0x0000005c WB x2 <= 01870b45 (Count: 18/188)
+[275000] PC=0x00000060 WB x4 <= 00000000 (Count: 19/188)
+[285000] PC=0x00000064 WB x2 <= 40562681 (Count: 20/188)
+[295000] PC=0x00000068 WB x18 <= 03125342 (Count: 21/188)
+[305000] PC=0x0000006c WB x6 <= a4c69849 (Count: 22/188)
+[315000] PC=0x00000070 WB x10 <= ffff0e16 (Count: 23/188)
+[325000] PC=0x00000074 WB x6 <= 9d800000 (Count: 24/188)
+[335000] PC=0x00000078 WB x11 <= 00000000 (Count: 25/188)
+[345000] PC=0x0000007c WB x31 <= 00000000 (Count: 26/188)
+[355000] PC=0x00000080 WB x25 <= c56ac68a (Count: 27/188)
+[365000] PC=0x00000084 WB x23 <= 00000001 (Count: 28/188)
+[375000] PC=0x00000088 WB x6 <= c384b09d (Count: 29/188)
+[385000] PC=0x0000008c WB x6 <= 0001121a (Count: 30/188)
+[395000] PC=0x00000090 WB x25 <= 00000000 (Count: 31/188)
+[405000] PC=0x00000094 WB x26 <= 00000030 (Count: 32/188)
+[415000] PC=0x00000098 WB x18 <= 00000000 (Count: 33/188)
+[425000] PC=0x0000009c WB x29 <= 00000000 (Count: 34/188)
+[435000] PC=0x000000a0 WB x14 <= 00000000 (Count: 35/188)
+[445000] PC=0x000000a4 WB x29 <= 000000ea (Count: 36/188)
+[455000] PC=0x000000a8 WB x20 <= 000002af (Count: 37/188)
+[465000] PC=0x000000ac WB x15 <= 52af6ea5 (Count: 38/188)
+[475000] PC=0x000000b0 WB x19 <= 00000000 (Count: 39/188)
+[485000] PC=0x000000b4 WB x24 <= fffbbcb8 (Count: 40/188)
+[495000] PC=0x000000b8 WB x14 <= 00000001 (Count: 41/188)
+[505000] PC=0x000000bc WB x17 <= 00000000 (Count: 42/188)
+[515000] PC=0x000000c0 WB x29 <= 00000002 (Count: 43/188)
+[525000] PC=0x000000c4 WB x13 <= 00000157 (Count: 44/188)
+[535000] PC=0x000000c8 WB x25 <= 00000002 (Count: 45/188)
+[545000] PC=0x000000cc WB x1 <= 00000000 (Count: 46/188)
+[555000] PC=0x000000d0 WB x28 <= 00011655 (Count: 47/188)
+[565000] PC=0x000000d4 WB x8 <= 00000001 (Count: 48/188)
+[575000] PC=0x000000d8 WB x10 <= 00000002 (Count: 49/188)
+[585000] PC=0x000000dc WB x9 <= 00000000 (Count: 50/188)
+[595000] PC=0x000000e0 WB x23 <= c15efcbb (Count: 51/188)
+[605000] PC=0x000000e4 WB x29 <= abe5a306 (Count: 52/188)
+[615000] PC=0x000000e8 WB x12 <= 00000000 (Count: 53/188)
+[625000] PC=0x000000ec WB x24 <= 4b296396 (Count: 54/188)
+[635000] PC=0x000000f0 WB x16 <= 00000001 (Count: 55/188)
+[645000] PC=0x000000f4 WB x10 <= 00000000 (Count: 56/188)
+[655000] PC=0x000000f8 WB x8 <= 00000040 (Count: 57/188)
+[665000] PC=0x000000fc WB x10 <= 4056267f (Count: 58/188)
+[675000] PC=0x00000100 WB x3 <= 93f19227 (Count: 59/188)
+[685000] PC=0x00000104 WB x23 <= abe5a2d6 (Count: 60/188)
+[695000] PC=0x00000108 WB x28 <= ffffffff (Count: 61/188)
+[705000] PC=0x0000010c WB x3 <= 00000000 (Count: 62/188)
+[715000] PC=0x00000110 WB x4 <= 00000001 (Count: 63/188)
+[725000] PC=0x00000114 WB x21 <= fffffffe (Count: 64/188)
+[735000] PC=0x00000118 WB x3 <= 4b7f6797 (Count: 65/188)
+[745000] PC=0x0000011c WB x18 <= 000002af (Count: 66/188)
+[755000] PC=0x00000120 WB x2 <= 00000000 (Count: 67/188)
+[775000] PC=0x00000128 WB x16 <= 00000000 (Count: 68/188)
+[785000] PC=0x0000012c WB x13 <= 00000000 (Count: 69/188)
+[795000] PC=0x00000130 WB x5 <= 00000000 (Count: 70/188)
+[805000] PC=0x00000134 WB x26 <= ff0d0c72 (Count: 71/188)
+[815000] PC=0x00000138 WB x14 <= 00000001 (Count: 72/188)
+[825000] PC=0x0000013c WB x23 <= 00000001 (Count: 73/188)
+[835000] PC=0x00000140 WB x14 <= 00000000 (Count: 74/188)
+[845000] PC=0x00000144 WB x18 <= 00000000 (Count: 75/188)
+[855000] PC=0x00000148 WB x5 <= 00000000 (Count: 76/188)
+[865000] PC=0x0000014c WB x24 <= 00000040 (Count: 77/188)
+[875000] PC=0x00000150 WB x23 <= 00000000 (Count: 78/188)
+[885000] PC=0x00000154 WB x31 <= 00000000 (Count: 79/188)
+[895000] PC=0x00000158 WB x19 <= 541a5cfa (Count: 80/188)
+[905000] PC=0x0000015c WB x6 <= 00000001 (Count: 81/188)
+[915000] PC=0x00000160 WB x22 <= 00000000 (Count: 82/188)
+[925000] PC=0x00000164 WB x1 <= 00000001 (Count: 83/188)
+[935000] PC=0x00000168 WB x19 <= 00000000 (Count: 84/188)
+[945000] PC=0x0000016c WB x29 <= 00000000 (Count: 85/188)
+[955000] PC=0x00000170 WB x24 <= 52af6ea5 (Count: 86/188)
+[965000] PC=0x00000174 WB x4 <= 00000003 (Count: 87/188)
+[975000] PC=0x00000178 WB x21 <= 52af6ea5 (Count: 88/188)
+[985000] PC=0x0000017c WB x5 <= 00000000 (Count: 89/188)
+[995000] PC=0x00000180 WB x3 <= 00000000 (Count: 90/188)
+[1005000] PC=0x00000184 WB x26 <= 52af6ea5 (Count: 91/188)
+[1015000] PC=0x00000188 WB x7 <= 52af6ea5 (Count: 92/188)
+[1025000] PC=0x0000018c WB x13 <= 00000000 (Count: 93/188)
+[1035000] PC=0x00000190 WB x26 <= 00000000 (Count: 94/188)
+[1055000] PC=0x00000198 WB x14 <= 00000000 (Count: 95/188)
+[1065000] PC=0x0000019c WB x17 <= 00000000 (Count: 96/188)
+[1075000] PC=0x000001a0 WB x22 <= 00000000 (Count: 97/188)
+[1085000] PC=0x000001a4 WB x31 <= 00000001 (Count: 98/188)
+[1095000] PC=0x000001a8 WB x10 <= 00000001 (Count: 99/188)
+[1105000] PC=0x000001ac WB x19 <= 00000001 (Count: 100/188)
+[1115000] PC=0x000001b0 WB x12 <= 00000000 (Count: 101/188)
+[1125000] PC=0x000001b4 WB x4 <= 00000000 (Count: 102/188)
+[1135000] PC=0x000001b8 WB x18 <= 00000000 (Count: 103/188)
+[1155000] PC=0x000001c0 WB x8 <= 00000040 (Count: 104/188)
+[1165000] PC=0x000001c4 WB x12 <= 00000000 (Count: 105/188)
+[1175000] PC=0x000001c8 WB x24 <= 52af6ea5 (Count: 106/188)
+[1185000] PC=0x000001cc WB x15 <= 00000040 (Count: 107/188)
+[1195000] PC=0x000001d0 WB x17 <= 00000000 (Count: 108/188)
+[1205000] PC=0x000001d4 WB x23 <= 00000000 (Count: 109/188)
+[1215000] PC=0x000001d8 WB x9 <= 00000000 (Count: 110/188)
+[1235000] PC=0x000001e0 WB x8 <= 00000000 (Count: 111/188)
+[1245000] PC=0x000001e4 WB x20 <= 00000001 (Count: 112/188)
+[1255000] PC=0x000001e8 WB x10 <= 00000000 (Count: 113/188)
+[1265000] PC=0x000001ec WB x27 <= 00000002 (Count: 114/188)
+[1275000] PC=0x000001f0 WB x7 <= 00000000 (Count: 115/188)
+[1285000] PC=0x000001f4 WB x25 <= 00000080 (Count: 116/188)
+[1295000] PC=0x000001f8 WB x24 <= 00000000 (Count: 117/188)
+[1305000] PC=0x000001fc WB x21 <= 00000001 (Count: 118/188)
+[1325000] PC=0x00000204 WB x5 <= 00000000 (Count: 119/188)
+[1335000] PC=0x00000208 WB x13 <= 00000002 (Count: 120/188)
+[1345000] PC=0x0000020c WB x10 <= 00000000 (Count: 121/188)
+[1355000] PC=0x00000210 WB x1 <= 00000041 (Count: 122/188)
+[1375000] PC=0x00000218 WB x25 <= 00000001 (Count: 123/188)
+[1385000] PC=0x0000021c WB x31 <= 00000000 (Count: 124/188)
+[1395000] PC=0x00000220 WB x16 <= 00000000 (Count: 125/188)
+[1415000] PC=0x00000228 WB x8 <= 00000000 (Count: 126/188)
+[1425000] PC=0x0000022c WB x4 <= 00000000 (Count: 127/188)
+[1435000] PC=0x00000230 WB x13 <= 00000000 (Count: 128/188)
+[1445000] PC=0x00000234 WB x30 <= 00000001 (Count: 129/188)
+[1455000] PC=0x00000238 WB x30 <= 00000000 (Count: 130/188)
+[1465000] PC=0x0000023c WB x18 <= 00000000 (Count: 131/188)
+[1475000] PC=0x00000240 WB x17 <= 00000040 (Count: 132/188)
+[1485000] PC=0x00000244 WB x1 <= 00000000 (Count: 133/188)
+[1495000] PC=0x00000248 WB x26 <= 00000001 (Count: 134/188)
+[1505000] PC=0x0000024c WB x11 <= 00000000 (Count: 135/188)
+[1515000] PC=0x00000250 WB x15 <= 00000001 (Count: 136/188)
+[1525000] PC=0x00000254 WB x24 <= 00000000 (Count: 137/188)
+[1535000] PC=0x00000258 WB x18 <= 00000001 (Count: 138/188)
+[1545000] PC=0x0000025c WB x28 <= 00000000 (Count: 139/188)
+[1555000] PC=0x00000260 WB x19 <= 00000000 (Count: 140/188)
+[1565000] PC=0x00000264 WB x29 <= 00000001 (Count: 141/188)
+[1575000] PC=0x00000268 WB x24 <= 00000001 (Count: 142/188)
+[1585000] PC=0x0000026c WB x25 <= 00000000 (Count: 143/188)
+[1595000] PC=0x00000270 WB x4 <= 00000000 (Count: 144/188)
+[1605000] PC=0x00000274 WB x16 <= 00000001 (Count: 145/188)
+[1615000] PC=0x00000278 WB x24 <= 00000000 (Count: 146/188)
+[1625000] PC=0x0000027c WB x3 <= 00000001 (Count: 147/188)
+[1635000] PC=0x00000280 WB x31 <= 00000000 (Count: 148/188)
+[1645000] PC=0x00000284 WB x30 <= 00000000 (Count: 149/188)
+[1655000] PC=0x00000288 WB x19 <= 00000001 (Count: 150/188)
+[1675000] PC=0x00000290 WB x31 <= 00000000 (Count: 151/188)
+[1685000] PC=0x00000294 WB x28 <= 00000040 (Count: 152/188)
+[1695000] PC=0x00000298 WB x9 <= 00000000 (Count: 153/188)
+[1705000] PC=0x0000029c WB x3 <= 00000001 (Count: 154/188)
+[1715000] PC=0x000002a0 WB x22 <= 00000001 (Count: 155/188)
+[1725000] PC=0x000002a4 WB x9 <= 00000000 (Count: 156/188)
+[1735000] PC=0x000002a8 WB x16 <= 00000080 (Count: 157/188)
+[1745000] PC=0x000002ac WB x8 <= 00000000 (Count: 158/188)
+[1755000] PC=0x000002b0 WB x15 <= 00000000 (Count: 159/188)
+[1765000] PC=0x000002b4 WB x12 <= 00000000 (Count: 160/188)
+[1775000] PC=0x000002b8 WB x25 <= 00000000 (Count: 161/188)
+[1785000] PC=0x000002bc WB x20 <= 00000000 (Count: 162/188)
+[1795000] PC=0x000002c0 WB x16 <= 00000001 (Count: 163/188)
+[1805000] PC=0x000002c4 WB x24 <= 00000001 (Count: 164/188)
+[1815000] PC=0x000002c8 WB x14 <= 00000000 (Count: 165/188)
+[1825000] PC=0x000002cc WB x20 <= 00000040 (Count: 166/188)
+[1835000] PC=0x000002d0 WB x23 <= 00000040 (Count: 167/188)
+[1845000] PC=0x000002d4 WB x8 <= 00000000 (Count: 168/188)
+[1855000] PC=0x000002d8 WB x19 <= 00000001 (Count: 169/188)
+[1865000] PC=0x000002dc WB x1 <= 00000000 (Count: 170/188)
+[1875000] PC=0x000002e0 WB x29 <= 00000000 (Count: 171/188)
+[1895000] PC=0x000002e8 WB x4 <= 00000000 (Count: 172/188)
+[1905000] PC=0x000002ec WB x29 <= 00000042 (Count: 173/188)
+[1915000] PC=0x000002f0 WB x20 <= 00000002 (Count: 174/188)
+[1925000] PC=0x000002f4 WB x15 <= 00000000 (Count: 175/188)
+[1935000] PC=0x000002f8 WB x25 <= 00000010 (Count: 176/188)
+[1945000] PC=0x000002fc WB x18 <= 00000000 (Count: 177/188)
+[1955000] PC=0x00000300 WB x7 <= 00000001 (Count: 178/188)
+[1965000] PC=0x00000304 WB x12 <= 00000001 (Count: 179/188)
+[1985000] PC=0x0000030c WB x20 <= 00000000 (Count: 180/188)
+[1995000] PC=0x00000310 WB x26 <= 00000001 (Count: 181/188)
+[2005000] PC=0x00000314 WB x25 <= 00000010 (Count: 182/188)
+[2015000] PC=0x00000318 WB x5 <= 00000000 (Count: 183/188)
+[2025000] PC=0x0000031c WB x3 <= 00000000 (Count: 184/188)
+[2035000] PC=0x00000320 WB x13 <= 00000000 (Count: 185/188)
+[2055000] PC=0x00000328 WB x9 <= 00000000 (Count: 186/188)
+[2065000] PC=0x0000032c WB x4 <= 00000000 (Count: 187/188)
+[2075000] PC=0x00000330 WB x23 <= 00000000 (Count: 188/188)
+
+==========================================================================
+ ARCHITECTURAL STATE COMPARISON (SHADOW RF vs DUT RF)
+==========================================================================
+| REG   | EXPECTED     | ACTUAL       | STATUS |
+--------------------------------------------------------------------------
+| x0    | 0x00000000   | 0x00000000   | PASS   |
+| x1    | 0x00000000   | 0x00000000   | PASS   |
+| x2    | 0x00000000   | 0x00000000   | PASS   |
+| x3    | 0x00000000   | 0x00000000   | PASS   |
+| x4    | 0x00000000   | 0x00000000   | PASS   |
+| x29   | 0x00000042   | 0x00000042   | PASS   |
+| x30   | 0x00000000   | 0x00000000   | PASS   |
+| x31   | 0x00000000   | 0x00000000   | PASS   |
+
+FINAL DUT REGISTER FILE
+x0 DUT=00000000 SHADOW=00000000
+x1 DUT=00000000 SHADOW=00000000
+x2 DUT=00000000 SHADOW=00000000
+x3 DUT=00000000 SHADOW=00000000
+x4 DUT=00000000 SHADOW=00000000
+x5 DUT=00000000 SHADOW=00000000
+x6 DUT=00000001 SHADOW=00000001
+x7 DUT=00000001 SHADOW=00000001
+x8 DUT=00000000 SHADOW=00000000
+x9 DUT=00000000 SHADOW=00000000
+x10 DUT=00000000 SHADOW=00000000
+x11 DUT=00000000 SHADOW=00000000
+x12 DUT=00000001 SHADOW=00000001
+x13 DUT=00000000 SHADOW=00000000
+x14 DUT=00000000 SHADOW=00000000
+x15 DUT=00000000 SHADOW=00000000
+x16 DUT=00000001 SHADOW=00000001
+x17 DUT=00000040 SHADOW=00000040
+x18 DUT=00000000 SHADOW=00000000
+x19 DUT=00000001 SHADOW=00000001
+x20 DUT=00000000 SHADOW=00000000
+x21 DUT=00000001 SHADOW=00000001
+x22 DUT=00000001 SHADOW=00000001
+x23 DUT=00000000 SHADOW=00000000
+x24 DUT=00000001 SHADOW=00000001
+x25 DUT=00000010 SHADOW=00000010
+x26 DUT=00000001 SHADOW=00000001
+x27 DUT=00000002 SHADOW=00000002
+x28 DUT=00000040 SHADOW=00000040
+x29 DUT=00000042 SHADOW=00000042
+x30 DUT=00000000 SHADOW=00000000
+x31 DUT=00000000 SHADOW=00000000
+
+==========================================================================
+ R-TYPE RANDOM REGRESSION SUMMARY (SEED: 1001)
+==========================================================================
+ Registers Checked : 32
+ Passed            : 32
+ Failed            : 0
+ ADD  Count        : 21
+ SUB  Count        : 19
+ SLL  Count        : 23
+ SLT  Count        : 15
+ SLTU Count        : 21
+ XOR  Count        : 14
+ SRL  Count        : 25
+ SRA  Count        : 30
+ OR   Count        : 10
+ AND  Count        : 22
+
+ STATUS            : SIGN-OFF PASS
+==========================================================================
+
+Simulation complete via $finish(1) at time 2176 NS + 0
+./core_R_type_tb.sv:344         $finish;
+ncsim> exit
+
+coverage setup:
+  workdir  :  ./cov_work
+  dutinst  :  dp_ram(dp_ram)
+  dutinst  :  half_adder(half_adder)
+  dutinst  :  core_R_type_rand_tb(core_R_type_rand_tb)
+  scope    :  scope
+  testname :  seed_4455
+
+coverage files:
+  model(design data) :  ./cov_work/scope/icc_5cfaadb3_00000000.ucm (reused)
+  data               :  ./cov_work/scope/seed_4455/icc_5cfaadb3_00000000.ucd
+make[1]: Leaving directory `/home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl'
+make run SEED=9902
+make[1]: Entering directory `/home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl'
+irun -sv \
+	-access +rwc \
+	-linedebug \
+	-coverage all \
+	-covoverwrite \
+	-covtest seed_9902 \
+	alu_in2_mux.sv Memory_Ctrl.sv sp_ram.sv instr_ram.sv data_ram.sv dp_ram.sv Stage1.sv alu_mul_mux.sv Stage2.sv LSU_RVX.sv pc_mux.sv immediate_generator.sv register_file.sv Control_Unit.sv CoreRV.sv stall_controller.sv memtoreg_mux.sv alu.sv alu_in1_mux.sv Pipelined_M.sv /home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl/core_R_type_tb.sv \
+	-svseed 9902 
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+irun(64): 15.20-s051: (c) Copyright 1995-2018 Cadence Design Systems, Inc.
+irun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+ncsim: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+ncsim: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+Loading snapshot worklib.dp_ram:sv .................... Done
+SVSEED set from command line: 9902
+ncsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+ncsim> source /home/install/INCISIVE152/tools/inca/files/ncsimrc
+ncsim> run
+
+[INFO] Starting R-Type Random Regression run with SEED = 1001
+
+=== RF PRELOAD CHECK ===
+========================
+
+
+[DEBUG TRACE] First 15 Random R-Type Instructions injected
+-----------------------------------------------------------------------------------------
+PC: 0000 | ADD   x0 , x11, x18
+PC: 0004 | SUB   x9 , x12, x20
+PC: 0008 | SLL   x16, x19, x0 
+PC: 0012 | SLT   x6 , x19, x28
+PC: 0016 | SLTU  x26, x16, x13
+PC: 0020 | XOR   x27, x13, x16
+PC: 0024 | SRL   x16, x16, x22
+PC: 0028 | SRA   x28, x28, x1 
+PC: 0032 | OR    x13, x25, x19
+PC: 0036 | AND   x16, x20, x10
+PC: 0040 | AND   x8 , x28, x0 
+PC: 0044 | OR    x16, x0 , x26
+PC: 0048 | SRL   x24, x14, x20
+PC: 0052 | ADD   x15, x19, x18
+PC: 0056 | SRL   x5 , x14, x17
+-----------------------------------------------------------------------------------------
+
+[INFO] Waiting for 188 valid register writebacks to complete...
+[95000] PC=0x00000018 WB x9 <= 3a982e76 (Count: 1/188)
+[105000] PC=0x0000001c WB x16 <= c385a287 (Count: 2/188)
+[115000] PC=0x00000020 WB x6 <= 00000001 (Count: 3/188)
+[125000] PC=0x00000024 WB x26 <= 00000000 (Count: 4/188)
+[135000] PC=0x00000028 WB x27 <= dc4c77b8 (Count: 5/188)
+[145000] PC=0x0000002c WB x16 <= 00000187 (Count: 6/188)
+[155000] PC=0x00000030 WB x28 <= fffbbcb8 (Count: 7/188)
+[165000] PC=0x00000034 WB x13 <= c3b5a387 (Count: 8/188)
+[175000] PC=0x00000038 WB x16 <= 288d8051 (Count: 9/188)
+[185000] PC=0x0000003c WB x8 <= 00000000 (Count: 10/188)
+[195000] PC=0x00000040 WB x16 <= 00000000 (Count: 11/188)
+[205000] PC=0x00000044 WB x24 <= 00000043 (Count: 12/188)
+[215000] PC=0x00000048 WB x15 <= 8686390d (Count: 13/188)
+[225000] PC=0x0000004c WB x5 <= 0000043b (Count: 14/188)
+[235000] PC=0x00000050 WB x24 <= bc3f7f78 (Count: 15/188)
+[245000] PC=0x00000054 WB x14 <= 174a31ae (Count: 16/188)
+[255000] PC=0x00000058 WB x7 <= ff0d0c72 (Count: 17/188)
+[265000] PC=0x0000005c WB x2 <= 01870b45 (Count: 18/188)
+[275000] PC=0x00000060 WB x4 <= 00000000 (Count: 19/188)
+[285000] PC=0x00000064 WB x2 <= 40562681 (Count: 20/188)
+[295000] PC=0x00000068 WB x18 <= 03125342 (Count: 21/188)
+[305000] PC=0x0000006c WB x6 <= a4c69849 (Count: 22/188)
+[315000] PC=0x00000070 WB x10 <= ffff0e16 (Count: 23/188)
+[325000] PC=0x00000074 WB x6 <= 9d800000 (Count: 24/188)
+[335000] PC=0x00000078 WB x11 <= 00000000 (Count: 25/188)
+[345000] PC=0x0000007c WB x31 <= 00000000 (Count: 26/188)
+[355000] PC=0x00000080 WB x25 <= c56ac68a (Count: 27/188)
+[365000] PC=0x00000084 WB x23 <= 00000001 (Count: 28/188)
+[375000] PC=0x00000088 WB x6 <= c384b09d (Count: 29/188)
+[385000] PC=0x0000008c WB x6 <= 0001121a (Count: 30/188)
+[395000] PC=0x00000090 WB x25 <= 00000000 (Count: 31/188)
+[405000] PC=0x00000094 WB x26 <= 00000030 (Count: 32/188)
+[415000] PC=0x00000098 WB x18 <= 00000000 (Count: 33/188)
+[425000] PC=0x0000009c WB x29 <= 00000000 (Count: 34/188)
+[435000] PC=0x000000a0 WB x14 <= 00000000 (Count: 35/188)
+[445000] PC=0x000000a4 WB x29 <= 000000ea (Count: 36/188)
+[455000] PC=0x000000a8 WB x20 <= 000002af (Count: 37/188)
+[465000] PC=0x000000ac WB x15 <= 52af6ea5 (Count: 38/188)
+[475000] PC=0x000000b0 WB x19 <= 00000000 (Count: 39/188)
+[485000] PC=0x000000b4 WB x24 <= fffbbcb8 (Count: 40/188)
+[495000] PC=0x000000b8 WB x14 <= 00000001 (Count: 41/188)
+[505000] PC=0x000000bc WB x17 <= 00000000 (Count: 42/188)
+[515000] PC=0x000000c0 WB x29 <= 00000002 (Count: 43/188)
+[525000] PC=0x000000c4 WB x13 <= 00000157 (Count: 44/188)
+[535000] PC=0x000000c8 WB x25 <= 00000002 (Count: 45/188)
+[545000] PC=0x000000cc WB x1 <= 00000000 (Count: 46/188)
+[555000] PC=0x000000d0 WB x28 <= 00011655 (Count: 47/188)
+[565000] PC=0x000000d4 WB x8 <= 00000001 (Count: 48/188)
+[575000] PC=0x000000d8 WB x10 <= 00000002 (Count: 49/188)
+[585000] PC=0x000000dc WB x9 <= 00000000 (Count: 50/188)
+[595000] PC=0x000000e0 WB x23 <= c15efcbb (Count: 51/188)
+[605000] PC=0x000000e4 WB x29 <= abe5a306 (Count: 52/188)
+[615000] PC=0x000000e8 WB x12 <= 00000000 (Count: 53/188)
+[625000] PC=0x000000ec WB x24 <= 4b296396 (Count: 54/188)
+[635000] PC=0x000000f0 WB x16 <= 00000001 (Count: 55/188)
+[645000] PC=0x000000f4 WB x10 <= 00000000 (Count: 56/188)
+[655000] PC=0x000000f8 WB x8 <= 00000040 (Count: 57/188)
+[665000] PC=0x000000fc WB x10 <= 4056267f (Count: 58/188)
+[675000] PC=0x00000100 WB x3 <= 93f19227 (Count: 59/188)
+[685000] PC=0x00000104 WB x23 <= abe5a2d6 (Count: 60/188)
+[695000] PC=0x00000108 WB x28 <= ffffffff (Count: 61/188)
+[705000] PC=0x0000010c WB x3 <= 00000000 (Count: 62/188)
+[715000] PC=0x00000110 WB x4 <= 00000001 (Count: 63/188)
+[725000] PC=0x00000114 WB x21 <= fffffffe (Count: 64/188)
+[735000] PC=0x00000118 WB x3 <= 4b7f6797 (Count: 65/188)
+[745000] PC=0x0000011c WB x18 <= 000002af (Count: 66/188)
+[755000] PC=0x00000120 WB x2 <= 00000000 (Count: 67/188)
+[775000] PC=0x00000128 WB x16 <= 00000000 (Count: 68/188)
+[785000] PC=0x0000012c WB x13 <= 00000000 (Count: 69/188)
+[795000] PC=0x00000130 WB x5 <= 00000000 (Count: 70/188)
+[805000] PC=0x00000134 WB x26 <= ff0d0c72 (Count: 71/188)
+[815000] PC=0x00000138 WB x14 <= 00000001 (Count: 72/188)
+[825000] PC=0x0000013c WB x23 <= 00000001 (Count: 73/188)
+[835000] PC=0x00000140 WB x14 <= 00000000 (Count: 74/188)
+[845000] PC=0x00000144 WB x18 <= 00000000 (Count: 75/188)
+[855000] PC=0x00000148 WB x5 <= 00000000 (Count: 76/188)
+[865000] PC=0x0000014c WB x24 <= 00000040 (Count: 77/188)
+[875000] PC=0x00000150 WB x23 <= 00000000 (Count: 78/188)
+[885000] PC=0x00000154 WB x31 <= 00000000 (Count: 79/188)
+[895000] PC=0x00000158 WB x19 <= 541a5cfa (Count: 80/188)
+[905000] PC=0x0000015c WB x6 <= 00000001 (Count: 81/188)
+[915000] PC=0x00000160 WB x22 <= 00000000 (Count: 82/188)
+[925000] PC=0x00000164 WB x1 <= 00000001 (Count: 83/188)
+[935000] PC=0x00000168 WB x19 <= 00000000 (Count: 84/188)
+[945000] PC=0x0000016c WB x29 <= 00000000 (Count: 85/188)
+[955000] PC=0x00000170 WB x24 <= 52af6ea5 (Count: 86/188)
+[965000] PC=0x00000174 WB x4 <= 00000003 (Count: 87/188)
+[975000] PC=0x00000178 WB x21 <= 52af6ea5 (Count: 88/188)
+[985000] PC=0x0000017c WB x5 <= 00000000 (Count: 89/188)
+[995000] PC=0x00000180 WB x3 <= 00000000 (Count: 90/188)
+[1005000] PC=0x00000184 WB x26 <= 52af6ea5 (Count: 91/188)
+[1015000] PC=0x00000188 WB x7 <= 52af6ea5 (Count: 92/188)
+[1025000] PC=0x0000018c WB x13 <= 00000000 (Count: 93/188)
+[1035000] PC=0x00000190 WB x26 <= 00000000 (Count: 94/188)
+[1055000] PC=0x00000198 WB x14 <= 00000000 (Count: 95/188)
+[1065000] PC=0x0000019c WB x17 <= 00000000 (Count: 96/188)
+[1075000] PC=0x000001a0 WB x22 <= 00000000 (Count: 97/188)
+[1085000] PC=0x000001a4 WB x31 <= 00000001 (Count: 98/188)
+[1095000] PC=0x000001a8 WB x10 <= 00000001 (Count: 99/188)
+[1105000] PC=0x000001ac WB x19 <= 00000001 (Count: 100/188)
+[1115000] PC=0x000001b0 WB x12 <= 00000000 (Count: 101/188)
+[1125000] PC=0x000001b4 WB x4 <= 00000000 (Count: 102/188)
+[1135000] PC=0x000001b8 WB x18 <= 00000000 (Count: 103/188)
+[1155000] PC=0x000001c0 WB x8 <= 00000040 (Count: 104/188)
+[1165000] PC=0x000001c4 WB x12 <= 00000000 (Count: 105/188)
+[1175000] PC=0x000001c8 WB x24 <= 52af6ea5 (Count: 106/188)
+[1185000] PC=0x000001cc WB x15 <= 00000040 (Count: 107/188)
+[1195000] PC=0x000001d0 WB x17 <= 00000000 (Count: 108/188)
+[1205000] PC=0x000001d4 WB x23 <= 00000000 (Count: 109/188)
+[1215000] PC=0x000001d8 WB x9 <= 00000000 (Count: 110/188)
+[1235000] PC=0x000001e0 WB x8 <= 00000000 (Count: 111/188)
+[1245000] PC=0x000001e4 WB x20 <= 00000001 (Count: 112/188)
+[1255000] PC=0x000001e8 WB x10 <= 00000000 (Count: 113/188)
+[1265000] PC=0x000001ec WB x27 <= 00000002 (Count: 114/188)
+[1275000] PC=0x000001f0 WB x7 <= 00000000 (Count: 115/188)
+[1285000] PC=0x000001f4 WB x25 <= 00000080 (Count: 116/188)
+[1295000] PC=0x000001f8 WB x24 <= 00000000 (Count: 117/188)
+[1305000] PC=0x000001fc WB x21 <= 00000001 (Count: 118/188)
+[1325000] PC=0x00000204 WB x5 <= 00000000 (Count: 119/188)
+[1335000] PC=0x00000208 WB x13 <= 00000002 (Count: 120/188)
+[1345000] PC=0x0000020c WB x10 <= 00000000 (Count: 121/188)
+[1355000] PC=0x00000210 WB x1 <= 00000041 (Count: 122/188)
+[1375000] PC=0x00000218 WB x25 <= 00000001 (Count: 123/188)
+[1385000] PC=0x0000021c WB x31 <= 00000000 (Count: 124/188)
+[1395000] PC=0x00000220 WB x16 <= 00000000 (Count: 125/188)
+[1415000] PC=0x00000228 WB x8 <= 00000000 (Count: 126/188)
+[1425000] PC=0x0000022c WB x4 <= 00000000 (Count: 127/188)
+[1435000] PC=0x00000230 WB x13 <= 00000000 (Count: 128/188)
+[1445000] PC=0x00000234 WB x30 <= 00000001 (Count: 129/188)
+[1455000] PC=0x00000238 WB x30 <= 00000000 (Count: 130/188)
+[1465000] PC=0x0000023c WB x18 <= 00000000 (Count: 131/188)
+[1475000] PC=0x00000240 WB x17 <= 00000040 (Count: 132/188)
+[1485000] PC=0x00000244 WB x1 <= 00000000 (Count: 133/188)
+[1495000] PC=0x00000248 WB x26 <= 00000001 (Count: 134/188)
+[1505000] PC=0x0000024c WB x11 <= 00000000 (Count: 135/188)
+[1515000] PC=0x00000250 WB x15 <= 00000001 (Count: 136/188)
+[1525000] PC=0x00000254 WB x24 <= 00000000 (Count: 137/188)
+[1535000] PC=0x00000258 WB x18 <= 00000001 (Count: 138/188)
+[1545000] PC=0x0000025c WB x28 <= 00000000 (Count: 139/188)
+[1555000] PC=0x00000260 WB x19 <= 00000000 (Count: 140/188)
+[1565000] PC=0x00000264 WB x29 <= 00000001 (Count: 141/188)
+[1575000] PC=0x00000268 WB x24 <= 00000001 (Count: 142/188)
+[1585000] PC=0x0000026c WB x25 <= 00000000 (Count: 143/188)
+[1595000] PC=0x00000270 WB x4 <= 00000000 (Count: 144/188)
+[1605000] PC=0x00000274 WB x16 <= 00000001 (Count: 145/188)
+[1615000] PC=0x00000278 WB x24 <= 00000000 (Count: 146/188)
+[1625000] PC=0x0000027c WB x3 <= 00000001 (Count: 147/188)
+[1635000] PC=0x00000280 WB x31 <= 00000000 (Count: 148/188)
+[1645000] PC=0x00000284 WB x30 <= 00000000 (Count: 149/188)
+[1655000] PC=0x00000288 WB x19 <= 00000001 (Count: 150/188)
+[1675000] PC=0x00000290 WB x31 <= 00000000 (Count: 151/188)
+[1685000] PC=0x00000294 WB x28 <= 00000040 (Count: 152/188)
+[1695000] PC=0x00000298 WB x9 <= 00000000 (Count: 153/188)
+[1705000] PC=0x0000029c WB x3 <= 00000001 (Count: 154/188)
+[1715000] PC=0x000002a0 WB x22 <= 00000001 (Count: 155/188)
+[1725000] PC=0x000002a4 WB x9 <= 00000000 (Count: 156/188)
+[1735000] PC=0x000002a8 WB x16 <= 00000080 (Count: 157/188)
+[1745000] PC=0x000002ac WB x8 <= 00000000 (Count: 158/188)
+[1755000] PC=0x000002b0 WB x15 <= 00000000 (Count: 159/188)
+[1765000] PC=0x000002b4 WB x12 <= 00000000 (Count: 160/188)
+[1775000] PC=0x000002b8 WB x25 <= 00000000 (Count: 161/188)
+[1785000] PC=0x000002bc WB x20 <= 00000000 (Count: 162/188)
+[1795000] PC=0x000002c0 WB x16 <= 00000001 (Count: 163/188)
+[1805000] PC=0x000002c4 WB x24 <= 00000001 (Count: 164/188)
+[1815000] PC=0x000002c8 WB x14 <= 00000000 (Count: 165/188)
+[1825000] PC=0x000002cc WB x20 <= 00000040 (Count: 166/188)
+[1835000] PC=0x000002d0 WB x23 <= 00000040 (Count: 167/188)
+[1845000] PC=0x000002d4 WB x8 <= 00000000 (Count: 168/188)
+[1855000] PC=0x000002d8 WB x19 <= 00000001 (Count: 169/188)
+[1865000] PC=0x000002dc WB x1 <= 00000000 (Count: 170/188)
+[1875000] PC=0x000002e0 WB x29 <= 00000000 (Count: 171/188)
+[1895000] PC=0x000002e8 WB x4 <= 00000000 (Count: 172/188)
+[1905000] PC=0x000002ec WB x29 <= 00000042 (Count: 173/188)
+[1915000] PC=0x000002f0 WB x20 <= 00000002 (Count: 174/188)
+[1925000] PC=0x000002f4 WB x15 <= 00000000 (Count: 175/188)
+[1935000] PC=0x000002f8 WB x25 <= 00000010 (Count: 176/188)
+[1945000] PC=0x000002fc WB x18 <= 00000000 (Count: 177/188)
+[1955000] PC=0x00000300 WB x7 <= 00000001 (Count: 178/188)
+[1965000] PC=0x00000304 WB x12 <= 00000001 (Count: 179/188)
+[1985000] PC=0x0000030c WB x20 <= 00000000 (Count: 180/188)
+[1995000] PC=0x00000310 WB x26 <= 00000001 (Count: 181/188)
+[2005000] PC=0x00000314 WB x25 <= 00000010 (Count: 182/188)
+[2015000] PC=0x00000318 WB x5 <= 00000000 (Count: 183/188)
+[2025000] PC=0x0000031c WB x3 <= 00000000 (Count: 184/188)
+[2035000] PC=0x00000320 WB x13 <= 00000000 (Count: 185/188)
+[2055000] PC=0x00000328 WB x9 <= 00000000 (Count: 186/188)
+[2065000] PC=0x0000032c WB x4 <= 00000000 (Count: 187/188)
+[2075000] PC=0x00000330 WB x23 <= 00000000 (Count: 188/188)
+
+==========================================================================
+ ARCHITECTURAL STATE COMPARISON (SHADOW RF vs DUT RF)
+==========================================================================
+| REG   | EXPECTED     | ACTUAL       | STATUS |
+--------------------------------------------------------------------------
+| x0    | 0x00000000   | 0x00000000   | PASS   |
+| x1    | 0x00000000   | 0x00000000   | PASS   |
+| x2    | 0x00000000   | 0x00000000   | PASS   |
+| x3    | 0x00000000   | 0x00000000   | PASS   |
+| x4    | 0x00000000   | 0x00000000   | PASS   |
+| x29   | 0x00000042   | 0x00000042   | PASS   |
+| x30   | 0x00000000   | 0x00000000   | PASS   |
+| x31   | 0x00000000   | 0x00000000   | PASS   |
+
+FINAL DUT REGISTER FILE
+x0 DUT=00000000 SHADOW=00000000
+x1 DUT=00000000 SHADOW=00000000
+x2 DUT=00000000 SHADOW=00000000
+x3 DUT=00000000 SHADOW=00000000
+x4 DUT=00000000 SHADOW=00000000
+x5 DUT=00000000 SHADOW=00000000
+x6 DUT=00000001 SHADOW=00000001
+x7 DUT=00000001 SHADOW=00000001
+x8 DUT=00000000 SHADOW=00000000
+x9 DUT=00000000 SHADOW=00000000
+x10 DUT=00000000 SHADOW=00000000
+x11 DUT=00000000 SHADOW=00000000
+x12 DUT=00000001 SHADOW=00000001
+x13 DUT=00000000 SHADOW=00000000
+x14 DUT=00000000 SHADOW=00000000
+x15 DUT=00000000 SHADOW=00000000
+x16 DUT=00000001 SHADOW=00000001
+x17 DUT=00000040 SHADOW=00000040
+x18 DUT=00000000 SHADOW=00000000
+x19 DUT=00000001 SHADOW=00000001
+x20 DUT=00000000 SHADOW=00000000
+x21 DUT=00000001 SHADOW=00000001
+x22 DUT=00000001 SHADOW=00000001
+x23 DUT=00000000 SHADOW=00000000
+x24 DUT=00000001 SHADOW=00000001
+x25 DUT=00000010 SHADOW=00000010
+x26 DUT=00000001 SHADOW=00000001
+x27 DUT=00000002 SHADOW=00000002
+x28 DUT=00000040 SHADOW=00000040
+x29 DUT=00000042 SHADOW=00000042
+x30 DUT=00000000 SHADOW=00000000
+x31 DUT=00000000 SHADOW=00000000
+
+==========================================================================
+ R-TYPE RANDOM REGRESSION SUMMARY (SEED: 1001)
+==========================================================================
+ Registers Checked : 32
+ Passed            : 32
+ Failed            : 0
+ ADD  Count        : 21
+ SUB  Count        : 19
+ SLL  Count        : 23
+ SLT  Count        : 15
+ SLTU Count        : 21
+ XOR  Count        : 14
+ SRL  Count        : 25
+ SRA  Count        : 30
+ OR   Count        : 10
+ AND  Count        : 22
+
+ STATUS            : SIGN-OFF PASS
+==========================================================================
+
+Simulation complete via $finish(1) at time 2176 NS + 0
+./core_R_type_tb.sv:344         $finish;
+ncsim> exit
+
+coverage setup:
+  workdir  :  ./cov_work
+  dutinst  :  dp_ram(dp_ram)
+  dutinst  :  half_adder(half_adder)
+  dutinst  :  core_R_type_rand_tb(core_R_type_rand_tb)
+  scope    :  scope
+  testname :  seed_9902
+
+coverage files:
+  model(design data) :  ./cov_work/scope/icc_5cfaadb3_00000000.ucm (reused)
+  data               :  ./cov_work/scope/seed_9902/icc_5cfaadb3_00000000.ucd
+make[1]: Leaving directory `/home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl'
+make run SEED=3333
+make[1]: Entering directory `/home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl'
+irun -sv \
+	-access +rwc \
+	-linedebug \
+	-coverage all \
+	-covoverwrite \
+	-covtest seed_3333 \
+	alu_in2_mux.sv Memory_Ctrl.sv sp_ram.sv instr_ram.sv data_ram.sv dp_ram.sv Stage1.sv alu_mul_mux.sv Stage2.sv LSU_RVX.sv pc_mux.sv immediate_generator.sv register_file.sv Control_Unit.sv CoreRV.sv stall_controller.sv memtoreg_mux.sv alu.sv alu_in1_mux.sv Pipelined_M.sv /home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl/core_R_type_tb.sv \
+	-svseed 3333 
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+irun(64): 15.20-s051: (c) Copyright 1995-2018 Cadence Design Systems, Inc.
+irun: *W,BADPRF: The -linedebug option may have an adverse performance impact.
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+irun: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+irun: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+DEFINE Pravin /home/pguser/Pravin
+|
+ncsim: *W,DLCPTH (/home/pguser/cds.lib,44): cds.lib Invalid path '/home/pguser/Pravin' (cds.lib command ignored).
+DEFINE Pravin /home/pguser/Documents/Pravin
+|
+ncsim: *W,DLCLAP (/home/pguser/cds.lib,46): cds.lib Same file has different definitions for library 'library Pravin from /home/pguser/cds.lib line 46, redefines
+    library Pravin from same file line 45 defined earlier.' (continuing with last specified path).
+Loading snapshot worklib.dp_ram:sv .................... Done
+SVSEED set from command line: 3333
+ncsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+ncsim> source /home/install/INCISIVE152/tools/inca/files/ncsimrc
+ncsim> run
+
+[INFO] Starting R-Type Random Regression run with SEED = 1001
+
+=== RF PRELOAD CHECK ===
+========================
+
+
+[DEBUG TRACE] First 15 Random R-Type Instructions injected
+-----------------------------------------------------------------------------------------
+PC: 0000 | ADD   x0 , x11, x18
+PC: 0004 | SUB   x9 , x12, x20
+PC: 0008 | SLL   x16, x19, x0 
+PC: 0012 | SLT   x6 , x19, x28
+PC: 0016 | SLTU  x26, x16, x13
+PC: 0020 | XOR   x27, x13, x16
+PC: 0024 | SRL   x16, x16, x22
+PC: 0028 | SRA   x28, x28, x1 
+PC: 0032 | OR    x13, x25, x19
+PC: 0036 | AND   x16, x20, x10
+PC: 0040 | AND   x8 , x28, x0 
+PC: 0044 | OR    x16, x0 , x26
+PC: 0048 | SRL   x24, x14, x20
+PC: 0052 | ADD   x15, x19, x18
+PC: 0056 | SRL   x5 , x14, x17
+-----------------------------------------------------------------------------------------
+
+[INFO] Waiting for 188 valid register writebacks to complete...
+[95000] PC=0x00000018 WB x9 <= 3a982e76 (Count: 1/188)
+[105000] PC=0x0000001c WB x16 <= c385a287 (Count: 2/188)
+[115000] PC=0x00000020 WB x6 <= 00000001 (Count: 3/188)
+[125000] PC=0x00000024 WB x26 <= 00000000 (Count: 4/188)
+[135000] PC=0x00000028 WB x27 <= dc4c77b8 (Count: 5/188)
+[145000] PC=0x0000002c WB x16 <= 00000187 (Count: 6/188)
+[155000] PC=0x00000030 WB x28 <= fffbbcb8 (Count: 7/188)
+[165000] PC=0x00000034 WB x13 <= c3b5a387 (Count: 8/188)
+[175000] PC=0x00000038 WB x16 <= 288d8051 (Count: 9/188)
+[185000] PC=0x0000003c WB x8 <= 00000000 (Count: 10/188)
+[195000] PC=0x00000040 WB x16 <= 00000000 (Count: 11/188)
+[205000] PC=0x00000044 WB x24 <= 00000043 (Count: 12/188)
+[215000] PC=0x00000048 WB x15 <= 8686390d (Count: 13/188)
+[225000] PC=0x0000004c WB x5 <= 0000043b (Count: 14/188)
+[235000] PC=0x00000050 WB x24 <= bc3f7f78 (Count: 15/188)
+[245000] PC=0x00000054 WB x14 <= 174a31ae (Count: 16/188)
+[255000] PC=0x00000058 WB x7 <= ff0d0c72 (Count: 17/188)
+[265000] PC=0x0000005c WB x2 <= 01870b45 (Count: 18/188)
+[275000] PC=0x00000060 WB x4 <= 00000000 (Count: 19/188)
+[285000] PC=0x00000064 WB x2 <= 40562681 (Count: 20/188)
+[295000] PC=0x00000068 WB x18 <= 03125342 (Count: 21/188)
+[305000] PC=0x0000006c WB x6 <= a4c69849 (Count: 22/188)
+[315000] PC=0x00000070 WB x10 <= ffff0e16 (Count: 23/188)
+[325000] PC=0x00000074 WB x6 <= 9d800000 (Count: 24/188)
+[335000] PC=0x00000078 WB x11 <= 00000000 (Count: 25/188)
+[345000] PC=0x0000007c WB x31 <= 00000000 (Count: 26/188)
+[355000] PC=0x00000080 WB x25 <= c56ac68a (Count: 27/188)
+[365000] PC=0x00000084 WB x23 <= 00000001 (Count: 28/188)
+[375000] PC=0x00000088 WB x6 <= c384b09d (Count: 29/188)
+[385000] PC=0x0000008c WB x6 <= 0001121a (Count: 30/188)
+[395000] PC=0x00000090 WB x25 <= 00000000 (Count: 31/188)
+[405000] PC=0x00000094 WB x26 <= 00000030 (Count: 32/188)
+[415000] PC=0x00000098 WB x18 <= 00000000 (Count: 33/188)
+[425000] PC=0x0000009c WB x29 <= 00000000 (Count: 34/188)
+[435000] PC=0x000000a0 WB x14 <= 00000000 (Count: 35/188)
+[445000] PC=0x000000a4 WB x29 <= 000000ea (Count: 36/188)
+[455000] PC=0x000000a8 WB x20 <= 000002af (Count: 37/188)
+[465000] PC=0x000000ac WB x15 <= 52af6ea5 (Count: 38/188)
+[475000] PC=0x000000b0 WB x19 <= 00000000 (Count: 39/188)
+[485000] PC=0x000000b4 WB x24 <= fffbbcb8 (Count: 40/188)
+[495000] PC=0x000000b8 WB x14 <= 00000001 (Count: 41/188)
+[505000] PC=0x000000bc WB x17 <= 00000000 (Count: 42/188)
+[515000] PC=0x000000c0 WB x29 <= 00000002 (Count: 43/188)
+[525000] PC=0x000000c4 WB x13 <= 00000157 (Count: 44/188)
+[535000] PC=0x000000c8 WB x25 <= 00000002 (Count: 45/188)
+[545000] PC=0x000000cc WB x1 <= 00000000 (Count: 46/188)
+[555000] PC=0x000000d0 WB x28 <= 00011655 (Count: 47/188)
+[565000] PC=0x000000d4 WB x8 <= 00000001 (Count: 48/188)
+[575000] PC=0x000000d8 WB x10 <= 00000002 (Count: 49/188)
+[585000] PC=0x000000dc WB x9 <= 00000000 (Count: 50/188)
+[595000] PC=0x000000e0 WB x23 <= c15efcbb (Count: 51/188)
+[605000] PC=0x000000e4 WB x29 <= abe5a306 (Count: 52/188)
+[615000] PC=0x000000e8 WB x12 <= 00000000 (Count: 53/188)
+[625000] PC=0x000000ec WB x24 <= 4b296396 (Count: 54/188)
+[635000] PC=0x000000f0 WB x16 <= 00000001 (Count: 55/188)
+[645000] PC=0x000000f4 WB x10 <= 00000000 (Count: 56/188)
+[655000] PC=0x000000f8 WB x8 <= 00000040 (Count: 57/188)
+[665000] PC=0x000000fc WB x10 <= 4056267f (Count: 58/188)
+[675000] PC=0x00000100 WB x3 <= 93f19227 (Count: 59/188)
+[685000] PC=0x00000104 WB x23 <= abe5a2d6 (Count: 60/188)
+[695000] PC=0x00000108 WB x28 <= ffffffff (Count: 61/188)
+[705000] PC=0x0000010c WB x3 <= 00000000 (Count: 62/188)
+[715000] PC=0x00000110 WB x4 <= 00000001 (Count: 63/188)
+[725000] PC=0x00000114 WB x21 <= fffffffe (Count: 64/188)
+[735000] PC=0x00000118 WB x3 <= 4b7f6797 (Count: 65/188)
+[745000] PC=0x0000011c WB x18 <= 000002af (Count: 66/188)
+[755000] PC=0x00000120 WB x2 <= 00000000 (Count: 67/188)
+[775000] PC=0x00000128 WB x16 <= 00000000 (Count: 68/188)
+[785000] PC=0x0000012c WB x13 <= 00000000 (Count: 69/188)
+[795000] PC=0x00000130 WB x5 <= 00000000 (Count: 70/188)
+[805000] PC=0x00000134 WB x26 <= ff0d0c72 (Count: 71/188)
+[815000] PC=0x00000138 WB x14 <= 00000001 (Count: 72/188)
+[825000] PC=0x0000013c WB x23 <= 00000001 (Count: 73/188)
+[835000] PC=0x00000140 WB x14 <= 00000000 (Count: 74/188)
+[845000] PC=0x00000144 WB x18 <= 00000000 (Count: 75/188)
+[855000] PC=0x00000148 WB x5 <= 00000000 (Count: 76/188)
+[865000] PC=0x0000014c WB x24 <= 00000040 (Count: 77/188)
+[875000] PC=0x00000150 WB x23 <= 00000000 (Count: 78/188)
+[885000] PC=0x00000154 WB x31 <= 00000000 (Count: 79/188)
+[895000] PC=0x00000158 WB x19 <= 541a5cfa (Count: 80/188)
+[905000] PC=0x0000015c WB x6 <= 00000001 (Count: 81/188)
+[915000] PC=0x00000160 WB x22 <= 00000000 (Count: 82/188)
+[925000] PC=0x00000164 WB x1 <= 00000001 (Count: 83/188)
+[935000] PC=0x00000168 WB x19 <= 00000000 (Count: 84/188)
+[945000] PC=0x0000016c WB x29 <= 00000000 (Count: 85/188)
+[955000] PC=0x00000170 WB x24 <= 52af6ea5 (Count: 86/188)
+[965000] PC=0x00000174 WB x4 <= 00000003 (Count: 87/188)
+[975000] PC=0x00000178 WB x21 <= 52af6ea5 (Count: 88/188)
+[985000] PC=0x0000017c WB x5 <= 00000000 (Count: 89/188)
+[995000] PC=0x00000180 WB x3 <= 00000000 (Count: 90/188)
+[1005000] PC=0x00000184 WB x26 <= 52af6ea5 (Count: 91/188)
+[1015000] PC=0x00000188 WB x7 <= 52af6ea5 (Count: 92/188)
+[1025000] PC=0x0000018c WB x13 <= 00000000 (Count: 93/188)
+[1035000] PC=0x00000190 WB x26 <= 00000000 (Count: 94/188)
+[1055000] PC=0x00000198 WB x14 <= 00000000 (Count: 95/188)
+[1065000] PC=0x0000019c WB x17 <= 00000000 (Count: 96/188)
+[1075000] PC=0x000001a0 WB x22 <= 00000000 (Count: 97/188)
+[1085000] PC=0x000001a4 WB x31 <= 00000001 (Count: 98/188)
+[1095000] PC=0x000001a8 WB x10 <= 00000001 (Count: 99/188)
+[1105000] PC=0x000001ac WB x19 <= 00000001 (Count: 100/188)
+[1115000] PC=0x000001b0 WB x12 <= 00000000 (Count: 101/188)
+[1125000] PC=0x000001b4 WB x4 <= 00000000 (Count: 102/188)
+[1135000] PC=0x000001b8 WB x18 <= 00000000 (Count: 103/188)
+[1155000] PC=0x000001c0 WB x8 <= 00000040 (Count: 104/188)
+[1165000] PC=0x000001c4 WB x12 <= 00000000 (Count: 105/188)
+[1175000] PC=0x000001c8 WB x24 <= 52af6ea5 (Count: 106/188)
+[1185000] PC=0x000001cc WB x15 <= 00000040 (Count: 107/188)
+[1195000] PC=0x000001d0 WB x17 <= 00000000 (Count: 108/188)
+[1205000] PC=0x000001d4 WB x23 <= 00000000 (Count: 109/188)
+[1215000] PC=0x000001d8 WB x9 <= 00000000 (Count: 110/188)
+[1235000] PC=0x000001e0 WB x8 <= 00000000 (Count: 111/188)
+[1245000] PC=0x000001e4 WB x20 <= 00000001 (Count: 112/188)
+[1255000] PC=0x000001e8 WB x10 <= 00000000 (Count: 113/188)
+[1265000] PC=0x000001ec WB x27 <= 00000002 (Count: 114/188)
+[1275000] PC=0x000001f0 WB x7 <= 00000000 (Count: 115/188)
+[1285000] PC=0x000001f4 WB x25 <= 00000080 (Count: 116/188)
+[1295000] PC=0x000001f8 WB x24 <= 00000000 (Count: 117/188)
+[1305000] PC=0x000001fc WB x21 <= 00000001 (Count: 118/188)
+[1325000] PC=0x00000204 WB x5 <= 00000000 (Count: 119/188)
+[1335000] PC=0x00000208 WB x13 <= 00000002 (Count: 120/188)
+[1345000] PC=0x0000020c WB x10 <= 00000000 (Count: 121/188)
+[1355000] PC=0x00000210 WB x1 <= 00000041 (Count: 122/188)
+[1375000] PC=0x00000218 WB x25 <= 00000001 (Count: 123/188)
+[1385000] PC=0x0000021c WB x31 <= 00000000 (Count: 124/188)
+[1395000] PC=0x00000220 WB x16 <= 00000000 (Count: 125/188)
+[1415000] PC=0x00000228 WB x8 <= 00000000 (Count: 126/188)
+[1425000] PC=0x0000022c WB x4 <= 00000000 (Count: 127/188)
+[1435000] PC=0x00000230 WB x13 <= 00000000 (Count: 128/188)
+[1445000] PC=0x00000234 WB x30 <= 00000001 (Count: 129/188)
+[1455000] PC=0x00000238 WB x30 <= 00000000 (Count: 130/188)
+[1465000] PC=0x0000023c WB x18 <= 00000000 (Count: 131/188)
+[1475000] PC=0x00000240 WB x17 <= 00000040 (Count: 132/188)
+[1485000] PC=0x00000244 WB x1 <= 00000000 (Count: 133/188)
+[1495000] PC=0x00000248 WB x26 <= 00000001 (Count: 134/188)
+[1505000] PC=0x0000024c WB x11 <= 00000000 (Count: 135/188)
+[1515000] PC=0x00000250 WB x15 <= 00000001 (Count: 136/188)
+[1525000] PC=0x00000254 WB x24 <= 00000000 (Count: 137/188)
+[1535000] PC=0x00000258 WB x18 <= 00000001 (Count: 138/188)
+[1545000] PC=0x0000025c WB x28 <= 00000000 (Count: 139/188)
+[1555000] PC=0x00000260 WB x19 <= 00000000 (Count: 140/188)
+[1565000] PC=0x00000264 WB x29 <= 00000001 (Count: 141/188)
+[1575000] PC=0x00000268 WB x24 <= 00000001 (Count: 142/188)
+[1585000] PC=0x0000026c WB x25 <= 00000000 (Count: 143/188)
+[1595000] PC=0x00000270 WB x4 <= 00000000 (Count: 144/188)
+[1605000] PC=0x00000274 WB x16 <= 00000001 (Count: 145/188)
+[1615000] PC=0x00000278 WB x24 <= 00000000 (Count: 146/188)
+[1625000] PC=0x0000027c WB x3 <= 00000001 (Count: 147/188)
+[1635000] PC=0x00000280 WB x31 <= 00000000 (Count: 148/188)
+[1645000] PC=0x00000284 WB x30 <= 00000000 (Count: 149/188)
+[1655000] PC=0x00000288 WB x19 <= 00000001 (Count: 150/188)
+[1675000] PC=0x00000290 WB x31 <= 00000000 (Count: 151/188)
+[1685000] PC=0x00000294 WB x28 <= 00000040 (Count: 152/188)
+[1695000] PC=0x00000298 WB x9 <= 00000000 (Count: 153/188)
+[1705000] PC=0x0000029c WB x3 <= 00000001 (Count: 154/188)
+[1715000] PC=0x000002a0 WB x22 <= 00000001 (Count: 155/188)
+[1725000] PC=0x000002a4 WB x9 <= 00000000 (Count: 156/188)
+[1735000] PC=0x000002a8 WB x16 <= 00000080 (Count: 157/188)
+[1745000] PC=0x000002ac WB x8 <= 00000000 (Count: 158/188)
+[1755000] PC=0x000002b0 WB x15 <= 00000000 (Count: 159/188)
+[1765000] PC=0x000002b4 WB x12 <= 00000000 (Count: 160/188)
+[1775000] PC=0x000002b8 WB x25 <= 00000000 (Count: 161/188)
+[1785000] PC=0x000002bc WB x20 <= 00000000 (Count: 162/188)
+[1795000] PC=0x000002c0 WB x16 <= 00000001 (Count: 163/188)
+[1805000] PC=0x000002c4 WB x24 <= 00000001 (Count: 164/188)
+[1815000] PC=0x000002c8 WB x14 <= 00000000 (Count: 165/188)
+[1825000] PC=0x000002cc WB x20 <= 00000040 (Count: 166/188)
+[1835000] PC=0x000002d0 WB x23 <= 00000040 (Count: 167/188)
+[1845000] PC=0x000002d4 WB x8 <= 00000000 (Count: 168/188)
+[1855000] PC=0x000002d8 WB x19 <= 00000001 (Count: 169/188)
+[1865000] PC=0x000002dc WB x1 <= 00000000 (Count: 170/188)
+[1875000] PC=0x000002e0 WB x29 <= 00000000 (Count: 171/188)
+[1895000] PC=0x000002e8 WB x4 <= 00000000 (Count: 172/188)
+[1905000] PC=0x000002ec WB x29 <= 00000042 (Count: 173/188)
+[1915000] PC=0x000002f0 WB x20 <= 00000002 (Count: 174/188)
+[1925000] PC=0x000002f4 WB x15 <= 00000000 (Count: 175/188)
+[1935000] PC=0x000002f8 WB x25 <= 00000010 (Count: 176/188)
+[1945000] PC=0x000002fc WB x18 <= 00000000 (Count: 177/188)
+[1955000] PC=0x00000300 WB x7 <= 00000001 (Count: 178/188)
+[1965000] PC=0x00000304 WB x12 <= 00000001 (Count: 179/188)
+[1985000] PC=0x0000030c WB x20 <= 00000000 (Count: 180/188)
+[1995000] PC=0x00000310 WB x26 <= 00000001 (Count: 181/188)
+[2005000] PC=0x00000314 WB x25 <= 00000010 (Count: 182/188)
+[2015000] PC=0x00000318 WB x5 <= 00000000 (Count: 183/188)
+[2025000] PC=0x0000031c WB x3 <= 00000000 (Count: 184/188)
+[2035000] PC=0x00000320 WB x13 <= 00000000 (Count: 185/188)
+[2055000] PC=0x00000328 WB x9 <= 00000000 (Count: 186/188)
+[2065000] PC=0x0000032c WB x4 <= 00000000 (Count: 187/188)
+[2075000] PC=0x00000330 WB x23 <= 00000000 (Count: 188/188)
+
+==========================================================================
+ ARCHITECTURAL STATE COMPARISON (SHADOW RF vs DUT RF)
+==========================================================================
+| REG   | EXPECTED     | ACTUAL       | STATUS |
+--------------------------------------------------------------------------
+| x0    | 0x00000000   | 0x00000000   | PASS   |
+| x1    | 0x00000000   | 0x00000000   | PASS   |
+| x2    | 0x00000000   | 0x00000000   | PASS   |
+| x3    | 0x00000000   | 0x00000000   | PASS   |
+| x4    | 0x00000000   | 0x00000000   | PASS   |
+| x29   | 0x00000042   | 0x00000042   | PASS   |
+| x30   | 0x00000000   | 0x00000000   | PASS   |
+| x31   | 0x00000000   | 0x00000000   | PASS   |
+
+FINAL DUT REGISTER FILE
+x0 DUT=00000000 SHADOW=00000000
+x1 DUT=00000000 SHADOW=00000000
+x2 DUT=00000000 SHADOW=00000000
+x3 DUT=00000000 SHADOW=00000000
+x4 DUT=00000000 SHADOW=00000000
+x5 DUT=00000000 SHADOW=00000000
+x6 DUT=00000001 SHADOW=00000001
+x7 DUT=00000001 SHADOW=00000001
+x8 DUT=00000000 SHADOW=00000000
+x9 DUT=00000000 SHADOW=00000000
+x10 DUT=00000000 SHADOW=00000000
+x11 DUT=00000000 SHADOW=00000000
+x12 DUT=00000001 SHADOW=00000001
+x13 DUT=00000000 SHADOW=00000000
+x14 DUT=00000000 SHADOW=00000000
+x15 DUT=00000000 SHADOW=00000000
+x16 DUT=00000001 SHADOW=00000001
+x17 DUT=00000040 SHADOW=00000040
+x18 DUT=00000000 SHADOW=00000000
+x19 DUT=00000001 SHADOW=00000001
+x20 DUT=00000000 SHADOW=00000000
+x21 DUT=00000001 SHADOW=00000001
+x22 DUT=00000001 SHADOW=00000001
+x23 DUT=00000000 SHADOW=00000000
+x24 DUT=00000001 SHADOW=00000001
+x25 DUT=00000010 SHADOW=00000010
+x26 DUT=00000001 SHADOW=00000001
+x27 DUT=00000002 SHADOW=00000002
+x28 DUT=00000040 SHADOW=00000040
+x29 DUT=00000042 SHADOW=00000042
+x30 DUT=00000000 SHADOW=00000000
+x31 DUT=00000000 SHADOW=00000000
+
+==========================================================================
+ R-TYPE RANDOM REGRESSION SUMMARY (SEED: 1001)
+==========================================================================
+ Registers Checked : 32
+ Passed            : 32
+ Failed            : 0
+ ADD  Count        : 21
+ SUB  Count        : 19
+ SLL  Count        : 23
+ SLT  Count        : 15
+ SLTU Count        : 21
+ XOR  Count        : 14
+ SRL  Count        : 25
+ SRA  Count        : 30
+ OR   Count        : 10
+ AND  Count        : 22
+
+ STATUS            : SIGN-OFF PASS
+==========================================================================
+
+Simulation complete via $finish(1) at time 2176 NS + 0
+./core_R_type_tb.sv:344         $finish;
+ncsim> exit
+
+coverage setup:
+  workdir  :  ./cov_work
+  dutinst  :  dp_ram(dp_ram)
+  dutinst  :  half_adder(half_adder)
+  dutinst  :  core_R_type_rand_tb(core_R_type_rand_tb)
+  scope    :  scope
+  testname :  seed_3333
+
+coverage files:
+  model(design data) :  ./cov_work/scope/icc_5cfaadb3_00000000.ucm (reused)
+  data               :  ./cov_work/scope/seed_3333/icc_5cfaadb3_00000000.ucd
+make[1]: Leaving directory `/home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl'
+[pguser@cegpgvlsilab1 rtl]$ 
+

@@ -1,0 +1,878 @@
+
+===================================
+ASM : BLT x1=206146476 x2=-1269063471 imm=-76 PC:000004a0
+EXPECTED : TAKEN=0  TARGET_ADDR=00000454
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000454
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=-1843203982 x2=-1843203982 imm=48 PC:0000047c
+EXPECTED : TAKEN=0  TARGET_ADDR=000004ac
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004ac
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=-1939028404 x2=1300923168 imm=-136 PC:000004dc
+EXPECTED : TAKEN=0  TARGET_ADDR=00000454
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000454
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BGE x1=1488933377 x2=-1288025573 imm=-152 PC:000004d4
+EXPECTED : TAKEN=1  TARGET_ADDR=0000043c
+DUT (EX) : TAKEN=1  TARGET_ADDR=0000043c
+[PASS] BGE VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=637380666 x2=163856721 imm=-44 PC:00000450
+EXPECTED : TAKEN=1  TARGET_ADDR=00000424
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000424
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=1902742217 x2=1902742217 imm=36 PC:00000414
+EXPECTED : TAKEN=0  TARGET_ADDR=00000438
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000438
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=-1062492580 x2=-1062492580 imm=4 PC:000004a4
+EXPECTED : TAKEN=1  TARGET_ADDR=000004a8
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004a8
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=469204761 x2=-965946011 imm=160 PC:00000440
+EXPECTED : TAKEN=1  TARGET_ADDR=000004e0
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004e0
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=557173620 x2=1629500128 imm=-88 PC:000004b0
+EXPECTED : TAKEN=0  TARGET_ADDR=00000458
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000458
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=-2738829 x2=643574558 imm=-40 PC:00000468
+EXPECTED : TAKEN=0  TARGET_ADDR=00000440
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000440
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=282889814 x2=111855597 imm=116 PC:0000045c
+EXPECTED : TAKEN=1  TARGET_ADDR=000004d0
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004d0
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=-213724365 x2=-2002305622 imm=-32 PC:00000430
+EXPECTED : TAKEN=1  TARGET_ADDR=00000410
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000410
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=503266775 x2=1663554742 imm=184 PC:00000410
+EXPECTED : TAKEN=0  TARGET_ADDR=000004c8
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004c8
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=-1757350913 x2=219131211 imm=36 PC:00000474
+EXPECTED : TAKEN=1  TARGET_ADDR=00000498
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000498
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=-1849246481 x2=-438528306 imm=144 PC:00000424
+EXPECTED : TAKEN=0  TARGET_ADDR=000004b4
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004b4
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=1509847491 x2=-2116723937 imm=-148 PC:000004ac
+EXPECTED : TAKEN=1  TARGET_ADDR=00000418
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000418
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=-1942228733 x2=388771194 imm=96 PC:00000420
+EXPECTED : TAKEN=0  TARGET_ADDR=00000480
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000480
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=1510750810 x2=1860461538 imm=0 PC:000004c0
+EXPECTED : TAKEN=1  TARGET_ADDR=000004c0
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004c0
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=1238760303 x2=-2082520777 imm=-64 PC:00000468
+EXPECTED : TAKEN=0  TARGET_ADDR=00000428
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000428
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=2115846979 x2=-1915855511 imm=116 PC:0000041c
+EXPECTED : TAKEN=0  TARGET_ADDR=00000490
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000490
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=-1568848484 x2=1832396906 imm=-4 PC:00000478
+EXPECTED : TAKEN=0  TARGET_ADDR=00000474
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000474
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=1182895384 x2=1182895384 imm=116 PC:00000464
+EXPECTED : TAKEN=1  TARGET_ADDR=000004d8
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004d8
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=1491956114 x2=-155163240 imm=-68 PC:00000494
+EXPECTED : TAKEN=0  TARGET_ADDR=00000450
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000450
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=1209692968 x2=1652821140 imm=-12 PC:000004c4
+EXPECTED : TAKEN=1  TARGET_ADDR=000004b8
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004b8
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=513132713 x2=2039587565 imm=-16 PC:00000450
+EXPECTED : TAKEN=1  TARGET_ADDR=00000440
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000440
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=-384445891 x2=624258113 imm=-96 PC:000004bc
+EXPECTED : TAKEN=1  TARGET_ADDR=0000045c
+DUT (EX) : TAKEN=1  TARGET_ADDR=0000045c
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=-1925886576 x2=-1925886576 imm=60 PC:00000440
+EXPECTED : TAKEN=1  TARGET_ADDR=0000047c
+DUT (EX) : TAKEN=1  TARGET_ADDR=0000047c
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=-807585749 x2=-962405143 imm=0 PC:00000458
+EXPECTED : TAKEN=1  TARGET_ADDR=00000458
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000458
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=-1702016444 x2=1104581289 imm=148 PC:00000438
+EXPECTED : TAKEN=0  TARGET_ADDR=000004cc
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004cc
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=1025774832 x2=1025774832 imm=-80 PC:000004ac
+EXPECTED : TAKEN=0  TARGET_ADDR=0000045c
+DUT (EX) : TAKEN=0  TARGET_ADDR=0000045c
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=-1830770552 x2=-499103725 imm=128 PC:00000424
+EXPECTED : TAKEN=0  TARGET_ADDR=000004a4
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004a4
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=-956845130 x2=1937341723 imm=16 PC:00000428
+EXPECTED : TAKEN=1  TARGET_ADDR=00000438
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000438
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=-568582871 x2=-618284217 imm=124 PC:00000410
+EXPECTED : TAKEN=1  TARGET_ADDR=0000048c
+DUT (EX) : TAKEN=1  TARGET_ADDR=0000048c
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=-12410596 x2=-668116414 imm=68 PC:0000042c
+EXPECTED : TAKEN=1  TARGET_ADDR=00000470
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000470
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=100216121 x2=1578570624 imm=-84 PC:0000046c
+EXPECTED : TAKEN=1  TARGET_ADDR=00000418
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000418
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=1466199194 x2=603367248 imm=-100 PC:0000049c
+EXPECTED : TAKEN=1  TARGET_ADDR=00000438
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000438
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=2087808625 x2=1592890332 imm=-116 PC:000004b4
+EXPECTED : TAKEN=1  TARGET_ADDR=00000440
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000440
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=-235779584 x2=-235779584 imm=-28 PC:000004dc
+EXPECTED : TAKEN=1  TARGET_ADDR=000004c0
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004c0
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=767420087 x2=-695242927 imm=48 PC:00000464
+EXPECTED : TAKEN=1  TARGET_ADDR=00000494
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000494
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=7138885 x2=-556568339 imm=124 PC:00000438
+EXPECTED : TAKEN=0  TARGET_ADDR=000004b4
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004b4
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BGE x1=1855395297 x2=-1481386610 imm=-132 PC:000004d8
+EXPECTED : TAKEN=1  TARGET_ADDR=00000454
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000454
+[PASS] BGE VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=859640924 x2=-421083095 imm=-68 PC:00000488
+EXPECTED : TAKEN=0  TARGET_ADDR=00000444
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000444
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=-930571174 x2=-565613239 imm=-8 PC:00000418
+EXPECTED : TAKEN=1  TARGET_ADDR=00000410
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000410
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=-1822729262 x2=251605416 imm=104 PC:0000043c
+EXPECTED : TAKEN=1  TARGET_ADDR=000004a4
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004a4
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=1891766345 x2=-1756211182 imm=116 PC:00000450
+EXPECTED : TAKEN=0  TARGET_ADDR=000004c4
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004c4
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=42049892 x2=1386392410 imm=-100 PC:000004d8
+EXPECTED : TAKEN=1  TARGET_ADDR=00000474
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000474
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=-548130926 x2=1307725872 imm=-20 PC:00000460
+EXPECTED : TAKEN=0  TARGET_ADDR=0000044c
+DUT (EX) : TAKEN=0  TARGET_ADDR=0000044c
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=-120661971 x2=-120661971 imm=-4 PC:000004ac
+EXPECTED : TAKEN=0  TARGET_ADDR=000004a8
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004a8
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=-1337890030 x2=-1337890030 imm=60 PC:00000438
+EXPECTED : TAKEN=0  TARGET_ADDR=00000474
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000474
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BGE x1=2114926077 x2=1407138572 imm=-60 PC:00000480
+EXPECTED : TAKEN=1  TARGET_ADDR=00000444
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000444
+[PASS] BGE VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=1044836206 x2=-1766501225 imm=56 PC:00000448
+EXPECTED : TAKEN=0  TARGET_ADDR=00000480
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000480
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=-1609641562 x2=-942652804 imm=-108 PC:000004e0
+EXPECTED : TAKEN=1  TARGET_ADDR=00000474
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000474
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=1152854608 x2=1152854608 imm=-56 PC:00000458
+EXPECTED : TAKEN=1  TARGET_ADDR=00000420
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000420
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=-1229467670 x2=1858571317 imm=-176 PC:000004c8
+EXPECTED : TAKEN=1  TARGET_ADDR=00000418
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000418
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=-1175127102 x2=-241746288 imm=-40 PC:000004a0
+EXPECTED : TAKEN=0  TARGET_ADDR=00000478
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000478
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=1220225445 x2=856410755 imm=16 PC:00000448
+EXPECTED : TAKEN=0  TARGET_ADDR=00000458
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000458
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=647857599 x2=25344986 imm=-96 PC:000004dc
+EXPECTED : TAKEN=0  TARGET_ADDR=0000047c
+DUT (EX) : TAKEN=0  TARGET_ADDR=0000047c
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=1022667089 x2=1022667089 imm=16 PC:0000043c
+EXPECTED : TAKEN=1  TARGET_ADDR=0000044c
+DUT (EX) : TAKEN=1  TARGET_ADDR=0000044c
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=1770451051 x2=-587692492 imm=-112 PC:000004b4
+EXPECTED : TAKEN=1  TARGET_ADDR=00000444
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000444
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=805208750 x2=-678803393 imm=16 PC:00000444
+EXPECTED : TAKEN=0  TARGET_ADDR=00000454
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000454
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=948106096 x2=-132670113 imm=-136 PC:000004b0
+EXPECTED : TAKEN=0  TARGET_ADDR=00000428
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000428
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=-783491638 x2=-58064268 imm=-44 PC:000004a0
+EXPECTED : TAKEN=1  TARGET_ADDR=00000474
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000474
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=-1657825185 x2=-519851516 imm=56 PC:00000424
+EXPECTED : TAKEN=1  TARGET_ADDR=0000045c
+DUT (EX) : TAKEN=1  TARGET_ADDR=0000045c
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=1962324821 x2=-1508049788 imm=8 PC:000004d4
+EXPECTED : TAKEN=1  TARGET_ADDR=000004dc
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004dc
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=-891787834 x2=-891787834 imm=56 PC:00000468
+EXPECTED : TAKEN=1  TARGET_ADDR=000004a0
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004a0
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=-94209016 x2=-328911620 imm=52 PC:00000448
+EXPECTED : TAKEN=0  TARGET_ADDR=0000047c
+DUT (EX) : TAKEN=0  TARGET_ADDR=0000047c
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=-1464486665 x2=122483785 imm=-4 PC:0000045c
+EXPECTED : TAKEN=1  TARGET_ADDR=00000458
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000458
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=2059086126 x2=-331188319 imm=104 PC:0000046c
+EXPECTED : TAKEN=0  TARGET_ADDR=000004d4
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004d4
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=-1021250401 x2=-1492927624 imm=56 PC:00000478
+EXPECTED : TAKEN=0  TARGET_ADDR=000004b0
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004b0
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=-2109918168 x2=762647800 imm=56 PC:0000046c
+EXPECTED : TAKEN=1  TARGET_ADDR=000004a4
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004a4
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=-992003859 x2=1904296380 imm=-28 PC:000004b0
+EXPECTED : TAKEN=0  TARGET_ADDR=00000494
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000494
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=-35029448 x2=1365885876 imm=-152 PC:000004dc
+EXPECTED : TAKEN=1  TARGET_ADDR=00000444
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000444
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=1661186700 x2=-831325879 imm=-36 PC:000004b0
+EXPECTED : TAKEN=1  TARGET_ADDR=0000048c
+DUT (EX) : TAKEN=1  TARGET_ADDR=0000048c
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=907966207 x2=798332706 imm=40 PC:000004b0
+EXPECTED : TAKEN=0  TARGET_ADDR=000004d8
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004d8
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=-2050402744 x2=-2050402744 imm=-4 PC:000004b8
+EXPECTED : TAKEN=1  TARGET_ADDR=000004b4
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004b4
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BGE x1=-2052027210 x2=-1119794132 imm=-8 PC:0000048c
+EXPECTED : TAKEN=0  TARGET_ADDR=00000484
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000484
+[PASS] BGE VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=-1529860996 x2=-985408132 imm=-108 PC:00000490
+EXPECTED : TAKEN=0  TARGET_ADDR=00000424
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000424
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BGE x1=215811963 x2=-1823625784 imm=-48 PC:000004d4
+EXPECTED : TAKEN=1  TARGET_ADDR=000004a4
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004a4
+[PASS] BGE VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=-1668189470 x2=-237068946 imm=-64 PC:00000454
+EXPECTED : TAKEN=0  TARGET_ADDR=00000414
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000414
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=1309495823 x2=771623194 imm=-28 PC:00000444
+EXPECTED : TAKEN=0  TARGET_ADDR=00000428
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000428
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=-665952286 x2=1352052829 imm=-52 PC:00000484
+EXPECTED : TAKEN=1  TARGET_ADDR=00000450
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000450
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BGE x1=2083316765 x2=2083316765 imm=-28 PC:00000494
+EXPECTED : TAKEN=1  TARGET_ADDR=00000478
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000478
+[PASS] BGE VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=-1681784082 x2=-1152447272 imm=116 PC:0000042c
+EXPECTED : TAKEN=1  TARGET_ADDR=000004a0
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004a0
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=1181502633 x2=-46313828 imm=24 PC:00000458
+EXPECTED : TAKEN=0  TARGET_ADDR=00000470
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000470
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=1930082259 x2=1964058327 imm=-176 PC:000004d0
+EXPECTED : TAKEN=1  TARGET_ADDR=00000420
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000420
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=1696149273 x2=1780932668 imm=16 PC:00000448
+EXPECTED : TAKEN=0  TARGET_ADDR=00000458
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000458
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=-578770291 x2=1031711549 imm=4 PC:00000418
+EXPECTED : TAKEN=1  TARGET_ADDR=0000041c
+DUT (EX) : TAKEN=1  TARGET_ADDR=0000041c
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=-1493645994 x2=2066247984 imm=-12 PC:00000464
+EXPECTED : TAKEN=0  TARGET_ADDR=00000458
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000458
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BGE x1=1491997848 x2=1491997848 imm=-128 PC:000004b4
+EXPECTED : TAKEN=1  TARGET_ADDR=00000434
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000434
+[PASS] BGE VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=-2041809786 x2=-154478651 imm=72 PC:00000494
+EXPECTED : TAKEN=1  TARGET_ADDR=000004dc
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004dc
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=149257294 x2=-498026208 imm=12 PC:00000424
+EXPECTED : TAKEN=0  TARGET_ADDR=00000430
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000430
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=-464801358 x2=252360693 imm=36 PC:00000464
+EXPECTED : TAKEN=1  TARGET_ADDR=00000488
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000488
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BGE x1=107568798 x2=-757797885 imm=120 PC:00000410
+EXPECTED : TAKEN=1  TARGET_ADDR=00000488
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000488
+[PASS] BGE VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=1377504190 x2=-2010098289 imm=20 PC:00000460
+EXPECTED : TAKEN=0  TARGET_ADDR=00000474
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000474
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=1387015800 x2=238005954 imm=-112 PC:000004dc
+EXPECTED : TAKEN=1  TARGET_ADDR=0000046c
+DUT (EX) : TAKEN=1  TARGET_ADDR=0000046c
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BGE x1=-1542927935 x2=-1199475828 imm=16 PC:000004c8
+EXPECTED : TAKEN=0  TARGET_ADDR=000004d8
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004d8
+[PASS] BGE VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=1060147735 x2=1060147735 imm=24 PC:00000484
+EXPECTED : TAKEN=0  TARGET_ADDR=0000049c
+DUT (EX) : TAKEN=0  TARGET_ADDR=0000049c
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=1325087870 x2=-2014133121 imm=16 PC:000004a4
+EXPECTED : TAKEN=1  TARGET_ADDR=000004b4
+DUT (EX) : TAKEN=1  TARGET_ADDR=000004b4
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BNE x1=-21558633 x2=-21558633 imm=100 PC:00000470
+EXPECTED : TAKEN=0  TARGET_ADDR=000004d4
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004d4
+[PASS] BNE VERIFIED
+===================================
+
+
+===================================
+ASM : BLT x1=-778114473 x2=1482683455 imm=-112 PC:000004c4
+EXPECTED : TAKEN=1  TARGET_ADDR=00000454
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000454
+[PASS] BLT VERIFIED
+===================================
+
+
+===================================
+ASM : BGEU x1=999165002 x2=-1602066667 imm=96 PC:00000468
+EXPECTED : TAKEN=0  TARGET_ADDR=000004c8
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004c8
+[PASS] BGEU VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=646929759 x2=1899440678 imm=-56 PC:0000048c
+EXPECTED : TAKEN=0  TARGET_ADDR=00000454
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000454
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=944749937 x2=532438821 imm=148 PC:0000041c
+EXPECTED : TAKEN=0  TARGET_ADDR=000004b0
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004b0
+[PASS] BEQ VERIFIED
+===================================
+
+
+===================================
+ASM : BLTU x1=1878713605 x2=-2139138337 imm=-160 PC:000004b4
+EXPECTED : TAKEN=1  TARGET_ADDR=00000414
+DUT (EX) : TAKEN=1  TARGET_ADDR=00000414
+[PASS] BLTU VERIFIED
+===================================
+
+
+===================================
+ASM : BGE x1=-1339045976 x2=1593638687 imm=40 PC:0000049c
+EXPECTED : TAKEN=0  TARGET_ADDR=000004c4
+DUT (EX) : TAKEN=0  TARGET_ADDR=000004c4
+[PASS] BGE VERIFIED
+===================================
+
+
+===================================
+ASM : BEQ x1=-1893998655 x2=-710035428 imm=68 PC:0000044c
+EXPECTED : TAKEN=0  TARGET_ADDR=00000490
+DUT (EX) : TAKEN=0  TARGET_ADDR=00000490
+[PASS] BEQ VERIFIED
+===================================
+
+=======================================
+ VERIFICATION COMPLETE
+ Total Tests Requested: 5000
+ Total Checks Executed: 5000
+ Pipeline Timeouts:     0
+ Total Errors Found:    0
+ Coverage percentage:   100.000000%
+=======================================
+>>> TEST PASSED <<<
+Simulation complete via $finish(1) at time 250001 NS + 0
+./branch_rand_tb.sv:400     $finish;
+ncsim> exit
+ncsim: *N,COVCGN: Coverage configuration file command "set_covergroup -new_instance_reporting" can be specified to improve the scoping and naming of covergroup instances. It may be noted that subsequent merging of a coverage database saved with this command and a coverage database saved without this command is not allowed.
+ncsim: *W,CGDEFN: Default name "branch_rand_tb.cov.branch_cg" will be generated for covergroup instance "branch_cg" as the name of the covergroup instance is not specified explicitly: ./branch_rand_tb.sv, 123.
+
+coverage setup:
+  workdir  :  ./cov_work
+  dutinst  :  dp_ram(dp_ram)
+  dutinst  :  half_adder(half_adder)
+  dutinst  :  branch_rand_tb(branch_rand_tb)
+  scope    :  scope
+  testname :  seed_1001
+
+coverage files:
+  model(design data) :  ./cov_work/scope/icc_4a8869cc_60c0a0d5.ucm (reused)
+  data               :  ./cov_work/scope/seed_1001/icc_4a8869cc_60c0a0d5.ucd
+make[1]: Leaving directory `/home/pguser/Darshan_Verification/Tanuja/Revital-X-SoC/rtl'
+[pguser@cegpgvlsilab1 rtl]$ imc
+[pguser@cegpgvlsilab1 rtl]$ 
+
