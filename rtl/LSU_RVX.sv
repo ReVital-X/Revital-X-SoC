@@ -37,8 +37,8 @@ module LSU_RVX (
   logic        sign_ext_q;
   logic [1:0]  offset_q;
 
-  logic        misaligned;
-  logic        second_phase;
+  logic misaligned_q;
+  assign misaligned_q = (type_q == 2'b00 && offset_q != 2'b00) || (type_q == 2'b01 && offset_q == 2'b11);
 
   logic [31:0] rdata_low_q;
 
@@ -49,9 +49,6 @@ module LSU_RVX (
 
   assign offset = addr_i[1:0];
 
-  assign misaligned =
-      (type_i == 2'b00 && offset != 2'b00) ||
-      (type_i == 2'b01 && offset == 2'b11);
 
   // -------------------------------
   // FSM
@@ -104,7 +101,7 @@ module LSU_RVX (
 
       WAIT_RVALID1:
         if (data_rvalid_i)
-          next = misaligned ? REQ2 : IDLE;
+          next = misaligned_q ? REQ2 : IDLE;
 
       REQ2:
         if (data_gnt_i)
@@ -135,8 +132,8 @@ module LSU_RVX (
 
   assign data_addr_o =
       (state == REQ2 || state == WAIT_RVALID2)
-      ? (base_addr + 32'd4)
-      : base_addr;
+      ? ((base_addr + 32'd4) >> 2)
+      : (base_addr >> 2);
 
   // -------------------------------
   // Write enable (FIXED BUG)
@@ -238,7 +235,7 @@ module LSU_RVX (
 
       // WORD
       2'b00: begin
-  if (!misaligned)
+  if (!misaligned_q)
     rdata_o = data_rdata_i;   // aligned
   else
     rdata_o = merged;         // misaligned
@@ -285,7 +282,7 @@ end
   // Response valid
   // -------------------------------
   assign rvalid_o =
-      (state == WAIT_RVALID1 && data_rvalid_i && !misaligned) ||
+      (state == WAIT_RVALID1 && data_rvalid_i && !misaligned_q) ||
       (state == WAIT_RVALID2 && data_rvalid_i);
 
 endmodule
