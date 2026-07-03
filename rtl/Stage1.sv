@@ -26,7 +26,16 @@ module Stage1 #(
     output logic uses_rs1,
     output logic uses_rs2,
     output logic [31:0] imm,
-    output logic [17:0] ctrl,
+    output logic [19:0] ctrl,
+
+    // CSR signals
+    output logic [2:0] func3_csr,
+    output logic [11:0] csr_addr,
+    input logic [31:0] csr_in,
+    output logic [31:0] csr_rdata,
+    input logic csr_we_back, // From WB Stage 
+    input logic [11:0] csr_addr_out, // From WB Stage
+
     input logic redirect_flush,
     input logic redirect_flush_d,
     // From MEM Stage 
@@ -41,6 +50,10 @@ module Stage1 #(
     input logic boot_mode
 );
 logic [31:0] instr;
+// CSR signals
+logic csr_we;
+logic csr_en;
+
 logic [31:0] mux_out;
 logic [31:0] instr_reg;
 logic [31:0] instr_PC_reg;
@@ -124,7 +137,15 @@ register_file rf (
     .rs1_value(rs1_value), 
     .rs2_value(rs2_value)
 );
-
+csr_register_file csr_rf (
+    .clk(clk),
+    .rst(rst),
+    .csr_addr(instr[31:20]),
+    .csr_rdata(csr_rdata),
+    .csr_we(csr_we_back),
+    .csr_waddr(csr_addr_out),
+    .csr_wdata(csr_in)
+);
 Control_Unit cu (
     .opcode(instr[6:0]),
     .funct3(instr[14:12]),
@@ -142,10 +163,14 @@ Control_Unit cu (
     .lsu_req(lsu_req),
     .lsu_we(lsu_we),
     .lsu_type(lsu_type),
-    .lsu_sign_ext(lsu_sign_ext)
+    .lsu_sign_ext(lsu_sign_ext),
+    .csr_en(csr_en),
+    .csr_we(csr_we)
 );
 
 assign ctrl = {
+    csr_en,          // 1 (19)
+    csr_we,          // 1 (18)
     RegWrite,        // 1 (17)
     MemtoReg,        // 2 (16:15)
     ALUSrc,          // 1 (14)
@@ -159,7 +184,7 @@ assign ctrl = {
     lsu_we,          // 1 (3)
     lsu_type,        // 2 (2:1)
     lsu_sign_ext     // 1 (0)
-                     // 18 bits total
+                     // 20 bits total
 };
 
 immediate_generator imm_gen (
@@ -170,6 +195,9 @@ immediate_generator imm_gen (
 assign rs1 = instr[19:15];
 assign rs2 = instr[24:20];
 assign rd_s12 = instr[11:7];
+
+assign func3_csr = instr[14:12];
+assign csr_addr = instr[31:20];
 
 always_comb begin
     uses_rs1 = 1'b0;
@@ -186,6 +214,13 @@ always_comb begin
         7'b1100011: begin // BRANCH
             uses_rs1 = 1'b1;
             uses_rs2 = 1'b1;
+        end
+        // CSR-Type (CSRRW, CSRRS, CSRRC, CSRRWI, CSRRSI, CSRRCI)
+        7'b1110011: begin
+            uses_rs1 = (instr[14:12] == 3'b001) ||
+                       (instr[14:12] == 3'b010) ||
+                       (instr[14:12] == 3'b011);
+            uses_rs2 = 1'b0;
         end
 
         default: begin

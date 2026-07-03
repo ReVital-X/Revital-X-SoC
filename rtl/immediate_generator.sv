@@ -38,6 +38,11 @@ module immediate_generator (
                 imm_out = {{11{instr[31]}}, instr[31], instr[19:12],instr[20], instr[30:21], 1'b0};
             end
 
+            // CSR-Type (CSRRW, CSRRS, CSRRC, CSRRWI, CSRRSI, CSRRCI) 
+            7'b1110011: begin
+                imm_out = {27'd0, instr[19:15]};
+            end
+
             default: begin
                 imm_out = 32'd0;
             end

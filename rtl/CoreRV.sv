@@ -25,8 +25,11 @@ typedef struct packed {
     logic [4:0] rs1;
     logic [4:0] rs2;
     logic [31:0] imm;
-    logic [17:0] ctrl;
+    logic [19:0] ctrl;
     logic [31:0] rdata_mem;
+    logic [2:0] func3_csr;
+    logic [31:0] csr_rdata;
+    logic [11:0] csr_addr;
 } s1_buffer;
 
 
@@ -49,13 +52,19 @@ logic [31:0] instr_PC_S12, rs1_value_S12, rs2_value_S12;
 logic [4:0] rs1_S12, rs2_S12;
 logic uses_rs1_S12, uses_rs2_S12;
 logic [31:0] imm;
-logic [17:0] ctrl;
+logic [19:0] ctrl;
 logic m_stall;
 logic load_hazard;
 logic front_stall;
 logic [4:0] rd_s12;
 logic [1:0] PCSrc;
 logic M_over;
+
+// CSR signals
+logic [2:0] func3_csr;
+logic [31:0] csr_in;
+logic [31:0] csr_rdata;
+logic [11:0] csr_addr;
 
 // Buffer to hold Stage 1 outputs for use in Stage 2
 s1_buffer s1_buf;
@@ -79,10 +88,13 @@ logic sign_ext_mem;
 logic [31:0] exec_result;
 logic [4:0] rd_S23;
 logic [31:0] rs2_value_S23;
-logic [7:0] ctrl_s2;
+logic [8:0] ctrl_s2;
 logic [31:0] pc_out_s2;
 logic [1:0] ForwardA, ForwardB;
 logic mul_start;
+logic [31:0] csr_wdata;
+logic [11:0] csr_addr_back;
+logic        csr_we_s2;
 
 // Memory Stage Signals
 logic dram_en_i;
@@ -104,19 +116,26 @@ logic lsu_rdata_valid_o;
 logic busy_o;
 
 // WB signals
-logic [31:0] alu_result_wb;
+logic [31:0] final_result_wb;
 logic [31:0] pc_wb;
 logic [1:0] memtoreg_wb;
 logic [4:0] rd_wb;
 logic       regwrite_wb;
+logic [31:0] csr_wdata_wb;
+logic [11:0] csr_addr_wb;
+logic        csr_we_wb;
 
 // Mem to WB BUFFER
-logic [31:0] alu_result_buf;
+logic [31:0] final_result_buf;
 logic [31:0] mem_data_buf;
 logic [31:0] pc_buf;
 logic [1:0] memtoreg_buf;
 logic [4:0] rd_buf;
 logic       regwrite_buf;
+logic [31:0] csr_wdata_buf;
+logic [11:0] csr_addr_buf;
+logic        csr_we_buf;
+logic [11:0] csr_addr_out;
 logic [31:0] Mem_Ctrl_PC;
 logic boot_mode;
 
@@ -161,6 +180,15 @@ Stage1 #(
     .uses_rs2(uses_rs2_S12),
     .imm(imm),
     .ctrl(ctrl),
+
+    // CSR signals
+    .func3_csr(func3_csr),
+    .csr_addr(csr_addr),
+    .csr_in(csr_in),
+    .csr_rdata(csr_rdata),
+    .csr_we_back(csr_we_buf),
+    .csr_addr_out(csr_addr_out),
+
     .redirect_flush(redirect_flush),
     .redirect_flush_d(redirect_flush_d),
     // From MEM Stage 
@@ -192,9 +220,12 @@ always_ff @(posedge clk) begin
         s1_buf.rs1 <= 5'b0;
         s1_buf.rs2 <= 5'b0;
         s1_buf.imm <= 32'b0;
-        s1_buf.ctrl <= 18'b0;
+        s1_buf.ctrl <= 20'b0;
         s1_buf.rd_s12 <= 5'b0;
         s1_buf.rdata_mem <= 32'b0;
+        s1_buf.func3_csr <= 3'b0;
+        s1_buf.csr_rdata <= 32'b0;
+        s1_buf.csr_addr <= 12'b0;
     end
     else if (m_stall) begin
         s1_buf <= s1_buf; // Hold the current values in the buffer
@@ -207,9 +238,12 @@ always_ff @(posedge clk) begin
         s1_buf.rs1 <= 5'b0;
         s1_buf.rs2 <= 5'b0;
         s1_buf.imm <= 32'b0;
-        s1_buf.ctrl <= 18'b0;
+        s1_buf.ctrl <= 20'b0;
         s1_buf.rd_s12 <= 5'b0;
         s1_buf.rdata_mem <= 32'b0;
+        s1_buf.func3_csr <= 3'b0;
+        s1_buf.csr_rdata <= 32'b0;
+        s1_buf.csr_addr <= 12'b0;
     end
     else begin
         s1_buf.PC <= instr_PC_S12;
@@ -221,6 +255,9 @@ always_ff @(posedge clk) begin
         s1_buf.ctrl <= ctrl;
         s1_buf.rd_s12 <= rd_s12;
         s1_buf.rdata_mem <= rdata_mem;
+        s1_buf.func3_csr <= func3_csr;
+        s1_buf.csr_rdata <= csr_rdata;
+        s1_buf.csr_addr <= csr_addr;
     end
 end
 
@@ -236,7 +273,7 @@ Stage2 s2 (
     .ForwardA(ForwardA),
     .ForwardB(ForwardB),
     .Fwd_rd_value1(data_wb),
-    .Fwd_rd_value2(alu_result_wb),
+    .Fwd_rd_value2(final_result_wb),
     .mul_start(mul_start),
     .exec_result(exec_result),
     .rd_out(rd_S23),
@@ -247,7 +284,15 @@ Stage2 s2 (
     .ALUResult(ALUResult),
     .pc_out_s2(pc_out_s2),
     .M_over(M_over),
-    .Jump(Jump)
+    .Jump(Jump),
+
+    // CSR signals
+    .func3_csr(s1_buf.func3_csr),
+    .csr_rdata(s1_buf.csr_rdata),
+    .csr_wdata(csr_wdata),
+    .csr_addr(s1_buf.csr_addr),
+    .csr_we_back(csr_we_s2),
+    .csr_addr_back(csr_addr_back)
 );
 
 always_comb begin
@@ -459,28 +504,37 @@ logic [1:0] mem_select_wb;
 // EXE-MEM stage buffer
 always_ff @(posedge clk) begin
     if (rst) begin
-        alu_result_wb <= 32'd0;
+        final_result_wb <= 32'd0;
         pc_wb         <= 32'd0;
         memtoreg_wb   <= 2'b00;
         rd_wb         <= 5'd0;
         regwrite_wb   <= 1'b0;
         mem_select_wb <= 2'b00;
+        csr_wdata_wb  <= 32'd0;
+        csr_addr_wb   <= 12'b0;
+        csr_we_wb     <= 1'b0;
     end
     else if (m_stall) begin
-        alu_result_wb <= alu_result_wb; // Hold the current values in the buffer
+        final_result_wb <= final_result_wb; // Hold the current values in the buffer
         pc_wb         <= pc_wb;
         memtoreg_wb   <= memtoreg_wb;
         rd_wb         <= rd_wb;
         regwrite_wb   <= regwrite_wb;
         mem_select_wb <= mem_select_wb;
+        csr_wdata_wb    <= csr_wdata_wb;
+        csr_addr_wb     <= csr_addr_wb;
+        csr_we_wb       <= csr_we_wb;
     end
     else begin
-        alu_result_wb <= exec_result;
+        final_result_wb <= exec_result;
         pc_wb         <= pc_out_s2;
         memtoreg_wb   <= ctrl_s2[7:6];
         rd_wb         <= rd_S23;
         regwrite_wb   <= ctrl_s2[5];
         mem_select_wb <= mem_select;
+        csr_wdata_wb    <= csr_wdata; 
+        csr_addr_wb     <= csr_addr_back;
+        csr_we_wb       <= csr_we_s2;
     end
 end
 logic [31:0] mem_data_wb;
@@ -515,33 +569,42 @@ end
 //MEM-WB stage buffer
 always_ff @(posedge clk) begin
     if (rst) begin
-        alu_result_buf <= 32'd0;
+        final_result_buf <= 32'd0;
         pc_buf         <= 32'd0;
         memtoreg_buf   <= 2'b00;
         mem_data_buf    <= 32'd0;
         rd_buf          <= 5'd0;
         regwrite_buf    <= 1'b0;
+        csr_wdata_buf  <= 32'd0;
+        csr_addr_buf   <= 12'b0;
+        csr_we_buf     <= 1'b0;
     end
     else if (lsu_load_wait_wb) begin
-        alu_result_buf  <= alu_result_buf;
+        final_result_buf  <= final_result_buf;
         pc_buf          <= pc_buf;
         memtoreg_buf    <= memtoreg_buf;
         mem_data_buf    <= mem_data_buf;
         rd_buf          <= rd_buf;
         regwrite_buf    <= regwrite_buf;
+        csr_wdata_buf  <= csr_wdata_buf;
+        csr_addr_buf   <= csr_addr_buf;
+        csr_we_buf     <= csr_we_buf;
     end
     else begin
-        alu_result_buf  <= alu_result_wb;
+        final_result_buf  <= final_result_wb;
         pc_buf          <= pc_wb;
         memtoreg_buf    <= memtoreg_wb;
         mem_data_buf    <= mem_data_wb;
         rd_buf          <= rd_wb;
         regwrite_buf    <= regwrite_wb;
+        csr_wdata_buf  <= csr_wdata_wb;
+        csr_addr_buf   <= csr_addr_wb;
+        csr_we_buf     <= csr_we_wb;
     end
 end
 //WB Mux
 memtoreg_mux mux_wb (
-    .alu_result (alu_result_buf),
+    .final_result (final_result_buf),
     .mem_data   (mem_data_buf),
     .pc         (pc_buf),
     .MemtoReg   (memtoreg_buf),
@@ -549,5 +612,6 @@ memtoreg_mux mux_wb (
 );
 assign rd_out = rd_buf;
 assign Reg_wb = regwrite_buf;
-
+assign csr_in = csr_wdata_buf;
+assign csr_addr_out = csr_addr_buf;
 endmodule

@@ -18,7 +18,9 @@ module Control_Unit (
     output logic       lsu_req,
     output logic       lsu_we,
     output logic [1:0] lsu_type,
-    output logic       lsu_sign_ext
+    output logic       lsu_sign_ext,
+    output logic       csr_en,
+    output logic       csr_we
 );
 
     // Internal signals
@@ -40,6 +42,8 @@ module Control_Unit (
         lsu_we     = 0;
         lsu_type   = 2'b00;
         lsu_sign_ext = 0;
+        csr_en = 0;
+        csr_we = 0;
         case (opcode)
 
             // LOAD (lw)
@@ -86,7 +90,7 @@ module Control_Unit (
                 RegWrite  = 0;
                 ALUSrc    = 1;
                 Lui       = 0;
-                MemtoReg  = 2'b11;
+                MemtoReg  = 2'b00;
                 Jump      = 0;
                 Branch    = 0;
                 ALUOp     = 2'b00;
@@ -120,7 +124,7 @@ module Control_Unit (
                 RegWrite  = 0;
                 ALUSrc    = 0;
                 Lui       = 0;
-                MemtoReg  = 2'b11;
+                MemtoReg  = 2'b00;
                 Jump      = 0;
                 Branch    = 1;
                 ALUOp     = 2'b01;
@@ -177,15 +181,28 @@ module Control_Unit (
                 Branch    = 0;
                 ALUOp     = 2'b00;
             end
-
+            //CSR (CSSRW, CSRRS, CSRRC, CSRRWI, CSRRSI, CSRRCI)
+            7'b1110011: begin
+                RegWrite  = 1;
+                ALUSrc    = 0; 
+                Lui       = 0;
+                MemtoReg  = 2'b00; // ALU will be configured to pass old CSR value to rd
+                Jump      = 0;
+                Branch    = 0;
+                ALUOp     = 2'b00;
+                csr_en = 1;
+                csr_we = 1;
+            end
             default: begin
                 RegWrite   = 0;
                 ALUSrc     = 0;
                 Lui        = 0;
-                MemtoReg   = 2'b11;
+                MemtoReg   = 2'b00;
                 Jump       = 0;
                 Branch     = 0;
                 ALUOp      = 2'b00;
+                csr_en = 0;
+                csr_we = 0;
             end
 
         endcase
