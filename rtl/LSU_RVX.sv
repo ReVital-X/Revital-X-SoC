@@ -1,9 +1,8 @@
-`timescale 1ns / 1ps
 module LSU_RVX (
   input  logic         clk,
   input  logic         rst,
 
-  // data interface
+  // Memory interface
   output logic         data_req_o,
   input  logic         data_gnt_i,
   input  logic         data_rvalid_i,
@@ -14,299 +13,276 @@ module LSU_RVX (
   output logic [31:0]  data_wdata_o,
   input  logic [31:0]  data_rdata_i,
 
-  // ID/EX inputs
-  input  logic         lsu_we_i,
-  input  logic [1:0]   lsu_type_i,
-  input  logic [31:0]  lsu_wdata_i,
-  input  logic         lsu_sign_ext_i,
-  input  logic         lsu_req_i,
-  input  logic [31:0]  adder_result_ex_i,
+  // Request
+  input  logic         req_i,
+  input  logic         we_i,
+  input  logic [1:0]   type_i,      // 00=word, 01=half, 10=byte
+  input  logic         sign_ext_i,
+  input  logic [31:0]  addr_i,
+  input  logic [31:0]  wdata_i,
 
-  // outputs to WB / pipeline control
-  output logic [31:0]  lsu_rdata_o,
-  output logic         lsu_rdata_valid_o,
+  // Response
+  output logic [31:0]  rdata_o,
+  output logic         rvalid_o,
   output logic         busy_o
 );
 
-  logic [31:0] data_addr;
-  logic [31:0] data_addr_w_aligned;
+  // -------------------------------
+  // Internal registers
+  // -------------------------------
+  logic [31:0] addr_q;
+  logic [31:0] wdata_q;
+  logic [1:0]  type_q;
+  logic        we_q;
+  logic        sign_ext_q;
+  logic [1:0]  offset_q;
 
-  logic        addr_update;
-  logic        ctrl_update;
-  logic        rdata_update;
+  logic misaligned_q;
+  assign misaligned_q = (type_q == 2'b00 && offset_q != 2'b00) || (type_q == 2'b01 && offset_q == 2'b11);
 
-  logic [31:8] rdata_q;
-  logic [1:0]  rdata_offset_q;
-  logic [1:0]  data_type_q;
-  logic        data_sign_ext_q;
-  logic        data_we_q;
+  logic [31:0] rdata_low_q;
 
-  logic [1:0]  data_offset;
-  logic [3:0]  data_be;
-  logic [31:0] data_wdata;
+  // -------------------------------
+  // Misaligned detect
+  // -------------------------------
+  logic [1:0] offset;
 
-  logic [31:0] data_rdata_ext;
-  logic [31:0] rdata_w_ext;
-  logic [31:0] rdata_h_ext;
-  logic [31:0] rdata_b_ext;
+  assign offset = addr_i[1:0];
 
-  logic        split_misaligned_access;
-  logic        handle_misaligned_q, handle_misaligned_d;
 
+  // -------------------------------
+  // FSM
+  // -------------------------------
   typedef enum logic [2:0] {
     IDLE,
-    WAIT_GNT_MIS,
-    WAIT_RVALID_MIS,
-    WAIT_GNT,
-    WAIT_RVALID_MIS_GNTS_DONE
-  } ls_fsm_e;
+    REQ1,
+    WAIT_RVALID1,
+    REQ2,
+    WAIT_RVALID2
+  } state_e;
 
-  ls_fsm_e ls_fsm_cs, ls_fsm_ns;
+  state_e state, next;
 
-  assign data_addr   = adder_result_ex_i;
-  assign data_offset = data_addr[1:0];
-
-  //-----------------------------------
-  // Byte Enable generation
-  //-----------------------------------
-
-  always_comb begin
-    unique case (lsu_type_i)
-      2'b00: begin
-        if (!handle_misaligned_q) begin
-          unique case (data_offset)
-            2'b00: data_be = 4'b1111;
-            2'b01: data_be = 4'b1110;
-            2'b10: data_be = 4'b1100;
-            2'b11: data_be = 4'b1000;
-          endcase
-        end else begin
-          unique case (data_offset)
-            2'b00: data_be = 4'b0000;
-            2'b01: data_be = 4'b0001;
-            2'b10: data_be = 4'b0011;
-            2'b11: data_be = 4'b0111;
-          endcase
-        end
-      end
-
-      2'b01: begin
-        if (!handle_misaligned_q) begin
-          unique case (data_offset)
-            2'b00: data_be = 4'b0011;
-            2'b01: data_be = 4'b0110;
-            2'b10: data_be = 4'b1100;
-            2'b11: data_be = 4'b1000;
-          endcase
-        end else begin
-          data_be = 4'b0001;
-        end
-      end
-
-      default: begin
-        unique case (data_offset)
-          2'b00: data_be = 4'b0001;
-          2'b01: data_be = 4'b0010;
-          2'b10: data_be = 4'b0100;
-          2'b11: data_be = 4'b1000;
-        endcase
-      end
-    endcase
+  // -------------------------------
+  // Control latch
+  // -------------------------------
+  always_ff @(posedge clk) begin
+    if (rst) begin
+      addr_q      <= 0;
+      wdata_q     <= 0;
+      type_q      <= 0;
+      we_q        <= 0;
+      sign_ext_q  <= 0;
+      offset_q    <= 0;
+    end else if (state == IDLE && req_i) begin
+      addr_q      <= addr_i;
+      wdata_q     <= wdata_i;
+      type_q      <= type_i;
+      we_q        <= we_i;
+      sign_ext_q  <= sign_ext_i;
+      offset_q    <= offset;
+    end
   end
 
-  //-----------------------------------
-  // Write Data Alignment
-  //-----------------------------------
-
+  // -------------------------------
+  // FSM next-state
+  // -------------------------------
   always_comb begin
-    unique case (data_offset)
-      2'b00: data_wdata = lsu_wdata_i;
-      2'b01: data_wdata = {lsu_wdata_i[23:0], lsu_wdata_i[31:24]};
-      2'b10: data_wdata = {lsu_wdata_i[15:0], lsu_wdata_i[31:16]};
-      2'b11: data_wdata = {lsu_wdata_i[7:0],  lsu_wdata_i[31:8]};
-      default: data_wdata = lsu_wdata_i;
+    next = state;
+
+    case (state)
+
+      IDLE:
+        if (req_i) next = REQ1;
+
+      REQ1:
+        if (data_gnt_i)
+          next = WAIT_RVALID1;
+
+      WAIT_RVALID1:
+        if (data_rvalid_i)
+          next = misaligned_q ? REQ2 : IDLE;
+
+      REQ2:
+        if (data_gnt_i)
+          next = WAIT_RVALID2;
+
+      WAIT_RVALID2:
+        if (data_rvalid_i)
+          next = IDLE;
+
     endcase
   end
-
-  //-----------------------------------
-  // RDATA capture
-  //-----------------------------------
 
   always_ff @(posedge clk) begin
     if (rst)
-      rdata_q <= '0;
-    else if (rdata_update)
-      rdata_q <= data_rdata_i[31:8];
+      state <= IDLE;
+    else
+      state <= next;
   end
 
-  //-----------------------------------
-  // control registers
-  //-----------------------------------
+  assign busy_o = (state != IDLE);
 
-  always_ff @(posedge clk) begin
-    if (rst) begin
-      rdata_offset_q  <= '0;
-      data_type_q     <= '0;
-      data_sign_ext_q <= '0;
-      data_we_q       <= '0;
-    end else if (ctrl_update) begin
-      rdata_offset_q  <= data_offset;
-      data_type_q     <= lsu_type_i;
-      data_sign_ext_q <= lsu_sign_ext_i;
-      data_we_q       <= lsu_we_i;
-    end
-  end
+  // -------------------------------
+  // Address generation
+  // -------------------------------
+  logic [31:0] base_addr;
 
-  //-----------------------------------
-  // load alignment
-  //-----------------------------------
-
-  always_comb begin
-    unique case (rdata_offset_q)
-      2'b00: rdata_w_ext = data_rdata_i;
-      2'b01: rdata_w_ext = {data_rdata_i[7:0],  rdata_q};
-      2'b10: rdata_w_ext = {data_rdata_i[15:0], rdata_q[31:16]};
-      2'b11: rdata_w_ext = {data_rdata_i[23:0], rdata_q[31:24]};
-      default: rdata_w_ext = data_rdata_i;
-    endcase
-  end
-
-  always_comb begin
-    case (data_type_q)
-      2'b00: data_rdata_ext = rdata_w_ext;
-      2'b01: begin
-        case (rdata_offset_q)
-          2'b00: data_rdata_ext = data_sign_ext_q ? {{16{data_rdata_i[15]}},data_rdata_i[15:0]} : {16'b0,data_rdata_i[15:0]};
-          2'b01: data_rdata_ext = data_sign_ext_q ? {{16{data_rdata_i[23]}},data_rdata_i[23:8]} : {16'b0,data_rdata_i[23:8]};
-          2'b10: data_rdata_ext = data_sign_ext_q ? {{16{data_rdata_i[31]}},data_rdata_i[31:16]} : {16'b0,data_rdata_i[31:16]};
-          default:
-            data_rdata_ext = data_sign_ext_q ?
-              {{16{data_rdata_i[7]}}, data_rdata_i[7:0], rdata_q[31:24]} :
-              {16'b0, data_rdata_i[7:0], rdata_q[31:24]};
-        endcase
-      end
-
-      default: begin
-        case (rdata_offset_q)
-          2'b00: data_rdata_ext = data_sign_ext_q ? {{24{data_rdata_i[7]}},data_rdata_i[7:0]} : {24'b0,data_rdata_i[7:0]};
-          2'b01: data_rdata_ext = data_sign_ext_q ? {{24{data_rdata_i[15]}},data_rdata_i[15:8]} : {24'b0,data_rdata_i[15:8]};
-          2'b10: data_rdata_ext = data_sign_ext_q ? {{24{data_rdata_i[23]}},data_rdata_i[23:16]} : {24'b0,data_rdata_i[23:16]};
-          2'b11: data_rdata_ext = data_sign_ext_q ? {{24{data_rdata_i[31]}},data_rdata_i[31:24]} : {24'b0,data_rdata_i[31:24]};
-        endcase
-      end
-    endcase
-  end
-
-  //-----------------------------------
-  // misaligned detection
-  //-----------------------------------
-
-  assign split_misaligned_access =
-      ((lsu_type_i == 2'b00) && (data_offset != 2'b00)) ||
-      ((lsu_type_i == 2'b01) && (data_offset == 2'b11));
-
-  //-----------------------------------
-  // FSM
-  //-----------------------------------
-
-  always_comb begin
-    ls_fsm_ns = ls_fsm_cs;
-
-    data_req_o = 1'b0;
-    handle_misaligned_d = handle_misaligned_q;
-
-    addr_update  = 1'b0;
-    ctrl_update  = 1'b0;
-    rdata_update = 1'b0;
-
-    case (ls_fsm_cs)
-
-      IDLE: begin
-        if (lsu_req_i) begin
-          data_req_o = 1'b1;
-
-          if (data_gnt_i) begin
-            ctrl_update = 1'b1;
-            addr_update = 1'b1;
-            handle_misaligned_d = split_misaligned_access;
-            ls_fsm_ns = split_misaligned_access ? WAIT_RVALID_MIS : IDLE;
-          end else begin
-            ls_fsm_ns = split_misaligned_access ? WAIT_GNT_MIS : WAIT_GNT;
-          end
-        end
-      end
-
-      WAIT_GNT_MIS: begin
-        data_req_o = 1'b1;
-        if (data_gnt_i) begin
-          ctrl_update = 1'b1;
-          addr_update = 1'b1;
-          handle_misaligned_d = 1'b1;
-          ls_fsm_ns = WAIT_RVALID_MIS;
-        end
-      end
-
-      WAIT_RVALID_MIS: begin
-        data_req_o = 1'b1;
-
-        if (data_rvalid_i) begin
-          rdata_update = ~data_we_q;
-          ls_fsm_ns = data_gnt_i ? IDLE : WAIT_GNT;
-          handle_misaligned_d = ~data_gnt_i;
-        end else if (data_gnt_i) begin
-          ls_fsm_ns = WAIT_RVALID_MIS_GNTS_DONE;
-          handle_misaligned_d = 1'b0;
-        end
-      end
-
-      WAIT_GNT: begin
-        data_req_o = 1'b1;
-        if (data_gnt_i) begin
-          ctrl_update = 1'b1;
-          handle_misaligned_d = 1'b0;
-          ls_fsm_ns = IDLE;
-        end
-      end
-
-      WAIT_RVALID_MIS_GNTS_DONE: begin
-        if (data_rvalid_i) begin
-          rdata_update = ~data_we_q;
-          ls_fsm_ns = IDLE;
-        end
-      end
-
-      default: ls_fsm_ns = IDLE;
-    endcase
-  end
-
-  always_ff @(posedge clk) begin
-    if (rst) begin
-      ls_fsm_cs <= IDLE;
-      handle_misaligned_q <= 1'b0;
-    end else begin
-      ls_fsm_cs <= ls_fsm_ns;
-      handle_misaligned_q <= handle_misaligned_d;
-    end
-  end
-
-  //-----------------------------------
-  // outputs
-  //-----------------------------------
-
-  assign lsu_rdata_o       = data_rdata_ext;
-  assign lsu_rdata_valid_o = (ls_fsm_cs == IDLE) & data_rvalid_i & ~data_we_q;
-
-  assign data_addr_w_aligned = {data_addr[31:2], 2'b00};
+  assign base_addr = {addr_q[31:2], 2'b00};
 
   assign data_addr_o =
-      handle_misaligned_q ?
-      (data_addr_w_aligned + 32'd4) :
-      data_addr_w_aligned;
+      (state == REQ2 || state == WAIT_RVALID2)
+      ? ((base_addr + 32'd4) >> 2)
+      : (base_addr >> 2);
 
-  assign data_we_o    = data_we_q;
-  assign data_be_o    = data_be;
-  assign data_wdata_o = data_wdata;
+  // -------------------------------
+  // Write enable (FIXED BUG)
+  // -------------------------------
+  //assign data_we_o = we_q && (state == REQ1 || state == REQ2); // June 22 change
+ assign data_we_o = we_q && data_req_o;
+  // -------------------------------
+  // Byte enable generation
+  // -------------------------------
+  always_comb begin
+    data_be_o = 4'b0000;
 
-  assign busy_o = lsu_req_i | (ls_fsm_cs != IDLE);
+    unique case (type_q)
+
+      // WORD
+      2'b00: begin
+        if (state == REQ1)
+          data_be_o = 4'b1111 << offset_q;
+        else
+          data_be_o = 4'b1111 >> (4 - offset_q);
+      end
+
+      // HALF
+      2'b01: begin
+        if (state == REQ1)
+          data_be_o = 4'b0011 << offset_q;
+        else
+          data_be_o = 4'b0001;
+      end
+
+      // BYTE
+      default: begin
+        data_be_o = 4'b0001 << offset_q;
+      end
+
+    endcase
+  end
+
+  // -------------------------------
+  // Write data alignment   // June 22 change
+  // -------------------------------
+//   always_comb begin
+//     case (offset_q)
+//       2'b00: data_wdata_o = wdata_q;
+//       2'b01: data_wdata_o = {wdata_q[23:0], wdata_q[31:24]};
+//       2'b10: data_wdata_o = {wdata_q[15:0], wdata_q[31:16]};
+//       2'b11: data_wdata_o = {wdata_q[7:0],  wdata_q[31:8]};
+//     endcase
+  //end
+  always_comb begin
+    data_wdata_o = wdata_q; // Default fallback
+
+    if (state == REQ2 || state == WAIT_RVALID2) begin
+      // Phase 2: Shift down the remaining upper fragments to the base byte lanes
+      case (offset_q)
+        2'b01: data_wdata_o = {24'b0, wdata_q[31:24]};
+        2'b10: data_wdata_o = {16'b0, wdata_q[31:16]};
+        2'b11: data_wdata_o = {8'b0,  wdata_q[31:8]};
+        default: data_wdata_o = wdata_q;
+      endcase
+    end else begin
+      // Phase 1 (or perfectly aligned transactions)
+      case (offset_q)
+        2'b00: data_wdata_o = wdata_q;
+        2'b01: data_wdata_o = {wdata_q[23:0], wdata_q[31:24]};
+        2'b10: data_wdata_o = {wdata_q[15:0], wdata_q[31:16]};
+        2'b11: data_wdata_o = {wdata_q[7:0],  wdata_q[31:8]};
+      endcase
+    end
+  end
+  // -------------------------------
+  // Load data capture
+  // -------------------------------
+  always_ff @(posedge clk) begin
+    if (state == WAIT_RVALID1 && data_rvalid_i)
+      rdata_low_q <= data_rdata_i;
+  end
+
+  // -------------------------------
+  // Load stitching
+  // -------------------------------
+  logic [31:0] merged;
+
+  always_comb begin
+    case (offset_q)
+      2'b00: merged = data_rdata_i;
+      2'b01: merged = {data_rdata_i[7:0],  rdata_low_q[31:8]};
+      2'b10: merged = {data_rdata_i[15:0], rdata_low_q[31:16]};
+      2'b11: merged = {data_rdata_i[23:0], rdata_low_q[31:24]};
+    endcase
+  end
+
+  // -------------------------------
+  // Final load formatting
+  // -------------------------------
+  logic [7:0] byte_;
+  always_comb begin
+    case (type_q)
+
+      // WORD
+      2'b00: begin
+  if (!misaligned_q)
+    rdata_o = data_rdata_i;   // aligned
+  else
+    rdata_o = merged;         // misaligned
+end
+
+      // HALF
+      2'b01: begin
+        logic [15:0] half;
+
+        case (offset_q)
+          2'b00: half = data_rdata_i[15:0];
+          2'b01: half = data_rdata_i[23:8];
+          2'b10: half = data_rdata_i[31:16];
+          2'b11: half = {data_rdata_i[7:0], rdata_low_q[31:24]};
+        endcase
+
+        rdata_o = sign_ext_q ? {{16{half[15]}}, half} : {16'b0, half};
+      end
+
+      // BYTE
+      default: begin
+        
+
+        case (offset_q)
+          2'b00: byte_ = data_rdata_i[7:0];
+          2'b01: byte_ = data_rdata_i[15:8];
+          2'b10: byte_ = data_rdata_i[23:16];
+          2'b11: byte_ = data_rdata_i[31:24];
+        endcase
+
+        rdata_o = sign_ext_q ? {{24{byte_[7]}}, byte_} : {24'b0, byte_};
+      end
+
+    endcase
+  end
+
+  // -------------------------------
+  // Request generation
+  // -------------------------------
+  assign data_req_o =
+      (state == REQ1) || (state == REQ2);
+
+  // -------------------------------
+  // Response valid
+  // -------------------------------
+  assign rvalid_o =
+      (state == WAIT_RVALID1 && data_rvalid_i && !misaligned_q) ||
+      (state == WAIT_RVALID2 && data_rvalid_i);
 
 endmodule
