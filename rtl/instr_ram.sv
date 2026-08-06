@@ -114,34 +114,43 @@ always_comb begin
     rdata_b_o = 32'b0;
   end
 end
-  // boot memory
-   sp_ram #(
-    .ADDR_WIDTH(BOOT_ADDR_WIDTH), // INSTR_ADDR - BOOT_ADDR Space
-    .DATA_WIDTH(32),
-    .NUM_WORDS(BOOT_WORDS)
-   ) ram1(
-    .clk(clk),
-    .en_i(en_1_i),
-    .addr_i(addr_1_i),
-    .wdata_i(wdata_1_i),
-    .rdata_o(rdata_1_o),
-    .we_i(we_1_i),
-    .be_i(be_1_i)
-   );
+   // 64x32 boot memory
+   logic [31:0] BWEB_i_1;
+   assign BWEB_i_1[31:24] = be_1_i[3] ? 8'h00 : 8'hFF;
+   assign BWEB_i_1[23:16] = be_1_i[2] ? 8'h00 : 8'hFF;
+   assign BWEB_i_1[15:8]  = be_1_i[1] ? 8'h00 : 8'hFF;
+   assign BWEB_i_1[7:0]   = be_1_i[0] ? 8'h00 : 8'hFF;
+   TS1N28HPCPHVTB64X32M4SWBASO ram1(
+            .SLP(0),
+            .SD(0),
+            .CLK(clk), .CEB(!en_1_i), .WEB(!we_1_i),
+            .CEBM(1), .WEBM(1),
+            .AWT(0),
+            .A(addr_1_i), .D(wdata_1_i),
+            .BWEB(BWEB_i_1),
+            .AM(6'd0), .DM(32'd0), 
+            .BWEBM(32'd0),
+            .BIST(0),
+            .Q(rdata_1_o));
 
-   // instruction memory
-   sp_ram #(
-    .ADDR_WIDTH(INSTR_ADDR_WIDTH),  // DATA_ADDR - INSTR_ADDR Space
-    .DATA_WIDTH(32),
-    .NUM_WORDS(INSTR_WORDS)
-   ) ram3(
-    .clk(clk),
-    .en_i(en_2_i),
-    .addr_i(addr_2_i),
-    .wdata_i(wdata_2_i),
-    .rdata_o(rdata_2_o),
-    .we_i(we_2_i),
-    .be_i(be_2_i)
-   );
+   // 64x32 instruction memory
+   logic [31:0] BWEB_i_2;
+   assign BWEB_i_2[31:24] = be_2_i[3] ? 8'h00 : 8'hFF;
+   assign BWEB_i_2[23:16] = be_2_i[2] ? 8'h00 : 8'hFF;
+   assign BWEB_i_2[15:8]  = be_2_i[1] ? 8'h00 : 8'hFF;
+   assign BWEB_i_2[7:0]   = be_2_i[0] ? 8'h00 : 8'hFF;
+   TS1N28HPCPHVTB64X32M4SWBASO ram3(
+            .SLP(0),
+            .SD(0),
+            .CLK(clk), .CEB(!en_2_i), .WEB(!we_2_i),
+            .CEBM(1), .WEBM(1),
+            .AWT(0),
+            .A(addr_2_i), .D(wdata_2_i),
+            .BWEB(BWEB_i_2),
+            .AM(6'd0), .DM(32'd0), 
+            .BWEBM(32'd0),
+            .BIST(0),
+            .Q(rdata_2_o));
+
 
 endmodule

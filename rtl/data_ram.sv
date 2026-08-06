@@ -19,19 +19,27 @@ module data_ram
 logic [31:0] rdata_o1;
 logic sign_ext_i_reg;
 logic [DATA_WIDTH/8-1:0] be_i_reg;
-sp_ram #(
-    .ADDR_WIDTH(ADDR_WIDTH),
-    .DATA_WIDTH(DATA_WIDTH),
-    .NUM_WORDS(NUM_WORDS)
-) ram2 (
-    .clk(clk),
-    .en_i(en_i),
-    .addr_i(addr_i),
-    .wdata_i(wdata_i),
-    .rdata_o(rdata_o1),
-    .we_i(we_i),
-    .be_i(be_i)
-);
+
+// 64x32 DATA RAM
+logic [31:0] BWEB_i;
+   assign BWEB_i[31:24] = be_i[3] ? 8'h00 : 8'hFF;
+   assign BWEB_i[23:16] = be_i[2] ? 8'h00 : 8'hFF;
+   assign BWEB_i[15:8]  = be_i[1] ? 8'h00 : 8'hFF;
+   assign BWEB_i[7:0]   = be_i[0] ? 8'h00 : 8'hFF;
+
+TS1N28HPCPHVTB64X32M4SWBASO ram2(
+            .SLP(0),
+            .SD(0),
+            .CLK(clk), .CEB(!en_i), .WEB(!we_i),
+            .CEBM(1), .WEBM(1),
+            .AWT(0),
+            .A(addr_i), .D(wdata_i),
+            .BWEB(BWEB_i),
+            .AM(6'd0), .DM(32'd0), 
+            .BWEBM(32'd0),
+            .BIST(0),
+            .Q(rdata_o1));
+
 always_ff @(posedge clk) begin
     be_i_reg <= be_i;
     sign_ext_i_reg <= sign_ext_i;
