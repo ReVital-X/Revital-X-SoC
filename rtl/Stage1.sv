@@ -14,7 +14,7 @@ module Stage1 #(
     input logic [4:0] rd,
     output logic [4:0] rd_s12,
     input logic [31:0] wb_data,
-    input logic [1:0] PCSrc,
+    input logic [2:0] PCSrc,
     input logic [31:0] BranchAddr,
     input logic [31:0] ALUResult,
     output logic [31:0] PC,
@@ -26,7 +26,16 @@ module Stage1 #(
     output logic uses_rs1,
     output logic uses_rs2,
     output logic [31:0] imm,
-    output logic [17:0] ctrl,
+    output logic [19:0] ctrl,
+
+    // CSR signals
+    output logic [2:0] func3_csr,
+    output logic [11:0] csr_addr,
+    input logic [31:0] csr_in,
+    output logic [31:0] csr_rdata,
+    input logic csr_we_back, // From WB Stage 
+    input logic [11:0] csr_addr_out, // From WB Stage
+
     input logic redirect_flush,
     input logic redirect_flush_d,
     // From MEM Stage 
@@ -38,9 +47,28 @@ module Stage1 #(
     input  logic [3:0]             be_mem,
     input  logic                   sign_ext_mem,
 
-    input logic boot_mode
+    input logic boot_mode,
+
+    // Interrupt signals
+    output logic mret,
+
+    input  logic [31:0] csr_mip_i,
+    input  logic        trap_enter_i,
+    input  logic        trap_is_irq_i,
+    input  logic [4:0]  trap_cause_i,
+    input  logic [31:0] trap_pc_i,
+    input  logic        mret_csr_i,
+
+    output logic [31:0] csr_mie_o,
+    output logic        csr_mstatus_mie_o,
+    output logic [31:0] csr_mtvec_o,
+    output logic [31:0] csr_mepc_o
 );
 logic [31:0] instr;
+// CSR signals
+logic csr_we;
+logic csr_en;
+
 logic [31:0] mux_out;
 logic [31:0] instr_reg;
 logic [31:0] instr_PC_reg;
@@ -55,7 +83,9 @@ pc_mux mux1 (
     .pcsrc(PCSrc),
     .pc_in(mux_out), // Connect to PC input
     .PC(PC),
-    .pc_stall(pc_stall)
+    .pc_stall(pc_stall),
+    .mtvec(csr_mtvec_o),
+    .mepc(csr_mepc_o)
 );
 always_ff @(posedge clk) begin
     if (rst) begin
@@ -124,12 +154,35 @@ register_file rf (
     .rs1_value(rs1_value), 
     .rs2_value(rs2_value)
 );
+csr_register_file csr_rf (
+    .clk(clk),
+    .rst(rst),
+    .csr_addr(instr[31:20]),
+    .csr_rdata(csr_rdata),
+    .csr_we(csr_we_back),
+    .csr_waddr(csr_addr_out),
+    .csr_wdata(csr_in),
+    .mip_i(csr_mip_i),
+    .trap_enter_i(trap_enter_i),
+    .trap_is_irq_i(trap_is_irq_i),
+    .trap_cause_i(trap_cause_i),
+    .trap_pc_i(trap_pc_i),
+    .mret_i(mret_csr_i),
 
+    .mie_o(csr_mie_o),
+    .mstatus_mie_o(csr_mstatus_mie_o),
+    .mtvec_o(csr_mtvec_o),
+    .mepc_o(csr_mepc_o)
+);
 Control_Unit cu (
     .opcode(instr[6:0]),
     .funct3(instr[14:12]),
     .funct7_5(instr[30]),
     .funct7_0(instr[25]),
+
+    .system_imm(instr[31:20]),
+    .mret(mret),
+
     .RegWrite(RegWrite),
     .MemtoReg(MemtoReg),
     .ALUSrc(ALUSrc),
@@ -142,10 +195,14 @@ Control_Unit cu (
     .lsu_req(lsu_req),
     .lsu_we(lsu_we),
     .lsu_type(lsu_type),
-    .lsu_sign_ext(lsu_sign_ext)
+    .lsu_sign_ext(lsu_sign_ext),
+    .csr_en(csr_en),
+    .csr_we(csr_we)
 );
 
 assign ctrl = {
+    csr_en,          // 1 (19)
+    csr_we,          // 1 (18)
     RegWrite,        // 1 (17)
     MemtoReg,        // 2 (16:15)
     ALUSrc,          // 1 (14)
@@ -159,7 +216,7 @@ assign ctrl = {
     lsu_we,          // 1 (3)
     lsu_type,        // 2 (2:1)
     lsu_sign_ext     // 1 (0)
-                     // 18 bits total
+                     // 20 bits total
 };
 
 immediate_generator imm_gen (
@@ -170,6 +227,9 @@ immediate_generator imm_gen (
 assign rs1 = instr[19:15];
 assign rs2 = instr[24:20];
 assign rd_s12 = instr[11:7];
+
+assign func3_csr = instr[14:12];
+assign csr_addr = instr[31:20];
 
 always_comb begin
     uses_rs1 = 1'b0;
@@ -186,6 +246,13 @@ always_comb begin
         7'b1100011: begin // BRANCH
             uses_rs1 = 1'b1;
             uses_rs2 = 1'b1;
+        end
+        // CSR-Type (CSRRW, CSRRS, CSRRC, CSRRWI, CSRRSI, CSRRCI)
+        7'b1110011: begin
+            uses_rs1 = (instr[14:12] == 3'b001) ||
+                       (instr[14:12] == 3'b010) ||
+                       (instr[14:12] == 3'b011);
+            uses_rs2 = 1'b0;
         end
 
         default: begin

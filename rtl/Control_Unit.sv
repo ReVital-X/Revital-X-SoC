@@ -5,6 +5,9 @@ module Control_Unit (
     input  logic       funct7_5,  // Instr[30]
     input  logic       funct7_0,  // Instr[25] (M extension)
 
+    input  logic [11:0] system_imm, // instr[31:20] // to distinguish CSR, SYSTEM instrs
+    output logic mret,
+
     // Control Outputs
     output logic       RegWrite,
     output logic [1:0] MemtoReg,
@@ -18,7 +21,9 @@ module Control_Unit (
     output logic       lsu_req,
     output logic       lsu_we,
     output logic [1:0] lsu_type,
-    output logic       lsu_sign_ext
+    output logic       lsu_sign_ext,
+    output logic       csr_en,
+    output logic       csr_we
 );
 
     // Internal signals
@@ -40,6 +45,9 @@ module Control_Unit (
         lsu_we     = 0;
         lsu_type   = 2'b00;
         lsu_sign_ext = 0;
+        csr_en = 0;
+        csr_we = 0;
+        mret = 0;
         case (opcode)
 
             // LOAD (lw)
@@ -86,7 +94,7 @@ module Control_Unit (
                 RegWrite  = 0;
                 ALUSrc    = 1;
                 Lui       = 0;
-                MemtoReg  = 2'b11;
+                MemtoReg  = 2'b00;
                 Jump      = 0;
                 Branch    = 0;
                 ALUOp     = 2'b00;
@@ -120,7 +128,7 @@ module Control_Unit (
                 RegWrite  = 0;
                 ALUSrc    = 0;
                 Lui       = 0;
-                MemtoReg  = 2'b11;
+                MemtoReg  = 2'b00;
                 Jump      = 0;
                 Branch    = 1;
                 ALUOp     = 2'b01;
@@ -177,15 +185,38 @@ module Control_Unit (
                 Branch    = 0;
                 ALUOp     = 2'b00;
             end
-
+            //CSR (CSSRW, CSRRS, CSRRC, CSRRWI, CSRRSI, CSRRCI)
+            7'b1110011: begin
+                if (funct3 == 3'b000) begin
+                    RegWrite  = 0;
+                    csr_en = 0;
+                    csr_we = 0;
+                    if (system_imm == 12'h302) begin
+                        mret = 1;
+                    end
+                end else begin
+                    RegWrite  = 1;
+                    csr_en = 1;
+                    csr_we = 1;
+                    mret = 0;
+                end
+                ALUSrc    = 0; 
+                Lui       = 0;
+                MemtoReg  = 2'b00; // ALU will be configured to pass old CSR value to rd
+                Jump      = 0;
+                Branch    = 0;
+                ALUOp     = 2'b00;
+            end
             default: begin
                 RegWrite   = 0;
                 ALUSrc     = 0;
                 Lui        = 0;
-                MemtoReg   = 2'b11;
+                MemtoReg   = 2'b00;
                 Jump       = 0;
                 Branch     = 0;
                 ALUOp      = 2'b00;
+                csr_en = 0;
+                csr_we = 0;
             end
 
         endcase

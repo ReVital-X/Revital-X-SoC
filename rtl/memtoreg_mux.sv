@@ -12,15 +12,15 @@ Selection Logic:
     --------------------------------
     MemtoReg   wb_data Output
     --------------------------------
-      00       alu_result   (ALU operations)
+      00       final_result (Final result from EX Stage)
       01       mem_data     (Load instructions - lw)
       10       pc_4         (Jump instructions - jal/jalr)
       11       0            (Default / safe value)
 
 Usage:
 ------
-- R-type / I-type ALU instructions:
-    write ALU result → MemtoReg = 00
+- R-type / I-type ALU, Multiplier, CSR instructions:
+    write EX result → MemtoReg = 00
 
 - Load instructions (e.g., lw):
     write memory data → MemtoReg = 01
@@ -36,7 +36,7 @@ Usage:
 module memtoreg_mux #(
     parameter WIDTH = 32   // Data width (default = 32-bit RISC-V)
 )(
-    input  logic [WIDTH-1:0] alu_result, // Result from ALU
+    input  logic [WIDTH-1:0] final_result, // Result from EX Stage
     input  logic [WIDTH-1:0] mem_data,   // Data read from memory
     input  logic [WIDTH-1:0] pc,       // PC 
     input  logic [1:0]       MemtoReg,   // Control signal (2-bit select)
@@ -49,8 +49,8 @@ module memtoreg_mux #(
     always_comb begin
         wb_data = '0;
         case (MemtoReg)
-            // 00 → ALU result (normal arithmetic/logical instructions)
-            2'b00: wb_data = alu_result;
+            // 00 → Final result from EX Stage
+            2'b00: wb_data = final_result;
             // 01 → Memory data (load instructions like lw)
             2'b01: wb_data = mem_data;
             // 10 → PC + 4 (used in jal/jalr for return address)

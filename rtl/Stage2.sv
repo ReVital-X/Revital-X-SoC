@@ -7,17 +7,26 @@ module Stage2(
     input logic [31:0] rs1_value,
     input logic [31:0] rs2_value,
     input logic [4:0] rd,
-    input logic [17:0] ctrl_s1,
+    input logic [19:0] ctrl_s1,
     input logic [1:0] ForwardA,
     input logic [1:0] ForwardB,
     input logic [31:0] Fwd_rd_value1, //data_wb from Write Back stage
     input logic [31:0] Fwd_rd_value2, //alu_result_wb from Mem stage
     input logic mul_start,
+
+    // CSR signals
+    input logic [2:0] func3_csr,
+    input logic [31:0] csr_rdata,
+    input logic [11:0] csr_addr,
+    output logic [31:0] csr_wdata,
+    output logic csr_we_back,
+    output logic [11:0] csr_addr_back,
+
     output logic [31:0] exec_result, // Final result after ALU/Mul Mux
     output logic [4:0] rd_out,
     output logic [31:0] rs2_value_out,
     output logic branch_flush,
-    output logic [7:0] ctrl_s2,
+    output logic [8:0] ctrl_s2,
     output logic [31:0] BranchAddr,
     output logic [31:0] ALUResult, // for jars/jalrs
     output logic [31:0] pc_out_s2,
@@ -25,6 +34,11 @@ module Stage2(
     output logic Jump
 );
     logic compare_out;
+    // CSR signals
+    logic csr_en;
+    logic csr_we;
+    logic [31:0] csr_result;
+
     logic [31:0] alu_result;
     logic [31:0] mul_result;
     logic [31:0] alu_in1;
@@ -36,6 +50,8 @@ module Stage2(
     //Forwarding Signals
     logic [31:0] rs1_val_after, rs2_val_after;
     assign {
+    csr_en,          // 1
+    csr_we,          // 1    
     RegWrite,        // 1
     MemtoReg,        // 2
     ALUSrc,          // 1
@@ -49,7 +65,7 @@ module Stage2(
     lsu_we,          // 1
     lsu_type,        // 2
     lsu_sign_ext     // 1
-                     // 18 bits total
+                     // 20 bits total
     } = ctrl_s1;
 
 always_comb begin
@@ -92,6 +108,16 @@ alu alu (
     .compare_out(compare_out)
 );
 
+csr_unit csr (
+    .csr_en(csr_en),
+    .csr_op(func3_csr),
+    .rs1_value(rs1_val_after),
+    .csr_old(csr_rdata),
+    .uimm(imm),
+    .csr_result(csr_result),
+    .csr_wdata(csr_wdata)
+);
+
 Pipelined_M multi (
     .A(rs1_val_after),
     .B(rs2_val_after),
@@ -103,27 +129,32 @@ Pipelined_M multi (
     .M_over(M_over)
 );
 
-alu_mul_mux mux3 (
+alu_mul_csr_mux mux3 (
     .alu_result(alu_result),
     .mul_result(mul_result),
+    .csr_result(csr_result),
     .Mul(Mul),
+    .csr_en(csr_en),
     .exec_result(exec_result)
 );
 
     assign branch_flush = compare_out & Branch;
     assign BranchAddr = Branch ? (pc_in_2 + imm) : 32'b0;
     assign ctrl_s2 = {
+        csr_en,         // 1 (8)
         MemtoReg,       // 2 (7:6)
         RegWrite,       // 1 (5)
         lsu_req,        // 1 (4)
         lsu_we,         // 1 (3)
         lsu_type,       // 2 (2:1)
         lsu_sign_ext    // 1 (0)
-                        // 8 bits total
+                        // 9 bits total
     };
     assign rd_out = rd;
     assign ALUResult = alu_result; // Address Calculation for Load/Store + ALU Result
     assign rs2_value_out = rs2_val_after; 
     assign pc_out_s2 = pc_in_2;
-
+    
+    assign csr_we_back = csr_we; // Pass csr_we to the decode stage
+    assign csr_addr_back = csr_addr;
 endmodule
