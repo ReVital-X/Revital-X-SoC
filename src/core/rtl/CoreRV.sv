@@ -13,6 +13,7 @@ module CoreRV #(
     output logic data_we_o,
     output logic data_req_o,
     output logic [3:0] data_be_o,
+<<<<<<< HEAD:rtl/CoreRV.sv
     input  logic [31:0] data_rdata_i,
     input  logic data_gnt_i,
     input  logic data_rvalid_i,
@@ -21,6 +22,12 @@ module CoreRV #(
    input   logic [31:0] irq_i,
    output  logic irq_ack_o,
    output  logic [4:0] irq_id_o 
+=======
+    input logic [31:0] data_rdata_i,
+    input logic data_gnt_i,
+    input logic data_rvalid_i,
+    input logic data_err_i
+>>>>>>> d71cd71 (Move rtl under src/core):src/core/rtl/CoreRV.sv
 );
 typedef struct packed {
     logic [4:0] rd_s12;
